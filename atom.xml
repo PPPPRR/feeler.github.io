@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://universefeeler.github.io/"/>
-  <updated>2016-07-19T15:36:13.512Z</updated>
+  <updated>2016-07-20T16:31:12.065Z</updated>
   <id>http://universefeeler.github.io/</id>
   
   <author>
@@ -17,45 +17,13 @@
   
   <entry>
     <title></title>
-    <link href="http://universefeeler.github.io/2016/07/20/Java%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E3%80%81%E8%8E%B7%E5%8F%96Cookie/"/>
-    <id>http://universefeeler.github.io/2016/07/20/Java添加、删除、获取Cookie/</id>
-    <published>2016-07-20T14:18:12.695Z</published>
-    <updated>2016-07-19T15:36:13.512Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Java添加、删除、获取Cookie"><a href="#Java添加、删除、获取Cookie" class="headerlink" title="Java添加、删除、获取Cookie"></a>Java添加、删除、获取Cookie</h1><ol>
-<li><strong>添加Cookie</strong></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"name"</span>, <span class="string">"aotori"</span>);       <span class="comment">//(key,value)</span></div><div class="line">    cookie.setPath(<span class="string">"/"</span>);<span class="comment">// 这个要设置</span></div><div class="line">    <span class="comment">// cookie.setDomain(".aotori.com");//这样设置，能实现两个网站共用</span></div><div class="line">	 cookie.setMaxAge(<span class="number">365</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span>);<span class="comment">// 不设置的话，则cookies不写入硬盘,而是写在内存,只在当前页面有用,以秒为单位</span></div><div class="line">    response.addCookie(cookie);         <span class="comment">//添加第一个Cookie</span></div><div class="line">    cookie = <span class="keyword">new</span> Cookie(<span class="string">"nick"</span>, URLEncoder.encode(<span class="string">"陈强"</span>, <span class="string">"UTF-8"</span>));</div><div class="line">    cookie.setPath(<span class="string">"/"</span>);</div><div class="line">    <span class="comment">// cookie.setDomain(".aotori.com");</span></div><div class="line">    cookie.setMaxAge(<span class="number">365</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span>);</div><div class="line">   response.addCookie(cookie);          <span class="comment">//添加第二个Cookie</span></div></pre></td></tr></table></figure>
-<ol>
-<li><strong>读取Cookie</strong></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Cookie cookies[] = request.getCookies();</div><div class="line">   System.out.println(<span class="string">"Cookie长度:"</span> + cookies.length);        <span class="comment">//读取本机共存在多少COOKIE</span></div><div class="line">   <span class="keyword">if</span> (cookies != <span class="keyword">null</span>) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cookies.length; i++) &#123;</div><div class="line">     <span class="keyword">if</span> (cookies[i].getName().equals(<span class="string">"nick"</span>)) &#123;</div><div class="line">         System.out.println(<span class="string">"For 内部Cookie"</span> + URLDecoder.decode(cookies[i].getValue(), <span class="string">"UTF-8"</span>));</div><div class="line">     &#125;</div><div class="line">    &#125;</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">    System.out.println(<span class="string">"没有Cookie"</span>);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<ol>
-<li><strong>删除Cookie</strong></li>
-</ol>
-<blockquote>
-<pre><code>对COOKIE进行删除操作, 只需将该COOKIE对象使用setMaxAge(0)法
-</code></pre></blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Cookie cookies[] = request.getCookies();</div><div class="line">     <span class="keyword">if</span> (cookies != <span class="keyword">null</span>)</div><div class="line">     &#123;</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cookies.length; i++)</div><div class="line">         &#123;</div><div class="line">             <span class="keyword">if</span> (cookies[i].getName().equals(<span class="string">"nick"</span>))</div><div class="line">             &#123;</div><div class="line">                 Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"nick"</span>,<span class="string">"ww"</span>);<span class="comment">//这边得用"",不能用null</span></div><div class="line">                 cookie.setPath(<span class="string">"/"</span>);<span class="comment">//设置成跟写入cookies一样的</span></div><div class="line">                <span class="comment">// cookie.setDomain(".wangwz.com");//设置成跟写入cookies一样的</span></div><div class="line">                 cookie.setMaxAge(<span class="number">0</span>);</div><div class="line">                 response.addCookie(cookie);</div><div class="line">             &#125;</div><div class="line">         &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Java添加、删除、获取Cookie&quot;&gt;&lt;a href=&quot;#Java添加、删除、获取Cookie&quot; class=&quot;headerlink&quot; title=&quot;Java添加、删除、获取Cookie&quot;&gt;&lt;/a&gt;Java添加、删除、获取Cookie&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
     <link href="http://universefeeler.github.io/2016/07/20/MySQL%20select%20count()%E6%9F%A5%E8%AF%A2%E8%BE%83%E6%85%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E5%AE%9E%E5%92%8C%E7%BB%93%E8%AE%BA/"/>
     <id>http://universefeeler.github.io/2016/07/20/MySQL select count()查询较慢的一些事实和结论/</id>
-    <published>2016-07-20T14:18:12.695Z</published>
-    <updated>2016-07-19T16:28:41.012Z</updated>
+    <published>2016-07-20T16:31:12.069Z</published>
+    <updated>2016-07-20T16:31:12.065Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="MySQL-select-count-查询较慢的一些事实和结论"><a href="#MySQL-select-count-查询较慢的一些事实和结论" class="headerlink" title="MySQL select count()查询较慢的一些事实和结论"></a>MySQL select count()查询较慢的一些事实和结论</h1><p><strong>一些实践事实（mysql innodb）</strong></p>
+    <content type="html"><![CDATA[<h1 id="MySQL-select-count-查询较慢的一些事实和结论"><a href="#MySQL-select-count-查询较慢的一些事实和结论" class="headerlink" title="MySQL select count()查询较慢的一些事实和结论"></a>MySQL select count()查询较慢的一些事实和结论</h1><p>title: MySQL select count()查询较慢的一些事实和结论<br>date: 2016-07-21 20:33:26<br>categories: mysql<br>tags: [mysql,优化,快捷方式] </p>
+<p><strong>一些实践事实（mysql innodb）</strong></p>
 <ol>
 <li>在没有额外查询的条件的情况下， select count（*）、select count（id）、select count（1）的查询效率是几乎没有区别的。</li>
 </ol>
@@ -93,6 +61,39 @@
     <summary type="html">
     
       &lt;h1 id=&quot;MySQL-select-count-查询较慢的一些事实和结论&quot;&gt;&lt;a href=&quot;#MySQL-select-count-查询较慢的一些事实和结论&quot; class=&quot;headerlink&quot; title=&quot;MySQL select count()查询较慢的一些事实和
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/20/Java%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E3%80%81%E8%8E%B7%E5%8F%96Cookie/"/>
+    <id>http://universefeeler.github.io/2016/07/20/Java添加、删除、获取Cookie/</id>
+    <published>2016-07-20T14:18:12.695Z</published>
+    <updated>2016-07-19T15:36:13.512Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Java添加、删除、获取Cookie"><a href="#Java添加、删除、获取Cookie" class="headerlink" title="Java添加、删除、获取Cookie"></a>Java添加、删除、获取Cookie</h1><ol>
+<li><strong>添加Cookie</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"name"</span>, <span class="string">"aotori"</span>);       <span class="comment">//(key,value)</span></div><div class="line">    cookie.setPath(<span class="string">"/"</span>);<span class="comment">// 这个要设置</span></div><div class="line">    <span class="comment">// cookie.setDomain(".aotori.com");//这样设置，能实现两个网站共用</span></div><div class="line">	 cookie.setMaxAge(<span class="number">365</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span>);<span class="comment">// 不设置的话，则cookies不写入硬盘,而是写在内存,只在当前页面有用,以秒为单位</span></div><div class="line">    response.addCookie(cookie);         <span class="comment">//添加第一个Cookie</span></div><div class="line">    cookie = <span class="keyword">new</span> Cookie(<span class="string">"nick"</span>, URLEncoder.encode(<span class="string">"陈强"</span>, <span class="string">"UTF-8"</span>));</div><div class="line">    cookie.setPath(<span class="string">"/"</span>);</div><div class="line">    <span class="comment">// cookie.setDomain(".aotori.com");</span></div><div class="line">    cookie.setMaxAge(<span class="number">365</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span>);</div><div class="line">   response.addCookie(cookie);          <span class="comment">//添加第二个Cookie</span></div></pre></td></tr></table></figure>
+<ol>
+<li><strong>读取Cookie</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Cookie cookies[] = request.getCookies();</div><div class="line">   System.out.println(<span class="string">"Cookie长度:"</span> + cookies.length);        <span class="comment">//读取本机共存在多少COOKIE</span></div><div class="line">   <span class="keyword">if</span> (cookies != <span class="keyword">null</span>) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cookies.length; i++) &#123;</div><div class="line">     <span class="keyword">if</span> (cookies[i].getName().equals(<span class="string">"nick"</span>)) &#123;</div><div class="line">         System.out.println(<span class="string">"For 内部Cookie"</span> + URLDecoder.decode(cookies[i].getValue(), <span class="string">"UTF-8"</span>));</div><div class="line">     &#125;</div><div class="line">    &#125;</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">    System.out.println(<span class="string">"没有Cookie"</span>);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><strong>删除Cookie</strong></li>
+</ol>
+<blockquote>
+<pre><code>对COOKIE进行删除操作, 只需将该COOKIE对象使用setMaxAge(0)法
+</code></pre></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Cookie cookies[] = request.getCookies();</div><div class="line">     <span class="keyword">if</span> (cookies != <span class="keyword">null</span>)</div><div class="line">     &#123;</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cookies.length; i++)</div><div class="line">         &#123;</div><div class="line">             <span class="keyword">if</span> (cookies[i].getName().equals(<span class="string">"nick"</span>))</div><div class="line">             &#123;</div><div class="line">                 Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"nick"</span>,<span class="string">"ww"</span>);<span class="comment">//这边得用"",不能用null</span></div><div class="line">                 cookie.setPath(<span class="string">"/"</span>);<span class="comment">//设置成跟写入cookies一样的</span></div><div class="line">                <span class="comment">// cookie.setDomain(".wangwz.com");//设置成跟写入cookies一样的</span></div><div class="line">                 cookie.setMaxAge(<span class="number">0</span>);</div><div class="line">                 response.addCookie(cookie);</div><div class="line">             &#125;</div><div class="line">         &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Java添加、删除、获取Cookie&quot;&gt;&lt;a href=&quot;#Java添加、删除、获取Cookie&quot; class=&quot;headerlink&quot; title=&quot;Java添加、删除、获取Cookie&quot;&gt;&lt;/a&gt;Java添加、删除、获取Cookie&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;
     
     </summary>
     
