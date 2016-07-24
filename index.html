@@ -6,11 +6,6 @@
   
   <title>UniverseFeeler</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Set render engine for 360 browser -->
-  <meta name="renderer" content="webkit">
-  <!-- No Baidu Siteapp-->
-  <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <meta name="description" content="Touch the World!">
 <meta property="og:type" content="website">
 <meta property="og:title" content="UniverseFeeler">
@@ -21,20 +16,14 @@
 <meta name="twitter:title" content="UniverseFeeler">
 <meta name="twitter:description" content="Touch the World!">
   
+    <link rel="alternative" href="/atom.xml" title="UniverseFeeler" type="application/atom+xml">
   
-    <link rel="icon" href="/img/logo.png">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!-- Add to homescreen for Chrome on Android -->    
-    <link rel="icon" sizes="192x192" href="/img/logo.png">
-    <!-- Add to homescreen for Safari on iOS -->
-    <link rel="apple-touch-icon-precomposed" href="/img/logo.png">    
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="/img/logo.png">
-    <meta name="msapplication-TileColor" content="#0e90d2">
+  
+    <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
   
 </head>
 <body>
@@ -57,15 +46,14 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">首页</a>
+          <a class="main-nav-link" href="/">Home</a>
         
-          <a class="main-nav-link" href="/archives">文章</a>
-        
-          <a class="main-nav-link" href="/about">关于</a>
+          <a class="main-nav-link" href="/archives">Archives</a>
         
       </nav>
-      <!--
       <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -79,7 +67,6 @@
           <input type="hidden" name="si" value="universefeeler.github.io">
         </form>
       </div>
-      -->
     </div>
   </div>
 </header>
@@ -98,8 +85,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="MySQL-select-count-查询较慢的一些事实和结论"><a href="#MySQL-select-count-查询较慢的一些事实和结论" class="headerlink" title="MySQL select count()查询较慢的一些事实和结论"></a>MySQL select count()查询较慢的一些事实和结论</h1><p>title: MySQL select count()查询较慢的一些事实和结论<br>date: 2016-07-21 20:33:26<br>categories: mysql<br>tags: [mysql,优化,快捷方式] </p>
 <p><strong>一些实践事实（mysql innodb）</strong></p>
 <ol>
@@ -136,14 +121,10 @@
 </ol>
 
       
-      
-
-
     </div>
-    
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/20/MySQL select count()查询较慢的一些事实和结论/" data-id="cir0s7lzh00035gjx0eqhm8qe" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/20/MySQL select count()查询较慢的一些事实和结论/" data-id="cir0soyyl00038fjx68dbo91a" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
@@ -170,8 +151,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="Java添加、删除、获取Cookie"><a href="#Java添加、删除、获取Cookie" class="headerlink" title="Java添加、删除、获取Cookie"></a>Java添加、删除、获取Cookie</h1><ol>
 <li><strong>添加Cookie</strong></li>
 </ol>
@@ -188,14 +167,10 @@
 </code></pre></blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Cookie cookies[] = request.getCookies();</div><div class="line">     <span class="keyword">if</span> (cookies != <span class="keyword">null</span>)</div><div class="line">     &#123;</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cookies.length; i++)</div><div class="line">         &#123;</div><div class="line">             <span class="keyword">if</span> (cookies[i].getName().equals(<span class="string">"nick"</span>))</div><div class="line">             &#123;</div><div class="line">                 Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"nick"</span>,<span class="string">"ww"</span>);<span class="comment">//这边得用"",不能用null</span></div><div class="line">                 cookie.setPath(<span class="string">"/"</span>);<span class="comment">//设置成跟写入cookies一样的</span></div><div class="line">                <span class="comment">// cookie.setDomain(".wangwz.com");//设置成跟写入cookies一样的</span></div><div class="line">                 cookie.setMaxAge(<span class="number">0</span>);</div><div class="line">                 response.addCookie(cookie);</div><div class="line">             &#125;</div><div class="line">         &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
       
-      
-
-
     </div>
-    
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/20/Java添加、删除、获取Cookie/" data-id="cir0s7lza00025gjxjmd4z4s5" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/20/Java添加、删除、获取Cookie/" data-id="cir0soyyd00028fjx3b9p45vi" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
@@ -222,8 +197,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="商业碎片捕手—《星巴克一切与咖啡无关》思索"><a href="#商业碎片捕手—《星巴克一切与咖啡无关》思索" class="headerlink" title="商业碎片捕手—《星巴克一切与咖啡无关》思索"></a>商业碎片捕手—《星巴克一切与咖啡无关》思索</h1><p>@(默认笔记)[商业笔记, 读书, 微信公众号运营]</p>
 <p><strong>前言</strong><br>        世间的工作，平凡如尘土<br>        你为它劳心，它却弄污你的顺手<br>        最终又华为乌有。</p>
 <blockquote>
@@ -236,14 +209,10 @@
 </ul>
 
       
-      
-
-
     </div>
-    
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/" data-id="cir0s7m0800075gjxvdtx0w37" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/" data-id="cir0soyzp00078fjxegj25t4b" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
@@ -270,8 +239,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="jQuery-find-函数详解"><a href="#jQuery-find-函数详解" class="headerlink" title="jQuery.find() 函数详解"></a>jQuery.find() 函数详解</h1><blockquote>
 <p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以jQuery对象的形式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于jQuery对象(实例)。</p>
 </blockquote>
@@ -290,14 +257,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 返回jQuery对象所有匹配元素的标识信息数组</div><div class="line">// 每个元素形如：tagName或tagName#id(如果有id的话)</div><div class="line">function getTagsInfo($doms)&#123;</div><div class="line">	return $doms.map(function()&#123;</div><div class="line">		return this.tagName + (this.id ? &quot;#&quot; + this.id : &quot;&quot;);</div><div class="line">	&#125;).get();</div><div class="line">&#125;</div><div class="line">// 匹配id为e1的元素</div><div class="line">var $e1 = $(&quot;#e1&quot;);</div><div class="line">var $e1_span = $e1.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $e1_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5</div><div class="line"></div><div class="line">var $p = $(&quot;p&quot;);</div><div class="line">var $p_span = $p.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $p_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5,SPAN#e7</div><div class="line"></div><div class="line">var $highlight = $p.find( $(&quot;.highlight&quot;) );</div><div class="line">document.writeln( getTagsInfo( $highlight ) ); // SPAN#e7</div><div class="line"></div><div class="line">var a = document.getElementsByTagName(&quot;a&quot;);</div><div class="line">var $a = $p.find( a );</div><div class="line">document.writeln( getTagsInfo( $a ) ); // A#e8</div></pre></td></tr></table></figure>
 
       
-      
-
-
     </div>
-    
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/" data-id="cir0s7lzk00045gjxv3mjf2ft" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/" data-id="cir0soyyq00048fjx5egpwfy1" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
@@ -324,8 +287,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="jQuery的-符号详解"><a href="#jQuery的-符号详解" class="headerlink" title="jQuery的$符号详解"></a>jQuery的$符号详解</h1><blockquote>
 <p>jQuery是现在最流行的Javascript框架，<br>\$是其中最常见的符号，已经在jQuery留下了深深的烙印。那么\$到底是什么东西，它可以接受一个字符，也可以接受一个文档对象，亦或者一个函数，也可以调用一个函数。</p>
 </blockquote>
@@ -336,14 +297,10 @@
 <p>\$符号，其实是对jQuery类构造函数的引用，此函数实际调用了jQuery.fn.init(即是jQuery.prototype.init)来生成jQuery对象,其中jQuery.prototype的所有方法都被jQuery的对象继承。\$.func实际是jQuery类的静态方法，所以$即是jQuery类的构造函数，支持各种条件的查找和生成并返回DOM对象构成jQuery对象，同时也是一个类，是所有jQuery静态方法的入口，例如可以使用个\$.ajax()。</p>
 
       
-      
-
-
     </div>
-    
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/" data-id="cir0s7lzo00055gjxtagoq1cx" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/" data-id="cir0soyz800058fjxdzqlu2bl" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
@@ -370,8 +327,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="jquery的-“-id”-与document-getElementById-“id”-的区别"><a href="#jquery的-“-id”-与document-getElementById-“id”-的区别" class="headerlink" title="jquery的$(“#id”)与document.getElementById(“id”)的区别"></a>jquery的$(“#id”)与document.getElementById(“id”)的区别</h1><ol>
 <li>alert($(“#box”))得到的是[object Object]</li>
 <li>alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]</li>
@@ -380,14 +335,10 @@
 <p>因此document.getElementByIdx_x(“box”)等同于(\$(“#box”)[0]或(\$(“#box”).get(0)</p>
 
       
-      
-
-
     </div>
-    
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" data-id="cir0s7m0100065gjx3sd9vhhn" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" data-id="cir0soyzf00068fjxezsxuoeo" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
@@ -414,8 +365,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="Grep应用几例"><a href="#Grep应用几例" class="headerlink" title="Grep应用几例"></a>Grep应用几例</h1><ol>
 <li><strong>获取log.txt文件中各”appid=”的值</strong><br>log.txt内容如下：<br><img src="./2016-07-13_234805.jpg" alt="Alt text"></li>
 </ol>
@@ -430,14 +379,10 @@
 <p>具体操作实例：<br><img src="./2016-07-13_233056.jpg" alt="Alt text"></p>
 
       
-      
-
-
     </div>
-    
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/13/Grep应用几例/" data-id="cir0s7lz100015gjxmiugkfb5" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/13/Grep应用几例/" data-id="cir0soyy200018fjxs6tzhnvh" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
@@ -464,8 +409,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h1 id="ajax-方法详解"><a href="#ajax-方法详解" class="headerlink" title="$.ajax()方法详解"></a>$.ajax()方法详解</h1><p>###$.ajax()参数解释</p>
 <ol>
 <li><strong>url:</strong><br>要求为String类型的参数，（默认为当前页地址）发送请求的地址。</li>
@@ -510,14 +453,10 @@ this;   //调用本次ajax请求时传递的options参数
 <p><strong>ps:</strong><br>$.each()函数不同于JQuery对象的each()方法，它是一个全局函数，不操作JQuery对象，而是以一个数组或者对象作为第1个参数，以一个回调函数作为第2个参数。回调函数拥有两个参数：第1个为对象的成员或数组的索引，第2个为对应变量或内容。</p>
 
       
-      
-
-
     </div>
-    
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/11/$.ajax()方法详解/" data-id="cir0s7lyj00005gjx3ukqls9v" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/11/$.ajax()方法详解/" data-id="cir0soyxk00008fjxu8zav55m" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
@@ -538,66 +477,6 @@ this;   //调用本次ajax请求时传递的options参数
       <aside id="sidebar">
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">推荐文章</h3>
-    <div class="widget">
-      <ul>
-        
-        
-          
-          <li>
-            <a href="/2015/09/02/dsoframer-introduction-resources/" target="_blank">1. DSOframer的简单介绍和资源整理</a>
-          </li>
-        
-          
-          <li>
-            <a href="/2015/09/11/dsoframer-frequently-asked-question2/" target="_blank">2. DSOframer微软官方API的查阅方法</a>
-          </li>
-        
-          
-          <li>
-            <a href="/2015/08/31/dsoframer-frequently-asked-question1/" target="_blank">3. DSOframer无法正常加载的解决方案</a>
-          </li>
-        
-          
-          <li>
-            <a href="/2012/02/15/office-pdf2image/" target="_blank">4. C#技术分享-PDF转图片的10种方法</a>
-          </li>
-        
-          
-          <li>
-            <a href="/2012/02/22/office-doc2image/" target="_blank">5. C#技术分享-DOC转图片的3种方法</a>
-          </li>
-        
-          
-          <li>
-            <a href="/2015/08/30/donet-opensource-stonefw-introduction/" target="_blank">6. DoNet开源项目-基于jQuery EasyUI的后台管理系统</a>
-          </li>
-        
-          
-          <li>
-            <a href="/2016/01/17/donet-opensource-dian-introduction/" target="_blank">7. DoNet开源项目-基于Amaze UI的点餐系统</a>
-          </li>
-        
-          
-          <li>
-            <a href="/2015/08/29/hexo-theme-landscape-plus-optimize/" target="_blank">8. Hexo官方主题landscape-plus优化</a>
-          </li>
-        
-          
-          <li>
-            <a href="/2016/04/17/frontend-css-position-learning-note/" target="_blank">9. CSS基础知识之position</a>
-          </li>
-        
-          
-          <li>
-            <a href="/2016/06/10/frontend-css-float-learning-note/" target="_blank">10. CSS基础知识之float</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
   
     
   
@@ -607,7 +486,39 @@ this;   //调用本次ajax请求时传递的options参数
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年 07月</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016-07</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/20/MySQL select count()查询较慢的一些事实和结论/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/20/Java添加、删除、获取Cookie/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jQuery.find() 函数详解/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jQuery的$符号详解/">(no title)</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
 
@@ -619,53 +530,14 @@ this;   //调用本次ajax请求时传递的options参数
       <ul>
         
           <li>
-            <a href="http://weibo.com/605494869/" target="_blank">石佳劼的微博</a>
+            <a href="http://xiguabaobao.com" target="_blank">主题作者</a>
           </li>
         
           <li>
-            <a href="http://www.zhihu.com/people/stone0090/" target="_blank">石佳劼的知乎</a>
-          </li>
-        
-          <li>
-            <a href="http://www.jianshu.com/users/0005893eaff9/latest_articles/" target="_blank">石佳劼的简书</a>
-          </li>
-        
-          <li>
-            <a href="http://blog.csdn.net/shi0090/" target="_blank">石佳劼的CSDN</a>
-          </li>
-        
-          <li>
-            <a href="http://www.cnblogs.com/shi0090/" target="_blank">石佳劼的博客园</a>
-          </li>
-        
-          <li>
-            <a href="https://github.com/stone0090/" target="_blank">石佳劼的GitHub</a>
+            <a href="http://reqianduan.com" target="_blank">热前端</a>
           </li>
         
       </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最近评论</h3>
-    <div class="widget">
-      <!-- 多说最新评论 start -->
-      <div class="ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
-      <!-- 多说最新评论 end -->
-      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-      <script type="text/javascript">
-        var duoshuoQuery = {short_name:"shijiajie"};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-      </script>
-      <!-- 多说公共JS代码 end -->
     </div>
   </div>
 
@@ -674,31 +546,22 @@ this;   //调用本次ajax请求时传递的options参数
       
     </div>
     <footer id="footer">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-  </script>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      Copyright &copy; 2012 - 2016 <a href="/" target="_blank">universefeeler</a>.
-      &nbsp;|&nbsp;
-      <span id="busuanzi_container_site_pv">
-        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
-      </span>
-      <span id="busuanzi_container_site_uv">
-        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
-      </span>      
+      &copy; 2016 universefeeler<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
     </div>
   </div>
 </footer>
-
   </div>
   <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">首页</a>
+    <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">文章</a>
-  
-    <a href="/about" class="mobile-nav-link">关于</a>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
   <!-- totop start -->
@@ -710,7 +573,7 @@ this;   //调用本次ajax请求时传递的options参数
 
 <!-- 多说公共js代码 start -->
 <script type="text/javascript">
-var duoshuoQuery = {short_name:"shijiajie"};
+var duoshuoQuery = {short_name:"feeler"};
   (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
@@ -734,7 +597,20 @@ var duoshuoQuery = {short_name:"shijiajie"};
     <a class="article-share-more" data-cmd="more" title="更多"></a>
   </div>
 </div>
-<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 
 <!-- 百度分享 end -->
 
