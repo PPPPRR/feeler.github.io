@@ -165,30 +165,6 @@
   
   <entry>
     <title></title>
-    <link href="http://universefeeler.github.io/2016/07/13/jquery%E7%9A%84$(%E2%80%9C#id%E2%80%9D)%E4%B8%8Edocument.getElementById(%E2%80%9Cid%E2%80%9D)%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/</id>
-    <published>2016-07-13T15:56:13.392Z</published>
-    <updated>2016-07-11T15:43:08.727Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="jquery的-“-id”-与document-getElementById-“id”-的区别"><a href="#jquery的-“-id”-与document-getElementById-“id”-的区别" class="headerlink" title="jquery的$(“#id”)与document.getElementById(“id”)的区别"></a>jquery的$(“#id”)与document.getElementById(“id”)的区别</h1><ol>
-<li>alert($(“#box”))得到的是[object Object]</li>
-<li>alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]</li>
-<li>alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到的是[object HTMLDivElement]</li>
-</ol>
-<p>因此document.getElementByIdx_x(“box”)等同于(\$(“#box”)[0]或(\$(“#box”).get(0)</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;jquery的-“-id”-与document-getElementById-“id”-的区别&quot;&gt;&lt;a href=&quot;#jquery的-“-id”-与document-getElementById-“id”-的区别&quot; class=&quot;headerlink&quot; title
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
     <link href="http://universefeeler.github.io/2016/07/13/jQuery%E7%9A%84$%E7%AC%A6%E5%8F%B7%E8%AF%A6%E8%A7%A3/"/>
     <id>http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/</id>
     <published>2016-07-13T15:56:13.392Z</published>
@@ -208,6 +184,30 @@
     
       &lt;h1 id=&quot;jQuery的-符号详解&quot;&gt;&lt;a href=&quot;#jQuery的-符号详解&quot; class=&quot;headerlink&quot; title=&quot;jQuery的$符号详解&quot;&gt;&lt;/a&gt;jQuery的$符号详解&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;jQuery是现在最流行的Java
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/13/jquery%E7%9A%84$(%E2%80%9C#id%E2%80%9D)%E4%B8%8Edocument.getElementById(%E2%80%9Cid%E2%80%9D)%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/</id>
+    <published>2016-07-13T15:56:13.392Z</published>
+    <updated>2016-07-11T15:43:08.727Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="jquery的-“-id”-与document-getElementById-“id”-的区别"><a href="#jquery的-“-id”-与document-getElementById-“id”-的区别" class="headerlink" title="jquery的$(“#id”)与document.getElementById(“id”)的区别"></a>jquery的$(“#id”)与document.getElementById(“id”)的区别</h1><ol>
+<li>alert($(“#box”))得到的是[object Object]</li>
+<li>alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]</li>
+<li>alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到的是[object HTMLDivElement]</li>
+</ol>
+<p>因此document.getElementByIdx_x(“box”)等同于(\$(“#box”)[0]或(\$(“#box”).get(0)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;jquery的-“-id”-与document-getElementById-“id”-的区别&quot;&gt;&lt;a href=&quot;#jquery的-“-id”-与document-getElementById-“id”-的区别&quot; class=&quot;headerlink&quot; title
     
     </summary>
     

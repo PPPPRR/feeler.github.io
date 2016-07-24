@@ -6,6 +6,11 @@
   
   <title>UniverseFeeler</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <meta name="description" content="jQuery.find() 函数详解
 find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以jQuery对象的形式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于jQuery对象(实例)。
 
@@ -32,14 +37,20 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
 语法jQueryObject.find( expr )
 参数expr    String/Element/jQuery类型指定的表达式。fi">
   
-    <link rel="alternative" href="/atom.xml" title="UniverseFeeler" type="application/atom+xml">
   
-  
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/img/logo.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Add to homescreen for Chrome on Android -->    
+    <link rel="icon" sizes="192x192" href="/img/logo.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <link rel="apple-touch-icon-precomposed" href="/img/logo.png">    
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="/img/logo.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
   
   <link rel="stylesheet" href="/css/style.css">
-  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
   
 </head>
 <body>
@@ -62,14 +73,15 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/">首页</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
         
       </nav>
+      <!--
       <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -83,6 +95,7 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
           <input type="hidden" name="si" value="universefeeler.github.io">
         </form>
       </div>
+      -->
     </div>
   </div>
 </header>
@@ -99,6 +112,8 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
     
     <div class="article-entry" itemprop="articleBody">
       
+        <!-- Table of Contents -->
+        
         <h1 id="jQuery-find-函数详解"><a href="#jQuery-find-函数详解" class="headerlink" title="jQuery.find() 函数详解"></a>jQuery.find() 函数详解</h1><blockquote>
 <p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以jQuery对象的形式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于jQuery对象(实例)。</p>
 </blockquote>
@@ -117,14 +132,26 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 返回jQuery对象所有匹配元素的标识信息数组</div><div class="line">// 每个元素形如：tagName或tagName#id(如果有id的话)</div><div class="line">function getTagsInfo($doms)&#123;</div><div class="line">	return $doms.map(function()&#123;</div><div class="line">		return this.tagName + (this.id ? &quot;#&quot; + this.id : &quot;&quot;);</div><div class="line">	&#125;).get();</div><div class="line">&#125;</div><div class="line">// 匹配id为e1的元素</div><div class="line">var $e1 = $(&quot;#e1&quot;);</div><div class="line">var $e1_span = $e1.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $e1_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5</div><div class="line"></div><div class="line">var $p = $(&quot;p&quot;);</div><div class="line">var $p_span = $p.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $p_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5,SPAN#e7</div><div class="line"></div><div class="line">var $highlight = $p.find( $(&quot;.highlight&quot;) );</div><div class="line">document.writeln( getTagsInfo( $highlight ) ); // SPAN#e7</div><div class="line"></div><div class="line">var a = document.getElementsByTagName(&quot;a&quot;);</div><div class="line">var $a = $p.find( a );</div><div class="line">document.writeln( getTagsInfo( $a ) ); // A#e8</div></pre></td></tr></table></figure>
 
       
+      
+  <div class="article-statement">
+    <hr>  
+    1.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
+    2.本博文章只代表博主当时的观点或结论，与博主公司没有任何关系。<br>
+    3.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮，或者 <a href='/about/index.html#zan-shang'>小额赞赏</a> 我。<br>
+    4.您的鼓励是博主写作最大的动力，感谢您的分享和赞赏，好人一生平安。<br>
+  </div>
+
+
+
     </div>
+    
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/" data-id="cir0qppkb0001upjxbdl89bj6" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/" data-id="cir0s7lzk00045gjxv3mjf2ft" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/#disqus_thread" class="article-comment-link">评论</a>
+        <a href="http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -144,7 +171,7 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
     </a>
   
   
-    <a href="/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/07/13/jQuery的$符号详解/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title"></div>
     </a>
@@ -156,15 +183,73 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
 
 
   <section id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/07/13/jQuery.find() 函数详解/" data-title="" data-url="http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/"></div>
   </section>
 </section>
       
       <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">推荐文章</h3>
+    <div class="widget">
+      <ul>
+        
+        
+          
+          <li>
+            <a href="/2015/09/02/dsoframer-introduction-resources/" target="_blank">1. DSOframer的简单介绍和资源整理</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2015/09/11/dsoframer-frequently-asked-question2/" target="_blank">2. DSOframer微软官方API的查阅方法</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2015/08/31/dsoframer-frequently-asked-question1/" target="_blank">3. DSOframer无法正常加载的解决方案</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2012/02/15/office-pdf2image/" target="_blank">4. C#技术分享-PDF转图片的10种方法</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2012/02/22/office-doc2image/" target="_blank">5. C#技术分享-DOC转图片的3种方法</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2015/08/30/donet-opensource-stonefw-introduction/" target="_blank">6. DoNet开源项目-基于jQuery EasyUI的后台管理系统</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2016/01/17/donet-opensource-dian-introduction/" target="_blank">7. DoNet开源项目-基于Amaze UI的点餐系统</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2015/08/29/hexo-theme-landscape-plus-optimize/" target="_blank">8. Hexo官方主题landscape-plus优化</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2016/04/17/frontend-css-position-learning-note/" target="_blank">9. CSS基础知识之position</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2016/06/10/frontend-css-float-learning-note/" target="_blank">10. CSS基础知识之float</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
   
     
   
@@ -174,38 +259,7 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">8</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">近期文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/07/20/MySQL select count()查询较慢的一些事实和结论/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/20/Java添加、删除、获取Cookie/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/13/jQuery.find() 函数详解/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/">(no title)</a>
-          </li>
-        
-      </ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年 07月</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -217,14 +271,53 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
       <ul>
         
           <li>
-            <a href="http://xiguabaobao.com" target="_blank">主题作者</a>
+            <a href="http://weibo.com/605494869/" target="_blank">石佳劼的微博</a>
           </li>
         
           <li>
-            <a href="http://reqianduan.com" target="_blank">热前端</a>
+            <a href="http://www.zhihu.com/people/stone0090/" target="_blank">石佳劼的知乎</a>
+          </li>
+        
+          <li>
+            <a href="http://www.jianshu.com/users/0005893eaff9/latest_articles/" target="_blank">石佳劼的简书</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/shi0090/" target="_blank">石佳劼的CSDN</a>
+          </li>
+        
+          <li>
+            <a href="http://www.cnblogs.com/shi0090/" target="_blank">石佳劼的博客园</a>
+          </li>
+        
+          <li>
+            <a href="https://github.com/stone0090/" target="_blank">石佳劼的GitHub</a>
           </li>
         
       </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近评论</h3>
+    <div class="widget">
+      <!-- 多说最新评论 start -->
+      <div class="ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+      <!-- 多说最新评论 end -->
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+      <script type="text/javascript">
+        var duoshuoQuery = {short_name:"shijiajie"};
+        (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+      </script>
+      <!-- 多说公共JS代码 end -->
     </div>
   </div>
 
@@ -233,22 +326,31 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
       
     </div>
     <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2016 universefeeler<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+      Copyright &copy; 2012 - 2016 <a href="/" target="_blank">universefeeler</a>.
+      &nbsp;|&nbsp;
+      <span id="busuanzi_container_site_pv">
+        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
+      </span>      
     </div>
   </div>
 </footer>
+
   </div>
   <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/" class="mobile-nav-link">首页</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
   
 </nav>
   <!-- totop start -->
@@ -258,19 +360,19 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
 
 <!-- totop end -->
 
-<script>
-  var disqus_shortname = 'universefeeler';
-  
-  var disqus_url = 'http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shijiajie"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
   })();
-</script>
+  </script>
+<!-- 多说公共js代码 end -->
 
 
 <!-- 百度分享 start -->
@@ -284,20 +386,7 @@ find()函数用于选取每个匹配元素的符合指定表达式的后代元�
     <a class="article-share-more" data-cmd="more" title="更多"></a>
   </div>
 </div>
-<script>
-  function SetShareData(cmd, config) {
-    if (shareDataTitle && shareDataUrl) {
-      config.bdText = shareDataTitle;
-      config.bdUrl = shareDataUrl;
-    }
-    return config;
-  }
-  window._bd_share_config={
-    "common":{onBeforeClick: SetShareData},
-    "share":{"bdCustomStyle":"/css/bdshare.css"}
-  };
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 <!-- 百度分享 end -->
 
