@@ -1,14 +1,12 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    
-    <title>UniverseFeeler</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <meta name="keywords" content="" />
-    
-    <meta name="description" content="jQuery的$符号详解
+  <meta charset="utf-8">
+  
+  <title>UniverseFeeler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="jQuery的$符号详解
 jQuery是现在最流行的Javascript框架，\$是其中最常见的符号，已经在jQuery留下了深深的烙印。那么\$到底是什么东西，它可以接受一个字符，也可以接受一个文档对象，亦或者一个函数，也可以调用一个函数。
 
 jQuery，高效，精炼，特别是对DOM元素对象操作的简化，很大程度上将前端程序员从一大堆冗余的代码解放出来，大大提高了开发效率！对多浏览器的兼容性，也最">
@@ -27,130 +25,75 @@ jQuery，高效，精炼，特别是对DOM元素对象操作的简化，很大�
 jQuery是现在最流行的Javascript框架，\$是其中最常见的符号，已经在jQuery留下了深深的烙印。那么\$到底是什么东西，它可以接受一个字符，也可以接受一个文档对象，亦或者一个函数，也可以调用一个函数。
 
 jQuery，高效，精炼，特别是对DOM元素对象操作的简化，很大程度上将前端程序员从一大堆冗余的代码解放出来，大大提高了开发效率！对多浏览器的兼容性，也最">
-    
-
-    
-
-    
-
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
-
-    <link rel="stylesheet" href="/css/style.css">
-
-    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
-    
-    
-        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
-    
-    
-    
-
+  
+    <link rel="alternative" href="/atom.xml" title="UniverseFeeler" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
 </head>
-
 <body>
-    <div id="wrap">
-        <header id="header">
-    <div id="header-outer" class="outer">
-        <div class="container">
-            <div class="container-inner">
-                <div id="header-title">
-                    <h1 class="logo-wrap">
-                        <a href="/" class="logo"></a>
-                    </h1>
-                    
-                        <h2 class="subtitle-wrap">
-                            <p class="subtitle">Feeler</p>
-                        </h2>
-                    
-                </div>
-                <div id="header-inner" class="nav-container">
-                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
-                    <div class="nav-container-inner">
-                        <ul id="main-nav">
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">主页</a>
-                                </li>
-                            
-                                        
-                                    
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
-                                </li>
-                            
-                        </ul>
-                        <nav id="sub-nav">
-                            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">UniverseFeeler</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Feeler</a>
+        </h2>
+      
     </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(未命名)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-        <div class="container">
-            <div class="main-body container-inner">
-                <div class="main-body-inner">
-                    <section id="main">
-                        <div class="main-body-header">
-    <h1 class="header">
-    
-    未分类
-    </h1>
-</div>
-                        <div class="main-body-content">
-                            <article id="post-jQuery的$符号详解" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <div class="article-subtitle">
-            <a href="/2016/07/13/jQuery的$符号详解/" class="article-date">
-    <time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">2016-07-13</time>
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="universefeeler.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-jQuery的$符号详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/13/jQuery的$符号详解/" class="article-date">
+  <time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">2016-07-13</time>
 </a>
-            
-        </div>
-        <div class="article-entry" itemprop="articleBody">
-            <h1 id="jQuery的-符号详解"><a href="#jQuery的-符号详解" class="headerlink" title="jQuery的$符号详解"></a>jQuery的$符号详解</h1><blockquote>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="jQuery的-符号详解"><a href="#jQuery的-符号详解" class="headerlink" title="jQuery的$符号详解"></a>jQuery的$符号详解</h1><blockquote>
 <p>jQuery是现在最流行的Javascript框架，<br>\$是其中最常见的符号，已经在jQuery留下了深深的烙印。那么\$到底是什么东西，它可以接受一个字符，也可以接受一个文档对象，亦或者一个函数，也可以调用一个函数。</p>
 </blockquote>
 <p>jQuery，高效，精炼，特别是对DOM元素对象操作的简化，很大程度上将前端程序员从一大堆冗余的代码解放出来，大大提高了开发效率！对多浏览器的兼容性，也最大限度让程序员摆脱各种bug的纠缠<br>\$符号作为元素选择器的简写，最早是由Prototype库使用，来简写getElementById，jQuery沿袭这一理念，并发扬光大，使\$符号成为了jQuery最别具一格的特点。那么在jQuery中，\$符号到底是啥？<br>熟悉jQuery的人应该知道，几乎jQuery所有操作，都是从$符号开始，当作为元素选择器的时候，操作结果返回的是一个jQuery对象。<br>那么，现在就看jQuery类的构造函数的主要代码:</p>
@@ -159,369 +102,198 @@ jQuery，高效，精炼，特别是对DOM元素对象操作的简化，很大�
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line">*所有查找或生成元素的结果，封装为jQuery对象数组返回. </div><div class="line">2.	    */  </div><div class="line">3.	    init: function( selector, context, rootjQuery ) &#123;  </div><div class="line">4.	        var match, elem, ret, doc;  </div><div class="line">5.	  </div><div class="line">6.	        // 1)处理 $(&quot;&quot;), $(null), or $(undefined)  </div><div class="line">7.	        //this指向jQuery对象  </div><div class="line">8.	        if ( !selector ) &#123;  </div><div class="line">9.	            return this;  </div><div class="line">10.	        &#125;  </div><div class="line">11.	  </div><div class="line">12.	        // 2)处理 $(DOMElement)  </div><div class="line">13.	        //selector.nodeType得知为DOM元素,如果是DOM元素直接放进jQuery对象数组中  </div><div class="line">14.	        if ( selector.nodeType ) &#123;  </div><div class="line">15.	            this.context = this[0] = selector;  </div><div class="line">16.	            this.length = 1;  </div><div class="line">17.	            return this;  </div><div class="line">18.	        &#125;  </div><div class="line">19.	  </div><div class="line">20.	        //3)body元素只出现一次, 优化查找  </div><div class="line">21.	        if ( selector === &quot;body&quot; &amp;&amp; !context &amp;&amp; document.body ) &#123;  </div><div class="line">22.	            this.context = document;  </div><div class="line">23.	            this[0] = document.body;  </div><div class="line">24.	            this.selector = &quot;body&quot;;  </div><div class="line">25.	            this.length = 1;  </div><div class="line">26.	            return this;  </div><div class="line">27.	        &#125;  </div><div class="line">28.	  </div><div class="line">29.	        //4)如果是字符串,有六种情况,  </div><div class="line">30.	        /* </div><div class="line">31.	        *(1)单个html元素 不带属性对象字面量 ：createElement + merge </div><div class="line">32.	        *(2)单个html元素 带属性对象字面量 ：createElement + attr + merge </div><div class="line">33.	        *(3)多个html元素  ：buildFragment + merge </div><div class="line">34.	        *(4)#id 不带context   ：getElementById或者getElementById + Sizzle </div><div class="line">35.	        *(5)#id 带context ：Sizzle </div><div class="line">36.	        *(6)experession string ：Sizzle </div><div class="line">37.	        *(7)标签选择器 ：Sizzle（内置getElementByTagName） </div><div class="line">38.	        */  </div><div class="line">39.	        if ( typeof selector === &quot;string&quot; ) &#123;  </div><div class="line">40.	            // 判断是否为HTML string 还是 ID  </div><div class="line">41.	            //如果是HTML strings  match[1] 非空  </div><div class="line">42.	            //如果是ID strings match[1] 空  </div><div class="line">43.	            //quickExpr = /^(?:[^&lt;]*(&lt;[\w\W]+&gt;)[^&gt;]*$|#([\w\-]+)$)/,  </div><div class="line">44.	            match = quickExpr.exec( selector );  </div><div class="line">45.	  </div><div class="line">46.	            // 分析匹配结果，且当#id没有context参数，例如不是$(&apos;#xxx&apos;,xxx)  </div><div class="line">47.	            if ( match &amp;&amp; (match[1] || !context) ) &#123;  </div><div class="line">48.	  </div><div class="line">49.	                // 处理HTML字符 $(html) -&gt; $(array)  </div><div class="line">50.	                if ( match[1] ) &#123;  </div><div class="line">51.	                    //如果context为jQuery对象，则取用第一个元素，即是context[0]  </div><div class="line">52.	                    context = context instanceof jQuery ? context[0] : context;  </div><div class="line">53.	                    //取得document文档  </div><div class="line">54.	                    doc = (context ? context.ownerDocument || context : document);  </div><div class="line">55.	  </div><div class="line">56.	                    //判断是否为单个元素字符串  </div><div class="line">57.	                    ret = rsingleTag.exec( selector );  </div><div class="line">58.	                    //单个元素  </div><div class="line">59.	                    if ( ret ) &#123;  </div><div class="line">60.	                        //带对象属性字面量  </div><div class="line">61.	                        //检查context是否为对象字面量,适用场景  </div><div class="line">62.	                        //例如$(&apos;&lt;div&gt;&apos;, &#123; &apos;id&apos;: &apos;test&apos;, &apos;class&apos;: &apos;test&apos; &#125;);  </div><div class="line">63.	                        if ( jQuery.isPlainObject( context ) ) &#123;  </div><div class="line">64.	                            selector = [ document.createElement( ret[1] ) ];  </div><div class="line">65.	                            jQuery.fn.attr.call( selector, context, true );  </div><div class="line">66.	  </div><div class="line">67.	                        &#125; else &#123;  </div><div class="line">68.	                        //不带对象字面量  </div><div class="line">69.	                        //例如$(&apos;&lt;div&gt;&apos;)  </div><div class="line">70.	                            selector = [ doc.createElement( ret[1] ) ];  </div><div class="line">71.	                        &#125;  </div><div class="line">72.	  </div><div class="line">73.	                    &#125; else &#123;  </div><div class="line">74.	                        //如果是多个元素字符串，例如$(&apos;&lt;div&gt;&lt;a&gt;&lt;/a&gt;&lt;/div&gt;&apos;)  </div><div class="line">75.	                        ret = jQuery.buildFragment( [ match[1] ], [ doc ] );  </div><div class="line">76.	                        selector = (ret.cacheable ? jQuery.clone(ret.fragment) : ret.fragment).childNodes;  </div><div class="line">77.	                    &#125;  </div><div class="line">78.	                    //将生成结果selector 合并到jQuery对象中  </div><div class="line">79.	                    return jQuery.merge( this, selector );  </div><div class="line">80.	  </div><div class="line">81.	                // 处理$(&quot;#id&quot;),例如$(&quot;#xxx&quot;);  </div><div class="line">82.	                &#125; else &#123;  </div><div class="line">83.	                    elem = document.getElementById( match[2] );  </div><div class="line">84.	  </div><div class="line">85.	                    if ( elem &amp;&amp; elem.parentNode ) &#123;  </div><div class="line">86.	                        //处理IE和Opera ID 与 Name 混淆的bug,使用Sizzle查找  </div><div class="line">87.	                        if ( elem.id !== match[2] ) &#123;  </div><div class="line">88.	                            return rootjQuery.find( selector );  </div><div class="line">89.	                        &#125;  </div><div class="line">90.	  </div><div class="line">91.	                        // 否则，简单插入jQuery对象数组  </div><div class="line">92.	                        this.length = 1;  </div><div class="line">93.	                        this[0] = elem;  </div><div class="line">94.	                    &#125;  </div><div class="line">95.	  </div><div class="line">96.	                    this.context = document;  </div><div class="line">97.	                    this.selector = selector;  </div><div class="line">98.	                    return this;  </div><div class="line">99.	                &#125;  </div><div class="line">100.	  </div><div class="line">101.	            // 处理 $(expr, $(...))，使用Sizzle查找，例如$(&quot;div&quot;),$(&apos;div &gt; a&apos;),$(&apos;div,a&apos;),$(&apos;div:first&apos;)  </div><div class="line">102.	            &#125; else if ( !context || context.jquery ) &#123;  </div><div class="line">103.	                return (context || rootjQuery).find( selector );  </div><div class="line">104.	  </div><div class="line">105.	            // 处理: $(expr, context),例如$(&apos;div a&apos;);或者$(&apos;a&apos;,&apos;div&apos;)或者$(&apos;div&apos;).find(&apos;a&apos;);  </div><div class="line">106.	            &#125; else &#123;  </div><div class="line">107.	                return this.constructor( context ).find( selector );  </div><div class="line">108.	            &#125;  </div><div class="line">109.	  </div><div class="line">110.	        //5)处理: $(function),设置DOM载的时候绑定的函数,等同于$().ready()&#123;foo&#125;  </div><div class="line">111.	        &#125; else if ( jQuery.isFunction( selector ) ) &#123;  </div><div class="line">112.	            return rootjQuery.ready( selector );  </div><div class="line">113.	        &#125;  </div><div class="line">114.	        //6)处理：$($(...))，完成克隆jQuery对象的简单参数，具体由makeArray完成  </div><div class="line">115.	        if (selector.selector !== undefined) 完成加&#123;  </div><div class="line">116.	            this.selector = selector.selector;  </div><div class="line">117.	            this.context = selector.context;  </div><div class="line">118.	        &#125;  </div><div class="line">119.	        //使用makeArray，为jQuery对象添加元素,例如$([1,2]);  </div><div class="line">120.	        return jQuery.makeArray( selector, this );  </div><div class="line">121.	    &#125;,</div></pre></td></tr></table></figure>
 <p>\$符号，其实是对jQuery类构造函数的引用，此函数实际调用了jQuery.fn.init(即是jQuery.prototype.init)来生成jQuery对象,其中jQuery.prototype的所有方法都被jQuery的对象继承。\$.func实际是jQuery类的静态方法，所以$即是jQuery类的构造函数，支持各种条件的查找和生成并返回DOM对象构成jQuery对象，同时也是一个类，是所有jQuery静态方法的入口，例如可以使用个\$.ajax()。</p>
 
-        </div>
-        <footer class="article-footer">
-            
-
-
-
-    <a data-url="http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/" data-id="ciqv3wgbw0005x0jx91vkamd4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-        </footer>
+      
     </div>
-</article>
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/" data-id="cir0qppl90005upjx9gi7gicm" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+      
 
-    <section id="comments">
-    
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+      
+        <a href="http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/#disqus_thread" class="article-comment-link">评论</a>
+      
 
+      
+    </footer>
+  </div>
+  
     
-    </section>
-
-                        </div>
-                    </section>
-                    <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
-    <div class="sidebar-top">
-        <p>关注我 :</p>
-        <ul class="social-links">
-            
-                
-                <li>
-                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
-                        <i class="icon fa fa-twitter"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
-                        <i class="icon fa fa-google-plus"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
-                        <i class="icon fa fa-weibo"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="/" target="_blank">
-                        <i class="icon fa fa-rss"></i>
-                    </a>
-                </li>
-                
-            
-        </ul>
-    </div>
-    
-        
 <nav id="article-nav">
-    
-        <a href="/2016/07/13/jQuery.find() 函数详解/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
+  
+    <a href="/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
         
-            (no title)
+          (no title)
         
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+      </div>
     </a>
-    
-    
-        <a href="/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title"></p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
+  
+  
+    <a href="/2016/07/13/Grep应用几例/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
 </nav>
 
+  
+</article>
+
+
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
     
-    <div class="widgets-container">
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
         
-            
-                
-    <div class="widget-wrap">
-        <h3 class="widget-title">最新文章</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/07/20/MySQL select count()查询较慢的一些事实和结论/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/07/20/MySQL select count()查询较慢的一些事实和结论/" class="title"></a></p>
-                            <p class="item-date"><time datetime="2016-07-20T16:31:12.069Z" itemprop="datePublished">2016-07-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/07/20/Java添加、删除、获取Cookie/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/07/20/Java添加、删除、获取Cookie/" class="title"></a></p>
-                            <p class="item-date"><time datetime="2016-07-20T14:18:12.695Z" itemprop="datePublished">2016-07-20</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/" class="title"></a></p>
-                            <p class="item-date"><time datetime="2016-07-13T15:56:13.404Z" itemprop="datePublished">2016-07-13</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/07/13/jQuery.find() 函数详解/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/07/13/jQuery.find() 函数详解/" class="title"></a></p>
-                            <p class="item-date"><time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">2016-07-13</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/07/13/jQuery的$符号详解/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/07/13/jQuery的$符号详解/" class="title"></a></p>
-                            <p class="item-date"><time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">2016-07-13</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-            
-                
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">8</span></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-
-            
-                
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">链接</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-
-            
+          <li>
+            <a href="/2016/07/20/MySQL select count()查询较慢的一些事实和结论/">(no title)</a>
+          </li>
         
+          <li>
+            <a href="/2016/07/20/Java添加、删除、获取Cookie/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jQuery.find() 函数详解/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/">(no title)</a>
+          </li>
+        
+      </ul>
     </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://xiguabaobao.com" target="_blank">主题作者</a>
+          </li>
+        
+          <li>
+            <a href="http://reqianduan.com" target="_blank">热前端</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
 </aside>
-                </div>
-            </div>
-        </div>
-        <footer id="footer">
-    <div class="container">
-        <div class="container-inner">
-            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
-            <div class="credit">
-                <h1 class="logo-wrap">
-                    <a href="/" class="logo"></a>
-                </h1>
-                <p>&copy; 2016 universefeeler</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
-            </div>
-        </div>
+      
     </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 universefeeler<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
 </footer>
-        
-    
-    <script>
-    var disqus_shortname = 'hexo-theme-hueman';
-    
-    
-    var disqus_url = 'http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/';
-    
-    (function() {
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<script>
+  var disqus_shortname = 'universefeeler';
+  
+  var disqus_url = 'http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/';
+  
+  (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
+  })();
+</script>
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
 
-    
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
-    
 
-    
-        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
-        <script src="/vendor/scrollLoading/main.js"></script>
-    
+<script src="/js/script.js"></script>
 
-
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-
-    </div>
+</div>
 </body>
 </html>
