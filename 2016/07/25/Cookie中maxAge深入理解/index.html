@@ -4,17 +4,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016/7 | UniverseFeeler</title>
+  <title>UniverseFeeler</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Touch the World!">
-<meta property="og:type" content="website">
+  <meta name="description" content="Cookie中maxAge深入理解标准函数:
+1public void setMaxAge(int expiry)
+官方文档:Sets the maximum age of the cookie in seconds.
+A positive valueindicates that the cookie will expire after that many seconds have passed.">
+<meta property="og:type" content="article">
 <meta property="og:title" content="UniverseFeeler">
-<meta property="og:url" content="http://universefeeler.github.io/archives/2016/07/index.html">
+<meta property="og:url" content="http://universefeeler.github.io/2016/07/25/Cookie中maxAge深入理解/index.html">
 <meta property="og:site_name" content="UniverseFeeler">
-<meta property="og:description" content="Touch the World!">
+<meta property="og:description" content="Cookie中maxAge深入理解标准函数:
+1public void setMaxAge(int expiry)
+官方文档:Sets the maximum age of the cookie in seconds.
+A positive valueindicates that the cookie will expire after that many seconds have passed.">
+<meta property="og:updated_time" content="2016-07-25T15:48:24.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UniverseFeeler">
-<meta name="twitter:description" content="Touch the World!">
+<meta name="twitter:description" content="Cookie中maxAge深入理解标准函数:
+1public void setMaxAge(int expiry)
+官方文档:Sets the maximum age of the cookie in seconds.
+A positive valueindicates that the cookie will expire after that many seconds have passed.">
   
     <link rel="alternative" href="/atom.xml" title="UniverseFeeler" type="application/atom+xml">
   
@@ -71,150 +81,86 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/25/HTTP状态码之301 VS 302/" class="archive-article-date">
-  <time datetime="2016-07-25T16:23:05.980Z" itemprop="datePublished">7月 25</time>
+      <section id="main"><article id="post-Cookie中maxAge深入理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/25/Cookie中maxAge深入理解/" class="article-date">
+  <time datetime="2016-07-25T16:23:05.980Z" itemprop="datePublished">2016-07-25</time>
 </a>
-      
-    </header>
+    
   </div>
-</article>
-  
+  <div class="article-inner">
     
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/25/git merger中“both deleted”错误解决方案/" class="archive-article-date">
-  <time datetime="2016-07-25T16:23:05.980Z" itemprop="datePublished">7月 25</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/25/Cookie中maxAge深入理解/" class="archive-article-date">
-  <time datetime="2016-07-25T16:23:05.980Z" itemprop="datePublished">7月 25</time>
-</a>
+        <h1 id="Cookie中maxAge深入理解"><a href="#Cookie中maxAge深入理解" class="headerlink" title="Cookie中maxAge深入理解"></a>Cookie中maxAge深入理解</h1><p><strong>标准函数:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMaxAge</span><span class="params">(<span class="keyword">int</span> expiry)</span></span></div></pre></td></tr></table></figure>
+<p><strong>官方文档:</strong><br>Sets the maximum age of the cookie in <strong>seconds</strong>.</p>
+<p>A <strong>positive</strong> valueindicates that the cookie will expire after that many seconds have passed. Note that the value is the maximum age when the cookie will expire, not the cookie’s current age.</p>
+<p>A <strong>negative</strong> value means that the cookie is not stored persistently and will be deleted when the Web browser exits. A zero value causes the cookie to be deleted.<br>Parameters: expiry – an integer specifying the maximum age of the cookie in seconds; if negative, means the cookie is not stored; if zero, deletes the cookie</p>
+<p><strong>实用解释</strong></p>
+<ol>
+<li>不设置时，默认值是-1，表示关闭浏览器，cookie就会消失。</li>
+<li><p>正数，表示从现在开始，即将过期的seconds。表示此cookie从创建到过期所能存在的时间，以秒为单位，此cookie会存储到客户端电脑，以cookie文件形式保存，不论关闭浏览器或关闭电脑，直到时间到才会过期。</p>
+<blockquote>
+<p>例如：5年，cookie.setMaxAge(5<em>365</em>24<em>60</em>60)，这个和永不过期差不多，为什么？因为没有一个值可以直接表示永不过期，所以只能设置一个很大的值来表示永不过期。</p>
+</blockquote>
+</li>
+<li><p>如果maxAge为负数，则表示该Cookie仅在本浏览器窗口以及本窗口打开的子窗口内有效，关闭窗口后该Cookie即失效。maxAge为负数的Cookie，为临时性Cookie，不会被持久化，不会被写到Cookie文件中。Cookie信息保存在浏览器内存中，因此关闭浏览器该Cookie就消失了。</p>
+</li>
+<li>maxAge为0，则表示删除该Cookie。Cookie机制没有提供删除Cookie的方法，因此通过设置该Cookie即时失效实现删除Cookie的效果。失效的Cookie会被浏览器从Cookie文件或者内存中删除。</li>
+</ol>
+<p><strong>重点Tips</strong></p>
+<ol>
+<li>response对象提供的Cookie操作方法只有一个添加操作add(Cookie cookie)。要想修改Cookie只能使用一个同名的Cookie来覆盖原来的Cookie，达到修改的目的。删除时只需要把maxAge修改为0即可。</li>
+<li>修改、删除Cookie时，新建的Cookie除value、maxAge之外的所有属性，例如name、path、domain等，都要与原Cookie完全一样。否则，浏览器将视为两个不同的Cookie不予覆盖，导致修改、删除失败。</li>
+<li>从客户端读取Cookie时，包括maxAge在内的其他属性都是不可读的，也不会被提交。浏览器提交Cookie时只会提交name与value属性。maxAge属性只被浏览器用来判断Cookie是否过期。</li>
+<li>服务端从request请求里获得cookie文件内容，只能获得name和value。</li>
+<li>如果maxAge为0，则表示删除该Cookie。Cookie机制没有提供删除Cookie的方法，因此通过设置该Cookie即时失效实现删除Cookie的效果。失效的Cookie会被浏览器从Cookie文件或者内存中删除。</li>
+</ol>
+
       
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/25/利用phoenix操作hbase之shell使用万能入口/" class="archive-article-date">
-  <time datetime="2016-07-25T16:23:05.980Z" itemprop="datePublished">7月 25</time>
-</a>
+    </div>
+    <footer class="article-footer">
       
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/20/MySQL select count()查询较慢的一些事实和结论/" class="archive-article-date">
-  <time datetime="2016-07-20T16:31:12.069Z" itemprop="datePublished">7月 20</time>
-</a>
+        <a data-url="http://universefeeler.github.io/2016/07/25/Cookie中maxAge深入理解/" data-id="cir293dhz0001xejxzmnppaby" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/20/Java添加、删除、获取Cookie/" class="archive-article-date">
-  <time datetime="2016-07-20T14:18:12.695Z" itemprop="datePublished">7月 20</time>
-</a>
+
       
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/" class="archive-article-date">
-  <time datetime="2016-07-13T15:56:13.404Z" itemprop="datePublished">7月 13</time>
-</a>
+        <a href="http://universefeeler.github.io/2016/07/25/Cookie中maxAge深入理解/#ds-thread" class="article-comment-link">评论</a>
       
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" class="archive-article-date">
-  <time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">7月 13</time>
-</a>
+
       
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/25/git merger中“both deleted”错误解决方案/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/25/利用phoenix操作hbase之shell使用万能入口/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/13/jQuery的$符号详解/" class="archive-article-date">
-  <time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">7月 13</time>
-</a>
-      
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/13/jQuery.find() 函数详解/" class="archive-article-date">
-  <time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">7月 13</time>
-</a>
-      
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/07/25/Cookie中maxAge深入理解/" data-title="" data-url="http://universefeeler.github.io/2016/07/25/Cookie中maxAge深入理解/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">

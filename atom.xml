@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://universefeeler.github.io/"/>
-  <updated>2016-07-20T16:31:12.065Z</updated>
+  <updated>2016-07-25T16:06:04.509Z</updated>
   <id>http://universefeeler.github.io/</id>
   
   <author>
@@ -14,6 +14,126 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/25/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E4%B9%8B301%20VS%20302/"/>
+    <id>http://universefeeler.github.io/2016/07/25/HTTP状态码之301 VS 302/</id>
+    <published>2016-07-25T16:23:05.980Z</published>
+    <updated>2016-07-25T16:06:04.509Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="HTTP状态码之301-VS-302"><a href="#HTTP状态码之301-VS-302" class="headerlink" title="HTTP状态码之301 VS 302"></a>HTTP状态码之301 VS 302</h1><p><strong>标准说法</strong></p>
+<p>301，302 都是HTTP状态的编码，都代表着某个URL发生了转移，不同之处在于：<br>301 redirect: 301 代表永久性转移(Permanently Moved)。<br>302 redirect: 302 代表暂时性转移(Temporarily Moved )。</p>
+<p><strong>现实差异</strong></p>
+<p>301，302对用户来说没有区别，他们看到效果只是一个跳转，浏览器中旧的URL变成了新的URL。页面跳到了这个新的url指向的地方</p>
+<p>302转向可能会有URL规范化及网址劫持的问题。可能被搜索引擎判为可疑转向，甚至认为是作弊。<br>301重定向转到网页B时，搜索引擎可以肯定网页A永久的改变位置，或者说实际上不存在了，搜索引擎就会把网页B当作唯一有效目标。<br>301的好处是:<br>第一，   没有网址规范化问题。<br>第二，   也很重要的，网页A的PR网页级别会传到网页B。</p>
+<p><strong>网址劫持</strong><br>302重定向和网址劫持（URL hijacking）有什么关系呢？这要从搜索引擎如何处理302转向说起。从定义来说，从网址A做一个302重定向到网址B时，主机服务器的隐含意思是网址A随时有可能改主意，重新显示本身的内容或转向其他的地方。大部分的搜索引擎在大部分情况下，当收到302重定向时，一般只要去抓取目标网址就可以了，也就是说网址B。<br>实际上如果搜索引擎在遇到302转向时，百分之百的都抓取目标网址B的话，就不用担心网址URL劫持了。<br>问题就在于，有的时候搜索引擎，尤其是Google，并不能总是抓取目标网址。为什么呢？比如说，有的时候A网址很短，但是它做了一个302重定向到B网址，而B网址是一个很长的乱七八糟的URL网址，甚至还有可能包含一些问号之类的参数。很自然的，A网址更加用户友好，而B网址既难看，又不用户友好。这时Google很有可能会仍然显示网址A。<br>由于搜索引擎排名算法只是程序而不是人，在遇到302重定向的时候，并不能像人一样的去准确判定哪一个网址更适当，这就造成了网址URL劫持的可能性。也就是说，一个不道德的人在他自己的网址A做一个302重定向到你的网址B，出于某种原因， Google搜索结果所显示的仍然是网址A，但是所用的网页内容却是你的网址B上的内容，这种情况就叫做网址URL劫持。你辛辛苦苦所写的内容就这样被别人偷走了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;HTTP状态码之301-VS-302&quot;&gt;&lt;a href=&quot;#HTTP状态码之301-VS-302&quot; class=&quot;headerlink&quot; title=&quot;HTTP状态码之301 VS 302&quot;&gt;&lt;/a&gt;HTTP状态码之301 VS 302&lt;/h1&gt;&lt;p&gt;&lt;stron
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/25/git%20merger%E4%B8%AD%E2%80%9Cboth%20deleted%E2%80%9D%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://universefeeler.github.io/2016/07/25/git merger中“both deleted”错误解决方案/</id>
+    <published>2016-07-25T16:23:05.980Z</published>
+    <updated>2016-07-25T14:16:09.848Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="git-merger中“both-deleted”错误解决方案"><a href="#git-merger中“both-deleted”错误解决方案" class="headerlink" title="git merger中“both deleted”错误解决方案"></a>git merger中“both deleted”错误解决方案</h1><p><strong>错误原因</strong></p>
+<p>在使用git过程中，将两个分支合并时，恰巧这两个分支都删除了都一个文件或文件夹，并且是直接删除的，而不是通过git rm -r dir/删除的。将两个分支git merger 是很可能就报出“git deleted”的error，尽而导致merge失败。</p>
+<p><strong>解决方案</strong></p>
+<p>其实解决起来也并不困难，也就是选择一个被合并的分支执行 “git  rm -r dir/”,这个问题其实在将本地分支推到远程时也会发生，只是报的错误不一样。那么该怎么解决，自然，就是手动解决冲突喽。但是重点来了：我们无论是执行合并，还是将本地分支推到远程分支，一般都是利用git客户端来进行执行的，自然我们在进行层级找到相应的目录或文件时也都是通过那个伟大的“tab”键来自动补全找到的，但此时执行tab却并不能找到那个被删除的文件夹（都删除了，当然找不到），于是，我们像遇到坎似得不知所措了。那我们该怎么办呢？很简单，就是对那些提示“both deleted”的文件或文件夹执行“git rm -r dir/”,只不过这个路径需要我们一点点的用手打出来，而不是靠“tab”自动补全找到。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;git-merger中“both-deleted”错误解决方案&quot;&gt;&lt;a href=&quot;#git-merger中“both-deleted”错误解决方案&quot; class=&quot;headerlink&quot; title=&quot;git merger中“both deleted”错误解决方
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/25/Cookie%E4%B8%ADmaxAge%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/"/>
+    <id>http://universefeeler.github.io/2016/07/25/Cookie中maxAge深入理解/</id>
+    <published>2016-07-25T16:23:05.980Z</published>
+    <updated>2016-07-25T15:48:24.527Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Cookie中maxAge深入理解"><a href="#Cookie中maxAge深入理解" class="headerlink" title="Cookie中maxAge深入理解"></a>Cookie中maxAge深入理解</h1><p><strong>标准函数:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMaxAge</span><span class="params">(<span class="keyword">int</span> expiry)</span></span></div></pre></td></tr></table></figure>
+<p><strong>官方文档:</strong><br>Sets the maximum age of the cookie in <strong>seconds</strong>.</p>
+<p>A <strong>positive</strong> valueindicates that the cookie will expire after that many seconds have passed. Note that the value is the maximum age when the cookie will expire, not the cookie’s current age.</p>
+<p>A <strong>negative</strong> value means that the cookie is not stored persistently and will be deleted when the Web browser exits. A zero value causes the cookie to be deleted.<br>Parameters: expiry – an integer specifying the maximum age of the cookie in seconds; if negative, means the cookie is not stored; if zero, deletes the cookie</p>
+<p><strong>实用解释</strong></p>
+<ol>
+<li>不设置时，默认值是-1，表示关闭浏览器，cookie就会消失。</li>
+<li><p>正数，表示从现在开始，即将过期的seconds。表示此cookie从创建到过期所能存在的时间，以秒为单位，此cookie会存储到客户端电脑，以cookie文件形式保存，不论关闭浏览器或关闭电脑，直到时间到才会过期。</p>
+<blockquote>
+<p>例如：5年，cookie.setMaxAge(5<em>365</em>24<em>60</em>60)，这个和永不过期差不多，为什么？因为没有一个值可以直接表示永不过期，所以只能设置一个很大的值来表示永不过期。</p>
+</blockquote>
+</li>
+<li><p>如果maxAge为负数，则表示该Cookie仅在本浏览器窗口以及本窗口打开的子窗口内有效，关闭窗口后该Cookie即失效。maxAge为负数的Cookie，为临时性Cookie，不会被持久化，不会被写到Cookie文件中。Cookie信息保存在浏览器内存中，因此关闭浏览器该Cookie就消失了。</p>
+</li>
+<li>maxAge为0，则表示删除该Cookie。Cookie机制没有提供删除Cookie的方法，因此通过设置该Cookie即时失效实现删除Cookie的效果。失效的Cookie会被浏览器从Cookie文件或者内存中删除。</li>
+</ol>
+<p><strong>重点Tips</strong></p>
+<ol>
+<li>response对象提供的Cookie操作方法只有一个添加操作add(Cookie cookie)。要想修改Cookie只能使用一个同名的Cookie来覆盖原来的Cookie，达到修改的目的。删除时只需要把maxAge修改为0即可。</li>
+<li>修改、删除Cookie时，新建的Cookie除value、maxAge之外的所有属性，例如name、path、domain等，都要与原Cookie完全一样。否则，浏览器将视为两个不同的Cookie不予覆盖，导致修改、删除失败。</li>
+<li>从客户端读取Cookie时，包括maxAge在内的其他属性都是不可读的，也不会被提交。浏览器提交Cookie时只会提交name与value属性。maxAge属性只被浏览器用来判断Cookie是否过期。</li>
+<li>服务端从request请求里获得cookie文件内容，只能获得name和value。</li>
+<li>如果maxAge为0，则表示删除该Cookie。Cookie机制没有提供删除Cookie的方法，因此通过设置该Cookie即时失效实现删除Cookie的效果。失效的Cookie会被浏览器从Cookie文件或者内存中删除。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Cookie中maxAge深入理解&quot;&gt;&lt;a href=&quot;#Cookie中maxAge深入理解&quot; class=&quot;headerlink&quot; title=&quot;Cookie中maxAge深入理解&quot;&gt;&lt;/a&gt;Cookie中maxAge深入理解&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;标准
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/25/%E5%88%A9%E7%94%A8phoenix%E6%93%8D%E4%BD%9Chbase%E4%B9%8Bshell%E4%BD%BF%E7%94%A8%E4%B8%87%E8%83%BD%E5%85%A5%E5%8F%A3/"/>
+    <id>http://universefeeler.github.io/2016/07/25/利用phoenix操作hbase之shell使用万能入口/</id>
+    <published>2016-07-25T16:23:05.980Z</published>
+    <updated>2016-07-25T14:33:25.562Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="利用phoenix操作hbase之shell使用万能入口"><a href="#利用phoenix操作hbase之shell使用万能入口" class="headerlink" title="利用phoenix操作hbase之shell使用万能入口"></a>利用phoenix操作hbase之shell使用万能入口</h1><blockquote>
+<p>通过phoenix来执行hbase实际上不是那么的爽，至少不像操作MySQL shell的那般流畅感，还是因为我们更多的是在用MySQL</p>
+</blockquote>
+<p>那么该怎么办呢？</p>
+<p>这里有两个神器（当然一切前提是你已经正确安装了phoenix client）</p>
+<ol>
+<li>撬开大门命令<strong>hbased</strong></li>
+</ol>
+<pre><code>经过第一步就应该进入 phoenix shell环境了
+</code></pre><ol>
+<li>在环境中输入帮助命令<strong>help</strong></li>
+</ol>
+<p>好多命令，为啥前面要加”!”,很多又不加！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;利用phoenix操作hbase之shell使用万能入口&quot;&gt;&lt;a href=&quot;#利用phoenix操作hbase之shell使用万能入口&quot; class=&quot;headerlink&quot; title=&quot;利用phoenix操作hbase之shell使用万能入口&quot;&gt;&lt;/a&gt;利用
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -130,33 +250,22 @@
   
   <entry>
     <title></title>
-    <link href="http://universefeeler.github.io/2016/07/13/jQuery.find()%20%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/</id>
+    <link href="http://universefeeler.github.io/2016/07/13/jquery%E7%9A%84$(%E2%80%9C#id%E2%80%9D)%E4%B8%8Edocument.getElementById(%E2%80%9Cid%E2%80%9D)%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/</id>
     <published>2016-07-13T15:56:13.392Z</published>
-    <updated>2016-07-11T15:28:20.326Z</updated>
+    <updated>2016-07-11T15:43:08.727Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="jQuery-find-函数详解"><a href="#jQuery-find-函数详解" class="headerlink" title="jQuery.find() 函数详解"></a>jQuery.find() 函数详解</h1><blockquote>
-<p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以jQuery对象的形式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于jQuery对象(实例)。</p>
-</blockquote>
-<ul>
-<li>语法<br>jQueryObject.find( expr )</li>
-<li>参数<br>expr    String/Element/jQuery类型指定的表达式。<br>find()函数将在当前jQuery对象每个匹配元素的所有后代元素中筛选符合指定表达式的元素。<br>如果expr参数为字符串，则将其视作jQuery选择器，用以表示该选择器所匹配的元素。<br>jQuery 1.6 新增支持：参数expr可以为DOM元素(Element)或jQuery对象。</li>
-<li>返回值<br>find()函数的返回值为jQuery类型，返回一个新的jQuery对象，该对象封装了当前jQuery对象匹配元素的所有符合指定选择器的后代元素。<br>如果没有匹配的元素，则返回空的jQuery对象。</li>
-<li>示例&amp;说明<br>find()函数具有以下等价代码：<br>// 这里的是selector、selector1均表示任意的选择器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;selector&quot;).find(&quot;selector1&quot;);</div></pre></td></tr></table></figure>
-<p>// 等价于</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;selector selector1&quot;);</div></pre></td></tr></table></figure>
-<p>以下面这段HTML代码为例：</p>
-<figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;p id="e1"&gt;</div><div class="line">	&lt;span id="e2" class="site"&gt;</div><div class="line">		&lt;span id="e3" class="item site-name"&gt;CodePlayer&lt;/span&gt;</div><div class="line">		&lt;span id="e4" class="item site-desc"&gt;专注于编程开发技术分享&lt;/span&gt;</div><div class="line">	&lt;/span&gt;</div><div class="line">	&lt;span id="e5" class="site-url"&gt;http://www.365mini.com&lt;/span&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;p id="e6"&gt;</div><div class="line">	JavaScript&lt;span id="e7" class="highlight"&gt;jQuery&lt;/span&gt;</div><div class="line">	&lt;a id="e8" href="http://www.365mini.com"&gt;CodePlayer&lt;/a&gt;</div><div class="line">&lt;/p&gt;</div></pre></td></tr></table></figure>
-<p>以下jQuery示例代码用于演示find()函数的具体用法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 返回jQuery对象所有匹配元素的标识信息数组</div><div class="line">// 每个元素形如：tagName或tagName#id(如果有id的话)</div><div class="line">function getTagsInfo($doms)&#123;</div><div class="line">	return $doms.map(function()&#123;</div><div class="line">		return this.tagName + (this.id ? &quot;#&quot; + this.id : &quot;&quot;);</div><div class="line">	&#125;).get();</div><div class="line">&#125;</div><div class="line">// 匹配id为e1的元素</div><div class="line">var $e1 = $(&quot;#e1&quot;);</div><div class="line">var $e1_span = $e1.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $e1_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5</div><div class="line"></div><div class="line">var $p = $(&quot;p&quot;);</div><div class="line">var $p_span = $p.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $p_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5,SPAN#e7</div><div class="line"></div><div class="line">var $highlight = $p.find( $(&quot;.highlight&quot;) );</div><div class="line">document.writeln( getTagsInfo( $highlight ) ); // SPAN#e7</div><div class="line"></div><div class="line">var a = document.getElementsByTagName(&quot;a&quot;);</div><div class="line">var $a = $p.find( a );</div><div class="line">document.writeln( getTagsInfo( $a ) ); // A#e8</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h1 id="jquery的-“-id”-与document-getElementById-“id”-的区别"><a href="#jquery的-“-id”-与document-getElementById-“id”-的区别" class="headerlink" title="jquery的$(“#id”)与document.getElementById(“id”)的区别"></a>jquery的$(“#id”)与document.getElementById(“id”)的区别</h1><ol>
+<li>alert($(“#box”))得到的是[object Object]</li>
+<li>alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]</li>
+<li>alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到的是[object HTMLDivElement]</li>
+</ol>
+<p>因此document.getElementByIdx_x(“box”)等同于(\$(“#box”)[0]或(\$(“#box”).get(0)</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;jQuery-find-函数详解&quot;&gt;&lt;a href=&quot;#jQuery-find-函数详解&quot; class=&quot;headerlink&quot; title=&quot;jQuery.find() 函数详解&quot;&gt;&lt;/a&gt;jQuery.find() 函数详解&lt;/h1&gt;&lt;blockquote&gt;
-
+      &lt;h1 id=&quot;jquery的-“-id”-与document-getElementById-“id”-的区别&quot;&gt;&lt;a href=&quot;#jquery的-“-id”-与document-getElementById-“id”-的区别&quot; class=&quot;headerlink&quot; title
     
     </summary>
     
@@ -192,22 +301,33 @@
   
   <entry>
     <title></title>
-    <link href="http://universefeeler.github.io/2016/07/13/jquery%E7%9A%84$(%E2%80%9C#id%E2%80%9D)%E4%B8%8Edocument.getElementById(%E2%80%9Cid%E2%80%9D)%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/</id>
+    <link href="http://universefeeler.github.io/2016/07/13/jQuery.find()%20%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/</id>
     <published>2016-07-13T15:56:13.392Z</published>
-    <updated>2016-07-11T15:43:08.727Z</updated>
+    <updated>2016-07-11T15:28:20.326Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="jquery的-“-id”-与document-getElementById-“id”-的区别"><a href="#jquery的-“-id”-与document-getElementById-“id”-的区别" class="headerlink" title="jquery的$(“#id”)与document.getElementById(“id”)的区别"></a>jquery的$(“#id”)与document.getElementById(“id”)的区别</h1><ol>
-<li>alert($(“#box”))得到的是[object Object]</li>
-<li>alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]</li>
-<li>alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到的是[object HTMLDivElement]</li>
-</ol>
-<p>因此document.getElementByIdx_x(“box”)等同于(\$(“#box”)[0]或(\$(“#box”).get(0)</p>
+    <content type="html"><![CDATA[<h1 id="jQuery-find-函数详解"><a href="#jQuery-find-函数详解" class="headerlink" title="jQuery.find() 函数详解"></a>jQuery.find() 函数详解</h1><blockquote>
+<p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以jQuery对象的形式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于jQuery对象(实例)。</p>
+</blockquote>
+<ul>
+<li>语法<br>jQueryObject.find( expr )</li>
+<li>参数<br>expr    String/Element/jQuery类型指定的表达式。<br>find()函数将在当前jQuery对象每个匹配元素的所有后代元素中筛选符合指定表达式的元素。<br>如果expr参数为字符串，则将其视作jQuery选择器，用以表示该选择器所匹配的元素。<br>jQuery 1.6 新增支持：参数expr可以为DOM元素(Element)或jQuery对象。</li>
+<li>返回值<br>find()函数的返回值为jQuery类型，返回一个新的jQuery对象，该对象封装了当前jQuery对象匹配元素的所有符合指定选择器的后代元素。<br>如果没有匹配的元素，则返回空的jQuery对象。</li>
+<li>示例&amp;说明<br>find()函数具有以下等价代码：<br>// 这里的是selector、selector1均表示任意的选择器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;selector&quot;).find(&quot;selector1&quot;);</div></pre></td></tr></table></figure>
+<p>// 等价于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;selector selector1&quot;);</div></pre></td></tr></table></figure>
+<p>以下面这段HTML代码为例：</p>
+<figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;p id="e1"&gt;</div><div class="line">	&lt;span id="e2" class="site"&gt;</div><div class="line">		&lt;span id="e3" class="item site-name"&gt;CodePlayer&lt;/span&gt;</div><div class="line">		&lt;span id="e4" class="item site-desc"&gt;专注于编程开发技术分享&lt;/span&gt;</div><div class="line">	&lt;/span&gt;</div><div class="line">	&lt;span id="e5" class="site-url"&gt;http://www.365mini.com&lt;/span&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;p id="e6"&gt;</div><div class="line">	JavaScript&lt;span id="e7" class="highlight"&gt;jQuery&lt;/span&gt;</div><div class="line">	&lt;a id="e8" href="http://www.365mini.com"&gt;CodePlayer&lt;/a&gt;</div><div class="line">&lt;/p&gt;</div></pre></td></tr></table></figure>
+<p>以下jQuery示例代码用于演示find()函数的具体用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 返回jQuery对象所有匹配元素的标识信息数组</div><div class="line">// 每个元素形如：tagName或tagName#id(如果有id的话)</div><div class="line">function getTagsInfo($doms)&#123;</div><div class="line">	return $doms.map(function()&#123;</div><div class="line">		return this.tagName + (this.id ? &quot;#&quot; + this.id : &quot;&quot;);</div><div class="line">	&#125;).get();</div><div class="line">&#125;</div><div class="line">// 匹配id为e1的元素</div><div class="line">var $e1 = $(&quot;#e1&quot;);</div><div class="line">var $e1_span = $e1.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $e1_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5</div><div class="line"></div><div class="line">var $p = $(&quot;p&quot;);</div><div class="line">var $p_span = $p.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $p_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5,SPAN#e7</div><div class="line"></div><div class="line">var $highlight = $p.find( $(&quot;.highlight&quot;) );</div><div class="line">document.writeln( getTagsInfo( $highlight ) ); // SPAN#e7</div><div class="line"></div><div class="line">var a = document.getElementsByTagName(&quot;a&quot;);</div><div class="line">var $a = $p.find( a );</div><div class="line">document.writeln( getTagsInfo( $a ) ); // A#e8</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;jquery的-“-id”-与document-getElementById-“id”-的区别&quot;&gt;&lt;a href=&quot;#jquery的-“-id”-与document-getElementById-“id”-的区别&quot; class=&quot;headerlink&quot; title
+      &lt;h1 id=&quot;jQuery-find-函数详解&quot;&gt;&lt;a href=&quot;#jQuery-find-函数详解&quot; class=&quot;headerlink&quot; title=&quot;jQuery.find() 函数详解&quot;&gt;&lt;/a&gt;jQuery.find() 函数详解&lt;/h1&gt;&lt;blockquote&gt;
+
     
     </summary>
     

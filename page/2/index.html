@@ -6,28 +6,15 @@
   
   <title>UniverseFeeler</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="$.ajax()方法详解###$.ajax()参数解释
-
-url:要求为String类型的参数，（默认为当前页地址）发送请求的地址。
-type:要求为String类型的参数，请求方式（post或get）默认为get。注意其他http请求方法，例如put和delete也可以使用，但仅部分浏览器支持。
-timeout:要求为Number类型的参数，设置请求超时时间（毫秒）。此设置将覆盖$.ajaxSe">
-<meta property="og:type" content="article">
+  <meta name="description" content="Touch the World!">
+<meta property="og:type" content="website">
 <meta property="og:title" content="UniverseFeeler">
-<meta property="og:url" content="http://universefeeler.github.io/2016/07/11/$.ajax()方法详解/index.html">
+<meta property="og:url" content="http://universefeeler.github.io/page/2/index.html">
 <meta property="og:site_name" content="UniverseFeeler">
-<meta property="og:description" content="$.ajax()方法详解###$.ajax()参数解释
-
-url:要求为String类型的参数，（默认为当前页地址）发送请求的地址。
-type:要求为String类型的参数，请求方式（post或get）默认为get。注意其他http请求方法，例如put和delete也可以使用，但仅部分浏览器支持。
-timeout:要求为Number类型的参数，设置请求超时时间（毫秒）。此设置将覆盖$.ajaxSe">
-<meta property="og:updated_time" content="2016-07-11T14:24:24.886Z">
+<meta property="og:description" content="Touch the World!">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UniverseFeeler">
-<meta name="twitter:description" content="$.ajax()方法详解###$.ajax()参数解释
-
-url:要求为String类型的参数，（默认为当前页地址）发送请求的地址。
-type:要求为String类型的参数，请求方式（post或get）默认为get。注意其他http请求方法，例如put和delete也可以使用，但仅部分浏览器支持。
-timeout:要求为Number类型的参数，设置请求超时时间（毫秒）。此设置将覆盖$.ajaxSe">
+<meta name="twitter:description" content="Touch the World!">
   
     <link rel="alternative" href="/atom.xml" title="UniverseFeeler" type="application/atom+xml">
   
@@ -84,7 +71,53 @@ timeout:要求为Number类型的参数，设置请求超时时间（毫秒）。
   </div>
 </header>
     <div class="outer">
-      <section id="main"><article id="post-$.ajax()方法详解" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main">
+  
+    <article id="post-Grep应用几例" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/13/Grep应用几例/" class="article-date">
+  <time datetime="2016-07-13T15:53:41.722Z" itemprop="datePublished">2016-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Grep应用几例"><a href="#Grep应用几例" class="headerlink" title="Grep应用几例"></a>Grep应用几例</h1><ol>
+<li><strong>获取log.txt文件中各”appid=”的值</strong><br>log.txt内容如下：<br><img src="./2016-07-13_234805.jpg" alt="Alt text"></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep -o &apos;appid=[0-9]\+&apos; log.txt | grep -o &apos;[0-9]\+&apos;</div></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep -o &apos;appid=[0-9]*&apos; log.txt | grep -o &apos;[0-9]*&apos;</div></pre></td></tr></table></figure>
+<p>具体操作实例如下：<br><img src="./2016-07-13_234745.jpg" alt="Alt text"></p>
+<ol>
+<li>获取df -h磁盘利用率大于等于10%的值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h | grep -o [0-9]*% | grep -o [0-9][0-9]</div></pre></td></tr></table></figure>
+<p>具体操作实例：<br><img src="./2016-07-13_233056.jpg" alt="Alt text"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/13/Grep应用几例/" data-id="cir293dkl0008xejxlyproim6" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/13/Grep应用几例/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-$.ajax()方法详解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/11/$.ajax()方法详解/" class="article-date">
   <time datetime="2016-07-11T14:33:56.430Z" itemprop="datePublished">2016-07-11</time>
@@ -154,28 +187,15 @@ this;   //调用本次ajax请求时传递的options参数
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2016/07/13/Grep应用几例/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
 </article>
 
 
-  <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/07/11/$.ajax()方法详解/" data-title="" data-url="http://universefeeler.github.io/2016/07/11/$.ajax()方法详解/"></div>
-  </section>
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 </section>
       
       <aside id="sidebar">
