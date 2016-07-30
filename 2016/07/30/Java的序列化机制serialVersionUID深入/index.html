@@ -6,25 +6,19 @@
   
   <title>UniverseFeeler</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jquery的$(“#id”)与document.getElementById(“id”)的区别
-alert($(“#box”))得到的是[object Object]
-alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]
-alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
+  <meta name="description" content="Java的序列化机制serialVersionUID深入
+作用Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。(InvalidCastE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UniverseFeeler">
-<meta property="og:url" content="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/index.html">
+<meta property="og:url" content="http://universefeeler.github.io/2016/07/30/Java的序列化机制serialVersionUID深入/index.html">
 <meta property="og:site_name" content="UniverseFeeler">
-<meta property="og:description" content="jquery的$(“#id”)与document.getElementById(“id”)的区别
-alert($(“#box”))得到的是[object Object]
-alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]
-alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
-<meta property="og:updated_time" content="2016-07-11T15:43:08.727Z">
+<meta property="og:description" content="Java的序列化机制serialVersionUID深入
+作用Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。(InvalidCastE">
+<meta property="og:updated_time" content="2016-07-28T15:42:47.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UniverseFeeler">
-<meta name="twitter:description" content="jquery的$(“#id”)与document.getElementById(“id”)的区别
-alert($(“#box”))得到的是[object Object]
-alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]
-alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
+<meta name="twitter:description" content="Java的序列化机制serialVersionUID深入
+作用Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。(InvalidCastE">
   
     <link rel="alternative" href="/atom.xml" title="UniverseFeeler" type="application/atom+xml">
   
@@ -81,10 +75,10 @@ alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
   </div>
 </header>
     <div class="outer">
-      <section id="main"><article id="post-jquery的$(“#id”)与document.getElementById(“id”)的区别" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Java的序列化机制serialVersionUID深入" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" class="article-date">
-  <time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">2016-07-13</time>
+    <a href="/2016/07/30/Java的序列化机制serialVersionUID深入/" class="article-date">
+  <time datetime="2016-07-30T15:07:15.435Z" itemprop="datePublished">2016-07-30</time>
 </a>
     
   </div>
@@ -93,22 +87,51 @@ alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="jquery的-“-id”-与document-getElementById-“id”-的区别"><a href="#jquery的-“-id”-与document-getElementById-“id”-的区别" class="headerlink" title="jquery的$(“#id”)与document.getElementById(“id”)的区别"></a>jquery的$(“#id”)与document.getElementById(“id”)的区别</h1><ol>
-<li>alert($(“#box”))得到的是[object Object]</li>
-<li>alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]</li>
-<li>alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到的是[object HTMLDivElement]</li>
+        <h1 id="Java的序列化机制serialVersionUID深入"><a href="#Java的序列化机制serialVersionUID深入" class="headerlink" title="Java的序列化机制serialVersionUID深入"></a>Java的序列化机制serialVersionUID深入</h1><ol>
+<li><p><strong>作用</strong><br>Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。(InvalidCastException)。</p>
+</li>
+<li><p><strong>生成方式</strong><br><strong>1)</strong> 一个是默认的1L，比如：private static final long serialVersionUID = 1L;<br><strong>2)</strong>  一个是根据类名、接口名、成员方法及属性等来生成一个64位的哈希字段，比如：        private static final   long     serialVersionUID = xxxxL;</p>
+</li>
 </ol>
-<p>因此document.getElementByIdx_x(“box”)等同于(\$(“#box”)[0]或(\$(“#box”).get(0)</p>
+<blockquote>
+<p>当你一个类实现了Serializable接口，如果没有显示的定义serialVersionUID，Eclipse会提供这个      提示功能告诉你去定义 。在Eclipse中点击类中warning的图标一下，Eclipse就会      自动给定两种生成的方式。如果不想定义它，在Eclipse的设置中也       可以把它关掉的，设置如下：         Window ==&gt; Preferences ==&gt; Java ==&gt; Compiler ==&gt; Error/Warnings ==&gt;         Potential programming problems         将Serializable class without serialVersionUID的warning改成ignore即可。当实现java.io.Serializable接口的实体（类）没有显式地定义一个名为serialVersionUID，类型为long的变量时，Java序列化机制会根据编译的class(它通过类名，方法名等诸多因素经过计算而得，理论上是一一映射的关系，也就是唯一的)自动生成一个serialVersionUID作序列化版本比较用，这种情况下，如果class文件(类名,方法等)没有发生变化(增加空格,换行,增加注释,等等),就算再编译多次,serialVersionUID也不会变化的.</p>
+</blockquote>
+<ol>
+<li><strong>关键问题</strong></li>
+</ol>
+<blockquote>
+<p>问题一:假设有A端和B端,如果2处的serialVersionUID不一致,会产生什么错误呢?</p>
+</blockquote>
+<p>答案:</p>
+<p>1)先执行测试类SerialTest,然后修改serialVersion值(或注释掉serialVersion并编译),再执行测试类DeserialTest,报错:</p>
+<p>java.io.InvalidClassException: com.test.serializable.Serial; local class incompatible: stream classdesc serialVersionUID = 1, local class serialVersionUID = 11</p>
+<p>2)A端和B端都没显示的写serialVersionUID,实体类没有改动(如果class文件(类名,方法明等)没有发生变化(增加空格,换行,增加注释,等等),).序列化,反序列化正常.</p>
+<blockquote>
+<p>问题二:假设2处serialVersionUID一致,如果A端增加一个字段,B端不变,会是什么情况呢?</p>
+</blockquote>
+<p>答案:<br> 序列化,反序列化正常,A端增加的字段丢失(被B端忽略).</p>
+<blockquote>
+<p>问题三:假设2处serialVersionUID一致,如果B段增加一个字段,A端不变,会是什么情况呢?</p>
+</blockquote>
+<p>答案:<br> 序列化,反序列化正常,B端新增加的int字段被赋予了默认值0.</p>
+<blockquote>
+<p>问题四:假设2处serialVersionUID一致,如果A端减少一个字段,B端不变,会是什么情况呢?</p>
+</blockquote>
+<p>答案:<br>序列化,反序列化正常,B端字段多余A端,B端多出的字段被赋予对应类型的默认值</p>
+<blockquote>
+<p>问题五:假设2处serialVersionUID一致,如果B端减少一个字段,A端不变,会是什么情况呢?</p>
+</blockquote>
+<p>答案:<br>序列化,反序列化正常,A端多余的字段丢失(被B端忽略).</p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" data-id="cir9bcl2a000apbjx0a0wlqwr" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/30/Java的序列化机制serialVersionUID深入/" data-id="cir9bcl0a0003pbjx8i30m76x" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
-        <a href="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://universefeeler.github.io/2016/07/30/Java的序列化机制serialVersionUID深入/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -118,7 +141,7 @@ alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
     
 <nav id="article-nav">
   
-    <a href="/2016/07/13/jQuery的$符号详解/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/07/30/MySQL聚集索引和非聚集索引/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
@@ -128,7 +151,7 @@ alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
     </a>
   
   
-    <a href="/2016/07/13/Grep应用几例/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title"></div>
     </a>
@@ -140,7 +163,7 @@ alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" data-title="" data-url="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/07/30/Java的序列化机制serialVersionUID深入/" data-title="" data-url="http://universefeeler.github.io/2016/07/30/Java的序列化机制serialVersionUID深入/"></div>
   </section>
 </section>
       

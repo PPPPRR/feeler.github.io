@@ -73,6 +73,174 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-商业碎片捕手—《星巴克一切与咖啡无关》思索" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/" class="article-date">
+  <time datetime="2016-07-13T15:56:13.404Z" itemprop="datePublished">2016-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="商业碎片捕手—《星巴克一切与咖啡无关》思索"><a href="#商业碎片捕手—《星巴克一切与咖啡无关》思索" class="headerlink" title="商业碎片捕手—《星巴克一切与咖啡无关》思索"></a>商业碎片捕手—《星巴克一切与咖啡无关》思索</h1><p>@(默认笔记)[商业笔记, 读书, 微信公众号运营]</p>
+<p><strong>前言</strong><br>        世间的工作，平凡如尘土<br>        你为它劳心，它却弄污你的顺手<br>        最终又华为乌有。</p>
+<blockquote>
+<p>星巴克的精髓：没有人，就没有咖啡<br>霍华德.毕哈来公司第一天就告诉我们：我们不是在经营那种卖咖啡给客人的生意，我们是在一项提供咖啡的人的生意<br>霍华德一直在证明一项的伟大的事业必须具备良心和利他<br>领导他人表面是一种荣誉，本质上是一种责任</p>
+</blockquote>
+<ul>
+<li><strong>功能丰富</strong> ：支持高亮代码块、<em>LaTeX</em> 公式、流程图，本地图片以及附件上传，甚至截图粘贴，工作学习好帮手；</li>
+<li><strong>得心应手</strong> ：简洁高效的编辑器，提供[桌面客户端][1]以及[离线Chrome App][2]，支持移动端 Web；</li>
+<li><strong>深度整合</strong> ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/" data-id="cir9bcl52000dpbjxy7tk7fin" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/13/商业碎片捕手—《星巴克一切与咖啡无关》思索/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jQuery.find() 函数详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/13/jQuery.find() 函数详解/" class="article-date">
+  <time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">2016-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="jQuery-find-函数详解"><a href="#jQuery-find-函数详解" class="headerlink" title="jQuery.find() 函数详解"></a>jQuery.find() 函数详解</h1><blockquote>
+<p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以jQuery对象的形式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于jQuery对象(实例)。</p>
+</blockquote>
+<ul>
+<li>语法<br>jQueryObject.find( expr )</li>
+<li>参数<br>expr    String/Element/jQuery类型指定的表达式。<br>find()函数将在当前jQuery对象每个匹配元素的所有后代元素中筛选符合指定表达式的元素。<br>如果expr参数为字符串，则将其视作jQuery选择器，用以表示该选择器所匹配的元素。<br>jQuery 1.6 新增支持：参数expr可以为DOM元素(Element)或jQuery对象。</li>
+<li>返回值<br>find()函数的返回值为jQuery类型，返回一个新的jQuery对象，该对象封装了当前jQuery对象匹配元素的所有符合指定选择器的后代元素。<br>如果没有匹配的元素，则返回空的jQuery对象。</li>
+<li>示例&amp;说明<br>find()函数具有以下等价代码：<br>// 这里的是selector、selector1均表示任意的选择器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;selector&quot;).find(&quot;selector1&quot;);</div></pre></td></tr></table></figure>
+<p>// 等价于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;selector selector1&quot;);</div></pre></td></tr></table></figure>
+<p>以下面这段HTML代码为例：</p>
+<figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;p id="e1"&gt;</div><div class="line">	&lt;span id="e2" class="site"&gt;</div><div class="line">		&lt;span id="e3" class="item site-name"&gt;CodePlayer&lt;/span&gt;</div><div class="line">		&lt;span id="e4" class="item site-desc"&gt;专注于编程开发技术分享&lt;/span&gt;</div><div class="line">	&lt;/span&gt;</div><div class="line">	&lt;span id="e5" class="site-url"&gt;http://www.365mini.com&lt;/span&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;p id="e6"&gt;</div><div class="line">	JavaScript&lt;span id="e7" class="highlight"&gt;jQuery&lt;/span&gt;</div><div class="line">	&lt;a id="e8" href="http://www.365mini.com"&gt;CodePlayer&lt;/a&gt;</div><div class="line">&lt;/p&gt;</div></pre></td></tr></table></figure>
+<p>以下jQuery示例代码用于演示find()函数的具体用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 返回jQuery对象所有匹配元素的标识信息数组</div><div class="line">// 每个元素形如：tagName或tagName#id(如果有id的话)</div><div class="line">function getTagsInfo($doms)&#123;</div><div class="line">	return $doms.map(function()&#123;</div><div class="line">		return this.tagName + (this.id ? &quot;#&quot; + this.id : &quot;&quot;);</div><div class="line">	&#125;).get();</div><div class="line">&#125;</div><div class="line">// 匹配id为e1的元素</div><div class="line">var $e1 = $(&quot;#e1&quot;);</div><div class="line">var $e1_span = $e1.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $e1_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5</div><div class="line"></div><div class="line">var $p = $(&quot;p&quot;);</div><div class="line">var $p_span = $p.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $p_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5,SPAN#e7</div><div class="line"></div><div class="line">var $highlight = $p.find( $(&quot;.highlight&quot;) );</div><div class="line">document.writeln( getTagsInfo( $highlight ) ); // SPAN#e7</div><div class="line"></div><div class="line">var a = document.getElementsByTagName(&quot;a&quot;);</div><div class="line">var $a = $p.find( a );</div><div class="line">document.writeln( getTagsInfo( $a ) ); // A#e8</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/" data-id="cir9bcl1y0008pbjxa9rd0e21" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jQuery的$符号详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/13/jQuery的$符号详解/" class="article-date">
+  <time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">2016-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="jQuery的-符号详解"><a href="#jQuery的-符号详解" class="headerlink" title="jQuery的$符号详解"></a>jQuery的$符号详解</h1><blockquote>
+<p>jQuery是现在最流行的Javascript框架，<br>\$是其中最常见的符号，已经在jQuery留下了深深的烙印。那么\$到底是什么东西，它可以接受一个字符，也可以接受一个文档对象，亦或者一个函数，也可以调用一个函数。</p>
+</blockquote>
+<p>jQuery，高效，精炼，特别是对DOM元素对象操作的简化，很大程度上将前端程序员从一大堆冗余的代码解放出来，大大提高了开发效率！对多浏览器的兼容性，也最大限度让程序员摆脱各种bug的纠缠<br>\$符号作为元素选择器的简写，最早是由Prototype库使用，来简写getElementById，jQuery沿袭这一理念，并发扬光大，使\$符号成为了jQuery最别具一格的特点。那么在jQuery中，\$符号到底是啥？<br>熟悉jQuery的人应该知道，几乎jQuery所有操作，都是从$符号开始，当作为元素选择器的时候，操作结果返回的是一个jQuery对象。<br>那么，现在就看jQuery类的构造函数的主要代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">1.	var jQuery = (function() &#123;  </div><div class="line">2.	    //创建jQuery对象,给所有的jQuery方法提供统一的入口,避免繁琐难记  </div><div class="line">3.	    var jQuery = function( selector, context ) &#123;  </div><div class="line">4.	        //jQuery的构造对象,调用了jQuery.fn.init方法  </div><div class="line">5.	        //最后返回jQuery.fn.init的对象  </div><div class="line">6.	        return new jQuery.fn.init( selector, context, rootjQuery );  </div><div class="line">7.	    &#125;,  </div><div class="line">8.	  </div><div class="line">9.	    .....  </div><div class="line">10.	  </div><div class="line">11.	    //定义jQuery的原型,jQuery.fn指向jQuery.prototype对象  </div><div class="line">12.	    jQuery.fn = jQuery.prototype = &#123;  </div><div class="line">13.	    //重新指定构造函数属性,因为默认指向jQuery.fn.init  </div><div class="line">14.	    constructor: jQuery,  </div><div class="line">15.	    init: function( selector, context, rootjQuery ) &#123;.....&#125;,  </div><div class="line">16.	  </div><div class="line">17.	    ......  </div><div class="line">18.	   </div><div class="line">21.	    ......  </div><div class="line">22.	  </div><div class="line">23.	    //返回jQuery变量,同时定义将全局变量window.jQuery和window.$指向jQuery  </div><div class="line">24.	    return (window.jQuery = window.$ = jQuery);  </div><div class="line">25.	  </div><div class="line">26.	&#125;)();  </div><div class="line"></div><div class="line">19.	    &#125;</div></pre></td></tr></table></figure>
+<p>从以上jQuery的主体结构，我们可以看出，当首次执行完毕后，全局变量\$和jQuery，都是指向了var jQuery=function（selector，context）{}这个函数，这里，就可以下个结论，$\$就是jQuery的别名，实际调用jQuery.fn.init。$<br>再看看var jQuery=function（selector，context）{}这个构造函数，为什么里面不直接返回jQuery的对象？而是调用另外一个方法呢？<br>假如直接返回对象的话，每次使用jQuery对象，都要new jQuery() 这样的话，十分不方便，直接将new 这个操作封装在jQuery构造函数里面，简化了实例化的操作，同时，jQuery通过了jQuery或者$符号，统一了接口，方便代码的编写，化繁为简，提高效率。<br>那么jQuery类具体是如何构造的？<br>下面代码可以清晰展示整个过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line">*所有查找或生成元素的结果，封装为jQuery对象数组返回. </div><div class="line">2.	    */  </div><div class="line">3.	    init: function( selector, context, rootjQuery ) &#123;  </div><div class="line">4.	        var match, elem, ret, doc;  </div><div class="line">5.	  </div><div class="line">6.	        // 1)处理 $(&quot;&quot;), $(null), or $(undefined)  </div><div class="line">7.	        //this指向jQuery对象  </div><div class="line">8.	        if ( !selector ) &#123;  </div><div class="line">9.	            return this;  </div><div class="line">10.	        &#125;  </div><div class="line">11.	  </div><div class="line">12.	        // 2)处理 $(DOMElement)  </div><div class="line">13.	        //selector.nodeType得知为DOM元素,如果是DOM元素直接放进jQuery对象数组中  </div><div class="line">14.	        if ( selector.nodeType ) &#123;  </div><div class="line">15.	            this.context = this[0] = selector;  </div><div class="line">16.	            this.length = 1;  </div><div class="line">17.	            return this;  </div><div class="line">18.	        &#125;  </div><div class="line">19.	  </div><div class="line">20.	        //3)body元素只出现一次, 优化查找  </div><div class="line">21.	        if ( selector === &quot;body&quot; &amp;&amp; !context &amp;&amp; document.body ) &#123;  </div><div class="line">22.	            this.context = document;  </div><div class="line">23.	            this[0] = document.body;  </div><div class="line">24.	            this.selector = &quot;body&quot;;  </div><div class="line">25.	            this.length = 1;  </div><div class="line">26.	            return this;  </div><div class="line">27.	        &#125;  </div><div class="line">28.	  </div><div class="line">29.	        //4)如果是字符串,有六种情况,  </div><div class="line">30.	        /* </div><div class="line">31.	        *(1)单个html元素 不带属性对象字面量 ：createElement + merge </div><div class="line">32.	        *(2)单个html元素 带属性对象字面量 ：createElement + attr + merge </div><div class="line">33.	        *(3)多个html元素  ：buildFragment + merge </div><div class="line">34.	        *(4)#id 不带context   ：getElementById或者getElementById + Sizzle </div><div class="line">35.	        *(5)#id 带context ：Sizzle </div><div class="line">36.	        *(6)experession string ：Sizzle </div><div class="line">37.	        *(7)标签选择器 ：Sizzle（内置getElementByTagName） </div><div class="line">38.	        */  </div><div class="line">39.	        if ( typeof selector === &quot;string&quot; ) &#123;  </div><div class="line">40.	            // 判断是否为HTML string 还是 ID  </div><div class="line">41.	            //如果是HTML strings  match[1] 非空  </div><div class="line">42.	            //如果是ID strings match[1] 空  </div><div class="line">43.	            //quickExpr = /^(?:[^&lt;]*(&lt;[\w\W]+&gt;)[^&gt;]*$|#([\w\-]+)$)/,  </div><div class="line">44.	            match = quickExpr.exec( selector );  </div><div class="line">45.	  </div><div class="line">46.	            // 分析匹配结果，且当#id没有context参数，例如不是$(&apos;#xxx&apos;,xxx)  </div><div class="line">47.	            if ( match &amp;&amp; (match[1] || !context) ) &#123;  </div><div class="line">48.	  </div><div class="line">49.	                // 处理HTML字符 $(html) -&gt; $(array)  </div><div class="line">50.	                if ( match[1] ) &#123;  </div><div class="line">51.	                    //如果context为jQuery对象，则取用第一个元素，即是context[0]  </div><div class="line">52.	                    context = context instanceof jQuery ? context[0] : context;  </div><div class="line">53.	                    //取得document文档  </div><div class="line">54.	                    doc = (context ? context.ownerDocument || context : document);  </div><div class="line">55.	  </div><div class="line">56.	                    //判断是否为单个元素字符串  </div><div class="line">57.	                    ret = rsingleTag.exec( selector );  </div><div class="line">58.	                    //单个元素  </div><div class="line">59.	                    if ( ret ) &#123;  </div><div class="line">60.	                        //带对象属性字面量  </div><div class="line">61.	                        //检查context是否为对象字面量,适用场景  </div><div class="line">62.	                        //例如$(&apos;&lt;div&gt;&apos;, &#123; &apos;id&apos;: &apos;test&apos;, &apos;class&apos;: &apos;test&apos; &#125;);  </div><div class="line">63.	                        if ( jQuery.isPlainObject( context ) ) &#123;  </div><div class="line">64.	                            selector = [ document.createElement( ret[1] ) ];  </div><div class="line">65.	                            jQuery.fn.attr.call( selector, context, true );  </div><div class="line">66.	  </div><div class="line">67.	                        &#125; else &#123;  </div><div class="line">68.	                        //不带对象字面量  </div><div class="line">69.	                        //例如$(&apos;&lt;div&gt;&apos;)  </div><div class="line">70.	                            selector = [ doc.createElement( ret[1] ) ];  </div><div class="line">71.	                        &#125;  </div><div class="line">72.	  </div><div class="line">73.	                    &#125; else &#123;  </div><div class="line">74.	                        //如果是多个元素字符串，例如$(&apos;&lt;div&gt;&lt;a&gt;&lt;/a&gt;&lt;/div&gt;&apos;)  </div><div class="line">75.	                        ret = jQuery.buildFragment( [ match[1] ], [ doc ] );  </div><div class="line">76.	                        selector = (ret.cacheable ? jQuery.clone(ret.fragment) : ret.fragment).childNodes;  </div><div class="line">77.	                    &#125;  </div><div class="line">78.	                    //将生成结果selector 合并到jQuery对象中  </div><div class="line">79.	                    return jQuery.merge( this, selector );  </div><div class="line">80.	  </div><div class="line">81.	                // 处理$(&quot;#id&quot;),例如$(&quot;#xxx&quot;);  </div><div class="line">82.	                &#125; else &#123;  </div><div class="line">83.	                    elem = document.getElementById( match[2] );  </div><div class="line">84.	  </div><div class="line">85.	                    if ( elem &amp;&amp; elem.parentNode ) &#123;  </div><div class="line">86.	                        //处理IE和Opera ID 与 Name 混淆的bug,使用Sizzle查找  </div><div class="line">87.	                        if ( elem.id !== match[2] ) &#123;  </div><div class="line">88.	                            return rootjQuery.find( selector );  </div><div class="line">89.	                        &#125;  </div><div class="line">90.	  </div><div class="line">91.	                        // 否则，简单插入jQuery对象数组  </div><div class="line">92.	                        this.length = 1;  </div><div class="line">93.	                        this[0] = elem;  </div><div class="line">94.	                    &#125;  </div><div class="line">95.	  </div><div class="line">96.	                    this.context = document;  </div><div class="line">97.	                    this.selector = selector;  </div><div class="line">98.	                    return this;  </div><div class="line">99.	                &#125;  </div><div class="line">100.	  </div><div class="line">101.	            // 处理 $(expr, $(...))，使用Sizzle查找，例如$(&quot;div&quot;),$(&apos;div &gt; a&apos;),$(&apos;div,a&apos;),$(&apos;div:first&apos;)  </div><div class="line">102.	            &#125; else if ( !context || context.jquery ) &#123;  </div><div class="line">103.	                return (context || rootjQuery).find( selector );  </div><div class="line">104.	  </div><div class="line">105.	            // 处理: $(expr, context),例如$(&apos;div a&apos;);或者$(&apos;a&apos;,&apos;div&apos;)或者$(&apos;div&apos;).find(&apos;a&apos;);  </div><div class="line">106.	            &#125; else &#123;  </div><div class="line">107.	                return this.constructor( context ).find( selector );  </div><div class="line">108.	            &#125;  </div><div class="line">109.	  </div><div class="line">110.	        //5)处理: $(function),设置DOM载的时候绑定的函数,等同于$().ready()&#123;foo&#125;  </div><div class="line">111.	        &#125; else if ( jQuery.isFunction( selector ) ) &#123;  </div><div class="line">112.	            return rootjQuery.ready( selector );  </div><div class="line">113.	        &#125;  </div><div class="line">114.	        //6)处理：$($(...))，完成克隆jQuery对象的简单参数，具体由makeArray完成  </div><div class="line">115.	        if (selector.selector !== undefined) 完成加&#123;  </div><div class="line">116.	            this.selector = selector.selector;  </div><div class="line">117.	            this.context = selector.context;  </div><div class="line">118.	        &#125;  </div><div class="line">119.	        //使用makeArray，为jQuery对象添加元素,例如$([1,2]);  </div><div class="line">120.	        return jQuery.makeArray( selector, this );  </div><div class="line">121.	    &#125;,</div></pre></td></tr></table></figure>
+<p>\$符号，其实是对jQuery类构造函数的引用，此函数实际调用了jQuery.fn.init(即是jQuery.prototype.init)来生成jQuery对象,其中jQuery.prototype的所有方法都被jQuery的对象继承。\$.func实际是jQuery类的静态方法，所以$即是jQuery类的构造函数，支持各种条件的查找和生成并返回DOM对象构成jQuery对象，同时也是一个类，是所有jQuery静态方法的入口，例如可以使用个\$.ajax()。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/" data-id="cir9bcl260009pbjxmjx7qew9" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jquery的$(“#id”)与document.getElementById(“id”)的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" class="article-date">
+  <time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">2016-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="jquery的-“-id”-与document-getElementById-“id”-的区别"><a href="#jquery的-“-id”-与document-getElementById-“id”-的区别" class="headerlink" title="jquery的$(“#id”)与document.getElementById(“id”)的区别"></a>jquery的$(“#id”)与document.getElementById(“id”)的区别</h1><ol>
+<li>alert($(“#box”))得到的是[object Object]</li>
+<li>alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]</li>
+<li>alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到的是[object HTMLDivElement]</li>
+</ol>
+<p>因此document.getElementByIdx_x(“box”)等同于(\$(“#box”)[0]或(\$(“#box”).get(0)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" data-id="cir9bcl2a000apbjx0a0wlqwr" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Grep应用几例" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/13/Grep应用几例/" class="article-date">
@@ -102,7 +270,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/13/Grep应用几例/" data-id="cir293dkl0008xejxlyproim6" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/13/Grep应用几例/" data-id="cir9bcl030002pbjxrnqhpp3h" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
@@ -176,7 +344,7 @@ this;   //调用本次ajax请求时传递的options参数
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/11/$.ajax()方法详解/" data-id="cir293dhd0000xejxhdhcxfp8" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/11/$.ajax()方法详解/" data-id="cir9bckyu0000pbjxs439n61h" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
@@ -210,7 +378,7 @@ this;   //调用本次ajax请求时传递的options参数
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016-07</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016-07</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
@@ -223,23 +391,23 @@ this;   //调用本次ajax请求时传递的options参数
       <ul>
         
           <li>
-            <a href="/2016/07/25/HTTP状态码之301 VS 302/">(no title)</a>
+            <a href="/2016/07/30/MySQL聚集索引和非聚集索引/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2016/07/25/git merger中“both deleted”错误解决方案/">(no title)</a>
+            <a href="/2016/07/30/Java的序列化机制serialVersionUID深入/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2016/07/25/Cookie中maxAge深入理解/">(no title)</a>
+            <a href="/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/30/Java中遍历Map的几种方法/">(no title)</a>
           </li>
         
           <li>
             <a href="/2016/07/25/利用phoenix操作hbase之shell使用万能入口/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/20/MySQL select count()查询较慢的一些事实和结论/">(no title)</a>
           </li>
         
       </ul>

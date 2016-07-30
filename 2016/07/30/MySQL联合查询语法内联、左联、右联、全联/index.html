@@ -6,25 +6,46 @@
   
   <title>UniverseFeeler</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jquery的$(“#id”)与document.getElementById(“id”)的区别
-alert($(“#box”))得到的是[object Object]
-alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]
-alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
+  <meta name="description" content="MySQL联合查询语法内联、左联、右联、全联
+内联 inner join
+
+1select * from T1, T3 where T1.userid = T3.userid
+or
+1select * from T1 inner join T3 on T1.userid=T3.userid
+两者等同，后者效率略高显示表T1、T2同时满足条件的行
+
+左联 left outer join
+
+1sele">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UniverseFeeler">
-<meta property="og:url" content="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/index.html">
+<meta property="og:url" content="http://universefeeler.github.io/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/index.html">
 <meta property="og:site_name" content="UniverseFeeler">
-<meta property="og:description" content="jquery的$(“#id”)与document.getElementById(“id”)的区别
-alert($(“#box”))得到的是[object Object]
-alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]
-alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
-<meta property="og:updated_time" content="2016-07-11T15:43:08.727Z">
+<meta property="og:description" content="MySQL联合查询语法内联、左联、右联、全联
+内联 inner join
+
+1select * from T1, T3 where T1.userid = T3.userid
+or
+1select * from T1 inner join T3 on T1.userid=T3.userid
+两者等同，后者效率略高显示表T1、T2同时满足条件的行
+
+左联 left outer join
+
+1sele">
+<meta property="og:updated_time" content="2016-07-28T15:21:07.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UniverseFeeler">
-<meta name="twitter:description" content="jquery的$(“#id”)与document.getElementById(“id”)的区别
-alert($(“#box”))得到的是[object Object]
-alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]
-alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
+<meta name="twitter:description" content="MySQL联合查询语法内联、左联、右联、全联
+内联 inner join
+
+1select * from T1, T3 where T1.userid = T3.userid
+or
+1select * from T1 inner join T3 on T1.userid=T3.userid
+两者等同，后者效率略高显示表T1、T2同时满足条件的行
+
+左联 left outer join
+
+1sele">
   
     <link rel="alternative" href="/atom.xml" title="UniverseFeeler" type="application/atom+xml">
   
@@ -81,10 +102,10 @@ alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
   </div>
 </header>
     <div class="outer">
-      <section id="main"><article id="post-jquery的$(“#id”)与document.getElementById(“id”)的区别" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-MySQL联合查询语法内联、左联、右联、全联" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" class="article-date">
-  <time datetime="2016-07-13T15:56:13.392Z" itemprop="datePublished">2016-07-13</time>
+    <a href="/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/" class="article-date">
+  <time datetime="2016-07-30T15:07:15.435Z" itemprop="datePublished">2016-07-30</time>
 </a>
     
   </div>
@@ -93,22 +114,38 @@ alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="jquery的-“-id”-与document-getElementById-“id”-的区别"><a href="#jquery的-“-id”-与document-getElementById-“id”-的区别" class="headerlink" title="jquery的$(“#id”)与document.getElementById(“id”)的区别"></a>jquery的$(“#id”)与document.getElementById(“id”)的区别</h1><ol>
-<li>alert($(“#box”))得到的是[object Object]</li>
-<li>alert(document.getElementByIdx_x(“box”))得到的是[object HTMLDivElement]</li>
-<li>alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到的是[object HTMLDivElement]</li>
+        <h1 id="MySQL联合查询语法内联、左联、右联、全联"><a href="#MySQL联合查询语法内联、左联、右联、全联" class="headerlink" title="MySQL联合查询语法内联、左联、右联、全联"></a>MySQL联合查询语法内联、左联、右联、全联</h1><ol>
+<li><strong>内联 inner join</strong></li>
 </ol>
-<p>因此document.getElementByIdx_x(“box”)等同于(\$(“#box”)[0]或(\$(“#box”).get(0)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1, T3 <span class="keyword">where</span> T1.userid = T3.userid</div></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">inner</span> <span class="keyword">join</span> T3 <span class="keyword">on</span> T1.userid=T3.userid</div></pre></td></tr></table></figure>
+<p>两者等同，后者效率略高<br>显示表T1、T2同时满足条件的行</p>
+<ol>
+<li><strong>左联 left outer join</strong></li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> T2 <span class="keyword">on</span> T1.userid = T2.userid</div></pre></td></tr></table></figure>
+<p>显示左表T1中的所有行，并把右表T2中符合条件加到左表T1中</p>
+<ol>
+<li><strong>右联right outer join</strong></li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">right</span> <span class="keyword">outer</span> <span class="keyword">join</span> T2 <span class="keyword">on</span> T1.userid = T2.userid</div></pre></td></tr></table></figure>
+<p>显示右表T2中的所有行，并把左表T1中符合条件加到右表T2中</p>
+<ol>
+<li><strong>全联full outer join</strong></li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">full</span> <span class="keyword">outer</span> <span class="keyword">join</span> T2 <span class="keyword">on</span> T1.userid = T2.userid</div></pre></td></tr></table></figure>
+<p>显示左表T1、右表T2两边中的所有行，即把左联结果表 + 右联结果表组合在一起，然后过滤掉重复的</p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" data-id="cir9bcl2a000apbjx0a0wlqwr" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/" data-id="cir9bcl0n0005pbjxhnwys9u0" class="article-share-link" data-share="baidu" data-title="">分享到</a>
       
 
       
-        <a href="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://universefeeler.github.io/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -118,7 +155,7 @@ alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
     
 <nav id="article-nav">
   
-    <a href="/2016/07/13/jQuery的$符号详解/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/07/30/Java的序列化机制serialVersionUID深入/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
@@ -128,7 +165,7 @@ alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
     </a>
   
   
-    <a href="/2016/07/13/Grep应用几例/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/07/30/Java中遍历Map的几种方法/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title"></div>
     </a>
@@ -140,7 +177,7 @@ alert(\$(“#box”)[0])或alert(\$(“#box”).get(0))得到">
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/" data-title="" data-url="http://universefeeler.github.io/2016/07/13/jquery的$(“#id”)与document.getElementById(“id”)的区别/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2016/07/30/MySQL联合查询语法内联、左联、右联、全联/" data-title="" data-url="http://universefeeler.github.io/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/"></div>
   </section>
 </section>
       
