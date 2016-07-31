@@ -6,6 +6,11 @@
   
   <title>UniverseFeeler</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <meta name="description" content="Grep应用几例
 获取log.txt文件中各”appid=”的值log.txt内容如下：
 
@@ -39,14 +44,20 @@
 具体操作实例如下">
 <meta name="twitter:image" content="http://universefeeler.github.io/./2016-07-13_234805.jpg">
   
-    <link rel="alternative" href="/atom.xml" title="UniverseFeeler" type="application/atom+xml">
   
-  
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/img/logo.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Add to homescreen for Chrome on Android -->    
+    <link rel="icon" sizes="192x192" href="/img/logo.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <link rel="apple-touch-icon-precomposed" href="/img/logo.png">    
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="/img/logo.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
   
   <link rel="stylesheet" href="/css/style.css">
-  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
   
 </head>
 <body>
@@ -69,15 +80,15 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/">首页</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
         
       </nav>
-<!--
+      <!--
       <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -91,11 +102,10 @@
           <input type="hidden" name="si" value="universefeeler.github.io">
         </form>
       </div>
--->
+      -->
     </div>
   </div>
 </header>
-
     <div class="outer">
       <section id="main"><article id="post-Grep应用几例" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -109,8 +119,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-	<!-- Table of Contents -->
-         
+        <!-- Table of Contents -->
+        
         <h1 id="Grep应用几例"><a href="#Grep应用几例" class="headerlink" title="Grep应用几例"></a>Grep应用几例</h1><ol>
 <li><strong>获取log.txt文件中各”appid=”的值</strong><br>log.txt内容如下：<br><img src="./2016-07-13_234805.jpg" alt="Alt text"></li>
 </ol>
@@ -125,10 +135,22 @@
 <p>具体操作实例：<br><img src="./2016-07-13_233056.jpg" alt="Alt text"></p>
 
       
+      
+  <div class="article-statement">
+    <hr>  
+    1.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
+    2.本博文章只代表博主当时的观点或结论，与博主公司没有任何关系。<br>
+    3.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮，或者 <a href='/about/index.html#zan-shang'>小额赞赏</a> 我。<br>
+    4.您的鼓励是博主写作最大的动力，感谢您的分享和赞赏，好人一生平安。<br>
+  </div>
+
+
+
     </div>
+    
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/13/Grep应用几例/" data-id="cir9e8orc00027yjx8bz90uhw" class="article-share-link" data-share="baidu" data-title="">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/13/Grep应用几例/" data-id="cir9xvgfp0002nujxivngcy9c" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -166,12 +188,71 @@
   <section id="comments">
     <div id="ds-thread" class="ds-thread" data-thread-key="2016/07/13/Grep应用几例/" data-title="" data-url="http://universefeeler.github.io/2016/07/13/Grep应用几例/"></div>
   </section>
-
 </section>
       
       <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">推荐文章</h3>
+    <div class="widget">
+      <ul>
+        
+        
+          
+          <li>
+            <a href="/2015/09/02/dsoframer-introduction-resources/" target="_blank">1. DSOframer的简单介绍和资源整理</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2015/09/11/dsoframer-frequently-asked-question2/" target="_blank">2. DSOframer微软官方API的查阅方法</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2015/08/31/dsoframer-frequently-asked-question1/" target="_blank">3. DSOframer无法正常加载的解决方案</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2012/02/15/office-pdf2image/" target="_blank">4. C#技术分享-PDF转图片的10种方法</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2012/02/22/office-doc2image/" target="_blank">5. C#技术分享-DOC转图片的3种方法</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2015/08/30/donet-opensource-stonefw-introduction/" target="_blank">6. DoNet开源项目-基于jQuery EasyUI的后台管理系统</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2016/01/17/donet-opensource-dian-introduction/" target="_blank">7. DoNet开源项目-基于Amaze UI的点餐系统</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2015/08/29/hexo-theme-landscape-plus-optimize/" target="_blank">8. Hexo官方主题landscape-plus优化</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2016/04/17/frontend-css-position-learning-note/" target="_blank">9. CSS基础知识之position</a>
+          </li>
+        
+          
+          <li>
+            <a href="/2016/06/10/frontend-css-float-learning-note/" target="_blank">10. CSS基础知识之float</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
   
     
   
@@ -181,39 +262,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016-07</a><span class="archive-list-count">16</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">近期文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/30/Java中遍历Map的几种方法/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/30/Java的序列化机制serialVersionUID深入/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/30/MySQL聚集索引和非聚集索引/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/25/利用phoenix操作hbase之shell使用万能入口/">(no title)</a>
-          </li>
-        
-      </ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年 07月</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
@@ -225,14 +274,53 @@
       <ul>
         
           <li>
-            <a href="http://xiguabaobao.com" target="_blank">主题作者</a>
+            <a href="http://weibo.com/605494869/" target="_blank">石佳劼的微博</a>
           </li>
         
           <li>
-            <a href="http://reqianduan.com" target="_blank">热前端</a>
+            <a href="http://www.zhihu.com/people/stone0090/" target="_blank">石佳劼的知乎</a>
+          </li>
+        
+          <li>
+            <a href="http://www.jianshu.com/users/0005893eaff9/latest_articles/" target="_blank">石佳劼的简书</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/shi0090/" target="_blank">石佳劼的CSDN</a>
+          </li>
+        
+          <li>
+            <a href="http://www.cnblogs.com/shi0090/" target="_blank">石佳劼的博客园</a>
+          </li>
+        
+          <li>
+            <a href="https://github.com/stone0090/" target="_blank">石佳劼的GitHub</a>
           </li>
         
       </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近评论</h3>
+    <div class="widget">
+      <!-- 多说最新评论 start -->
+      <div class="ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+      <!-- 多说最新评论 end -->
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+      <script type="text/javascript">
+        var duoshuoQuery = {short_name:"shijiajie"};
+        (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+      </script>
+      <!-- 多说公共JS代码 end -->
     </div>
   </div>
 
@@ -241,22 +329,31 @@
       
     </div>
     <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2016 universefeeler<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+      Copyright &copy; 2012 - 2016 <a href="/" target="_blank">universefeeler</a>.
+      &nbsp;|&nbsp;
+      <span id="busuanzi_container_site_pv">
+        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
+      </span>      
     </div>
   </div>
 </footer>
+
   </div>
   <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/" class="mobile-nav-link">首页</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
   
 </nav>
   <!-- totop start -->
@@ -268,7 +365,7 @@
 
 <!-- 多说公共js代码 start -->
 <script type="text/javascript">
-var duoshuoQuery = {short_name:"feeler"};
+var duoshuoQuery = {short_name:"shijiajie"};
   (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
@@ -292,20 +389,7 @@ var duoshuoQuery = {short_name:"feeler"};
     <a class="article-share-more" data-cmd="more" title="更多"></a>
   </div>
 </div>
-<script>
-  function SetShareData(cmd, config) {
-    if (shareDataTitle && shareDataUrl) {
-      config.bdText = shareDataTitle;
-      config.bdUrl = shareDataUrl;
-    }
-    return config;
-  }
-  window._bd_share_config={
-    "common":{onBeforeClick: SetShareData},
-    "share":{"bdCustomStyle":"/css/bdshare.css"}
-  };
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
+<script>window._bd_share_config={"common":{},"share":{"bdCustomStyle":"/css/bdshare.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 <!-- 百度分享 end -->
 
