@@ -48,10 +48,6 @@
         <a href="/" id="logo">UniverseFeeler</a>
       </h1>
       
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Best or Nothing</a>
-        </h2>
-      
     </div>
     <div id="header-inner" class="inner">
       <nav id="main-nav">
@@ -86,10 +82,10 @@
     <div class="outer">
       <section id="main">
   
-    <article id="post-MySQL联合查询语法内联、左联、右联、全联" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-hashMap与concurrentMap对比" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/" class="article-date">
-  <time datetime="2016-07-30T15:07:15.435Z" itemprop="datePublished">2016-07-30</time>
+    <a href="/2016/07/31/hashMap与concurrentMap对比/" class="article-date">
+  <time datetime="2016-07-31T07:02:11.212Z" itemprop="datePublished">2016-07-31</time>
 </a>
     
   </div>
@@ -100,28 +96,15 @@
       
         <!-- Table of Contents -->
         
-        <h1 id="MySQL联合查询语法内联、左联、右联、全联"><a href="#MySQL联合查询语法内联、左联、右联、全联" class="headerlink" title="MySQL联合查询语法内联、左联、右联、全联"></a>MySQL联合查询语法内联、左联、右联、全联</h1><ol>
-<li><strong>内联 inner join</strong></li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1, T3 <span class="keyword">where</span> T1.userid = T3.userid</div></pre></td></tr></table></figure>
-<p>or</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">inner</span> <span class="keyword">join</span> T3 <span class="keyword">on</span> T1.userid=T3.userid</div></pre></td></tr></table></figure>
-<p>两者等同，后者效率略高<br>显示表T1、T2同时满足条件的行</p>
+        <h1 id="hashMap与concurrentMap对比"><a href="#hashMap与concurrentMap对比" class="headerlink" title="hashMap与concurrentMap对比"></a>hashMap与concurrentMap对比</h1><p>@(编程语言)[Java,concurrentMap]</p>
 <ol>
-<li><strong>左联 left outer join</strong></li>
+<li>hashMap可以有null的键，concurrentMap不可以有 </li>
+<li>hashMap是线程不安全的，在多线程的时候需要Collections.synchronizedMap(hashMap),ConcurrentMap使用了重入锁保证线程安全。 </li>
+<li>在删除元素时候，两者的算法不一样。</li>
 </ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> T2 <span class="keyword">on</span> T1.userid = T2.userid</div></pre></td></tr></table></figure>
-<p>显示左表T1中的所有行，并把右表T2中符合条件加到左表T1中</p>
-<ol>
-<li><strong>右联right outer join</strong></li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">right</span> <span class="keyword">outer</span> <span class="keyword">join</span> T2 <span class="keyword">on</span> T1.userid = T2.userid</div></pre></td></tr></table></figure>
-<p>显示右表T2中的所有行，并把左表T1中符合条件加到右表T2中</p>
-<ol>
-<li><strong>全联full outer join</strong></li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">full</span> <span class="keyword">outer</span> <span class="keyword">join</span> T2 <span class="keyword">on</span> T1.userid = T2.userid</div></pre></td></tr></table></figure>
-<p>显示左表T1、右表T2两边中的所有行，即把左联结果表 + 右联结果表组合在一起，然后过滤掉重复的</p>
+<p><strong>concurrentMap用法举例</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> ConcurrentMap&lt;String, Long&gt; wordCounts = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">increase</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">    Long oldValue, newValue;</div><div class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">        oldValue = wordCounts.get(word);</div><div class="line">        <span class="keyword">if</span> (oldValue == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">// Add the word firstly, initial the value as 1</span></div><div class="line">            newValue = <span class="number">1L</span>;</div><div class="line">            <span class="keyword">if</span> (wordCounts.putIfAbsent(word, newValue) == <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            newValue = oldValue + <span class="number">1</span>;</div><div class="line">            <span class="keyword">if</span> (wordCounts.replace(word, oldValue, newValue)) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> newValue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码有点复杂，主要因为ConcurrentMap中不能保存value为null的值，所以得同时处理word不存在和已存在两种情况。</p>
 
       
       
@@ -131,11 +114,11 @@
     
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/" data-id="cir9ze254000860jxjoqbik8d" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/31/hashMap与concurrentMap对比/" data-id="cira9gxv2000berjx4gl2eqc7" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://universefeeler.github.io/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://universefeeler.github.io/2016/07/31/hashMap与concurrentMap对比/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -146,10 +129,10 @@
 
 
   
-    <article id="post-Java中遍历Map的几种方法" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Awk深入理解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/30/Java中遍历Map的几种方法/" class="article-date">
-  <time datetime="2016-07-30T15:07:15.435Z" itemprop="datePublished">2016-07-30</time>
+    <a href="/2016/07/31/Awk深入理解/" class="article-date">
+  <time datetime="2016-07-31T07:02:11.212Z" itemprop="datePublished">2016-07-31</time>
 </a>
     
   </div>
@@ -160,22 +143,78 @@
       
         <!-- Table of Contents -->
         
-        <h1 id="Java中遍历Map的几种方法"><a href="#Java中遍历Map的几种方法" class="headerlink" title="Java中遍历Map的几种方法"></a>Java中遍历Map的几种方法</h1><ol>
-<li><strong>for 循环</strong></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(Map.Entry&lt;String, String&gt; entry:map.entrySet())&#123;    </div><div class="line">     System.out.println(entry.getKey()+<span class="string">"---&gt;"</span>+entry.getValue());    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li><strong>Iterator 迭代</strong></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Set set = map.entrySet();         </div><div class="line">Iterator i = set.iterator();         </div><div class="line"><span class="keyword">while</span>(i.hasNext())&#123;      </div><div class="line">     Map.Entry&lt;String, String&gt; entry1=(Map.Entry&lt;String, String&gt;)i.next();    </div><div class="line">     System.out.println(entry1.getKey()+<span class="string">"=="</span>+entry1.getValue());    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li><strong>keySet()迭代</strong> </li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Iterator it=map.keySet().iterator();    </div><div class="line"><span class="keyword">while</span>(it.hasNext())&#123;    </div><div class="line">     String key;    </div><div class="line">     String value;    </div><div class="line">     key=it.next().toString();    </div><div class="line">     value=map.get(key);    </div><div class="line">     System.out.println(key+<span class="string">"--"</span>+value);    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li><strong>entrySet()迭代</strong></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Iterator it=map.entrySet().iterator();     </div><div class="line">String key;           </div><div class="line">String value;    </div><div class="line"><span class="keyword">while</span>(it.hasNext())&#123;    </div><div class="line">        Map.Entry entry = (Map.Entry)it.next();           </div><div class="line">        key=entry.getKey().toString();           </div><div class="line">        value=entry.getValue().toString();           </div><div class="line">        System.out.println(key+<span class="string">"===="</span>+value);                     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h1 id="Awk深入理解"><a href="#Awk深入理解" class="headerlink" title="Awk深入理解"></a>Awk深入理解</h1><p>@(脚本语言)[awk]</p>
+<p><strong>简介</strong><br>awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</p>
+<p>awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。<br>awk其名称得自于它的创始人 Alfred Aho 、Peter Weinberger 和 Brian Kernighan 姓氏的首个字母。实际上 AWK 的确拥有自己的语言： AWK 程序设计语言 ， 三位创建者已将它正式定义为“样式扫描和处理语言”。它允许您创建简短的程序，这些程序读取输入文件、为数据排序、处理数据、对输入执行计算以及生成报表，还有无数其他的功能。</p>
+<p><strong>使用方法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'&#123;pattern + action&#125;'</span> &#123;filenames&#125;</div></pre></td></tr></table></figure>
+<p><strong>调用awk</strong></p>
+<p>1.<strong>命令行方式</strong><br>awk [-F  field-separator]  ‘commands’  input-file(s)<br>其中，commands 是真正awk命令，[-F域分隔符]是可选的。 input-file(s) 是待处理的文件。<br>在awk中，文件的每一行中，由域分隔符分开的每一项称为一个域。通常，在不指名-F域分隔符的情况下，默认的域分隔符是空格。</p>
+<p>2.<strong>shell脚本方式</strong><br>将所有的awk命令插入一个文件，并使awk程序可执行，然后awk命令解释器作为脚本的首行，一遍通过键入脚本名称来调用。<br>相当于shell脚本首行的：#!/bin/sh<br>可以换成：#!/bin/awk</p>
+<p>3.<strong>将所有的awk命令插入一个单独文件，然后调用</strong>：<br>awk -f awk-script-file input-file(s)<br>其中，-f选项加载awk-script-file中的awk脚本，input-file(s)跟上面的是一样的。</p>
+<p><strong>实例展示</strong><br>假设last -n 5的输出如下</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@www ~]<span class="comment"># last -n 5 &lt;==仅取出前五行</span></div><div class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Tue Feb <span class="number">10</span> <span class="number">11</span>:<span class="number">21</span>   still logged <span class="keyword">in</span></div><div class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Tue Feb <span class="number">10</span> <span class="number">00</span>:<span class="number">46</span> - <span class="number">02</span>:<span class="number">28</span>  (<span class="number">01</span>:<span class="number">41</span>)</div><div class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Mon Feb  <span class="number">9</span> <span class="number">11</span>:<span class="number">41</span> - <span class="number">18</span>:<span class="number">30</span>  (<span class="number">06</span>:<span class="number">48</span>)</div><div class="line">dmtsai   pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Mon Feb  <span class="number">9</span> <span class="number">11</span>:<span class="number">41</span> - <span class="number">11</span>:<span class="number">41</span>  (<span class="number">00</span>:<span class="number">00</span>)</div><div class="line">root     tty1                   Fri Sep  <span class="number">5</span> <span class="number">14</span>:<span class="number">09</span> - <span class="number">14</span>:<span class="number">10</span>  (<span class="number">00</span>:<span class="number">01</span>)</div></pre></td></tr></table></figure>
+<p>如果只是显示最近登录的5个帐号</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#last -n 5 | awk  '&#123;print $1&#125;'</span></div><div class="line">root</div><div class="line">root</div><div class="line">root</div><div class="line">dmtsai</div><div class="line">root</div></pre></td></tr></table></figure>
+<blockquote>
+<p>awk工作流程是这样的：读入有’\n’换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，\$0则表示所有域,\$1表示第一个域,\$n表示第n个域。默认域分隔符是”空白键” 或 “[tab]键”,所以\$1表示登录用户，$3表示登录用户ip,以此类推。</p>
+</blockquote>
+<p>如果只是显示/etc/passwd的账户</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cat /etc/passwd |awk  -F ':'  '&#123;print $1&#125;' </span></div><div class="line">root</div><div class="line">daemon</div><div class="line">bin</div><div class="line">sys</div></pre></td></tr></table></figure>
+<p>这种是awk+action的示例，每行都会执行action{print $1}。</p>
+<p>-F指定域分隔符为’:’。</p>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以tab键分割</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cat /etc/passwd |awk  -F ':'  '&#123;print $1"\t"$7&#125;'</span></div><div class="line">root    /bin/bash</div><div class="line">daemon  /bin/sh</div><div class="line">bin     /bin/sh</div><div class="line">sys     /bin/sh</div></pre></td></tr></table></figure>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以逗号分割,而且在所有行添加列名name,shell,在最后一行添加”blue,/bin/nosh”。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cat /etc/passwd |awk  -F <span class="string">':'</span>  <span class="string">'BEGIN &#123;print "name,shell"&#125;  &#123;print $1","$7&#125; END &#123;print "blue,/bin/nosh"&#125;'</span></div><div class="line">name,shell</div><div class="line">root,/bin/bash</div><div class="line">daemon,/bin/sh</div><div class="line">bin,/bin/sh</div><div class="line">sys,/bin/sh</div><div class="line">....</div><div class="line">blue,/bin/nosh</div></pre></td></tr></table></figure>
+<blockquote>
+<p>awk工作流程是这样的：先执行BEGING，然后读取文件，读入有/n换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，\$0则表示所有域,\$1表示第一个域,$n表示第n个域,随后开始执行模式所对应的动作action。接着开始读入第二条记录······直到所有的记录都读完，最后执行END操作。</p>
+</blockquote>
+<p>搜索/etc/passwd有root关键字的所有行</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#awk -F: '/root/' /etc/passwd</span></div><div class="line">root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/bin/bash</div></pre></td></tr></table></figure>
+<p>这种是pattern的使用示例，匹配了pattern(这里是root)的行才会执行action(没有指定action，默认输出每行的内容)。</p>
+<p>搜索支持正则，例如找root开头的: awk -F: ‘/^root/‘ /etc/passwd</p>
+<p>搜索/etc/passwd有root关键字的所有行，并显示对应的shell</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># awk -F: '/root/&#123;print $7&#125;' /etc/passwd             </span></div><div class="line">/bin/bash</div></pre></td></tr></table></figure>
+<p> 这里指定了action{print $7}</p>
+<p><strong>awk内置变量</strong></p>
+<p>awk有许多内置变量用来设置环境信息，这些变量可以被改变，下面给出了最常用的一些变量。</p>
+<blockquote>
+<p>ARGC               命令行参数个数<br>ARGV               命令行参数排列<br>ENVIRON            支持队列中系统环境变量的使用<br>FILENAME           awk浏览的文件名<br>FNR                浏览文件的记录数<br>FS                 设置输入域分隔符，等价于命令行 -F选项<br>NF                 浏览记录的域的个数<br>NR                 已读的记录数<br>OFS                输出域分隔符<br>ORS                输出记录分隔符<br>RS                 控制记录分隔符</p>
+</blockquote>
+<p> 此外,\$0变量是指整条记录。\$1表示当前行的第一个域,$2表示当前行的第二个域,……以此类推。</p>
+<p>统计/etc/passwd:文件名，每行的行号，每行的列数，对应的完整行内容:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#awk  -F ':'  '&#123;print "filename:" FILENAME ",linenumber:" NR ",columns:" NF ",linecontent:"$0&#125;' /etc/passwd</span></div><div class="line">filename:/etc/passwd,linenumber:<span class="number">1</span>,columns:<span class="number">7</span>,linecontent:root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/bin/bash</div><div class="line">filename:/etc/passwd,linenumber:<span class="number">2</span>,columns:<span class="number">7</span>,linecontent:daemon:x:<span class="number">1</span>:<span class="number">1</span>:daemon:/usr/sbin:/bin/sh</div><div class="line">filename:/etc/passwd,linenumber:<span class="number">3</span>,columns:<span class="number">7</span>,linecontent:bin:x:<span class="number">2</span>:<span class="number">2</span>:bin:/bin:/bin/sh</div><div class="line">filename:/etc/passwd,linenumber:<span class="number">4</span>,columns:<span class="number">7</span>,linecontent:sys:x:<span class="number">3</span>:<span class="number">3</span>:sys:/dev:/bin/sh</div></pre></td></tr></table></figure>
+<p>使用printf替代print,可以让代码更加简洁，易读</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk  -F <span class="string">':'</span>  <span class="string">'&#123;printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,$0)&#125;'</span> /etc/passwd</div></pre></td></tr></table></figure>
+<p>print和printf<br>awk中同时提供了print和printf两种打印输出的函数。</p>
+<p>其中print函数的参数可以是变量、数值或者字符串。字符串必须用双引号引用，参数用逗号分隔。如果没有逗号，参数就串联在一起而无法区分。这里，逗号的作用与输出文件的分隔符的作用是一样的，只是后者是空格而已。</p>
+<p>printf函数，其用法和c语言中printf基本相似,可以格式化字符串,输出复杂时，printf更加好用，代码更易懂。</p>
+<p><strong>awk编程</strong></p>
+<p>除了awk的内置变量，awk还可以自定义变量。</p>
+<p>下面统计/etc/passwd的账户人数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123;count++;print $0;&#125; END&#123;print &quot;user count is &quot;, count&#125;&apos; /etc/passwd</div><div class="line">root:x:0:0:root:/root:/bin/bash</div><div class="line">......</div><div class="line">user count is  40</div></pre></td></tr></table></figure>
+<p>count是自定义变量。之前的action{}里都是只有一个print,其实print只是一个语句，而action{}可以有多个语句，以;号隔开。</p>
+<p>这里没有初始化count，虽然默认是0，但是妥当的做法还是初始化为0:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">awk &apos;BEGIN &#123;count=0;print &quot;[start]user count is &quot;, count&#125; &#123;count=count+1;print $0;&#125; END&#123;print &quot;[end]user count is &quot;, count&#125;&apos; /etc/passwd</div><div class="line">[start]user count is  0</div><div class="line">root:x:0:0:root:/root:/bin/bash</div><div class="line">...</div><div class="line">[end]user count is  40</div></pre></td></tr></table></figure>
+<p>统计某个文件夹下的文件占用的字节数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk &apos;BEGIN &#123;size=0;&#125; &#123;size=size+$5;&#125; END&#123;print &quot;[end]size is &quot;, size&#125;&apos;</div><div class="line">[end]size is  8657198</div></pre></td></tr></table></figure>
+<p>如果以M为单位显示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk &apos;BEGIN &#123;size=0;&#125; &#123;size=size+$5;&#125; END&#123;print &quot;[end]size is &quot;, size/1024/1024,&quot;M&quot;&#125;&apos; </div><div class="line">[end]size is  8.25889 M</div></pre></td></tr></table></figure>
+<p>注意，统计不包括文件夹的子目录。</p>
+<p>条件语句</p>
+<p> awk中的条件语句是从C语言中借鉴来的，见如下声明方式：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement;</div><div class="line">    statement;</div><div class="line">    ... ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    statement2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement1;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (expression1) &#123;</div><div class="line">    statement2;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    statement3;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>统计某个文件夹下的文件占用的字节数,过滤4096大小的文件(一般都是文件夹):</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk <span class="string">'BEGIN &#123;size=0;print "[start]size is ", size&#125; &#123;if($5!=4096)&#123;size=size+$5;&#125;&#125; END&#123;print "[end]size is ", size/1024/1024,"M"&#125;'</span> </div><div class="line">[end]size is  <span class="number">8.22339</span> M</div></pre></td></tr></table></figure>
+<p>循环语句</p>
+<p>awk中的循环语句同样借鉴于C语言，支持while、do/while、for、break、continue，这些关键字的语义和C语言中的语义完全相同。</p>
+<p>数组</p>
+<p>  因为awk中数组的下标可以是数字和字母，数组的下标通常被称为关键字(key)。值和关键字都存储在内部的一张针对key/value应用hash的表格里。由于hash不是顺序存储，因此在显示数组内容时会发现，它们并不是按照你预料的顺序显示出来的。数组和变量一样，都是在使用时自动创建的，awk也同样会自动判断其存储的是数字还是字符串。一般而言，awk中的数组用来从记录中收集信息，可以用于计算总和、统计单词以及跟踪模板被匹配的次数等等。</p>
+<p>显示/etc/passwd的账户</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">awk -F <span class="string">':'</span> <span class="string">'BEGIN &#123;count=0;&#125; &#123;name[count] = $1;count++;&#125;; END&#123;for (i = 0; i &lt; NR; i++) print i, name[i]&#125;'</span> /etc/passwd</div><div class="line"><span class="number">0</span> root</div><div class="line"><span class="number">1</span> daemon</div><div class="line"><span class="number">2</span> bin</div><div class="line"><span class="number">3</span> sys</div><div class="line"><span class="number">4</span> sync</div><div class="line"><span class="number">5</span> games</div><div class="line">......</div></pre></td></tr></table></figure>
+<p>这里使用for循环遍历数组</p>
+
       
       
 
@@ -184,11 +223,293 @@
     
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/30/Java中遍历Map的几种方法/" data-id="cir9ze23p000460jx75ihbqgh" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/31/Awk深入理解/" data-id="cira9gxpu0000erjxheadx8rc" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://universefeeler.github.io/2016/07/30/Java中遍历Map的几种方法/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://universefeeler.github.io/2016/07/31/Awk深入理解/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java中Timer任务" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/31/Java中Timer任务/" class="article-date">
+  <time datetime="2016-07-31T07:02:11.212Z" itemprop="datePublished">2016-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="Java中Timer任务"><a href="#Java中Timer任务" class="headerlink" title="Java中Timer任务"></a>Java中Timer任务</h1><p>@(编程语言)[Java,timer]</p>
+<p><strong>实例展示</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> comz.autoupdatefile;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Timer;</div><div class="line"><span class="keyword">import</span> java.util.TimerTask;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">M</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO todo.generated by zoer</span></div><div class="line">		Timer timer = <span class="keyword">new</span> Timer();</div><div class="line">		timer.schedule(<span class="keyword">new</span> MyTask(), <span class="number">1000</span>, <span class="number">2000</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTask</span> <span class="keyword">extends</span> <span class="title">TimerTask</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"dddd"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样，就可以在1秒钟之后开始执行mytask，每两秒钟执行一次。</p>
+<p>当然，timer的功能也可以通过自己构造线程，然后在线程中用sleep来模拟停止一段时间，然后再执行某个动作。</p>
+<p>timer来间隔一段时间执行一个操作，也是通过一个线程来做到的。</p>
+
+      
+      
+
+
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/31/Java中Timer任务/" data-id="cira9gxrq0002erjxq5cf1ufp" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/31/Java中Timer任务/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-shell脚本if比较（数字、字符串）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/31/shell脚本if比较（数字、字符串）/" class="article-date">
+  <time datetime="2016-07-31T07:02:11.212Z" itemprop="datePublished">2016-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="shell脚本if比较（数字、字符串）"><a href="#shell脚本if比较（数字、字符串）" class="headerlink" title="shell脚本if比较（数字、字符串）"></a>shell脚本if比较（数字、字符串）</h2><p>@(脚本)[shell,if]</p>
+<p><strong>数字比较</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="nomarkup">-eq</span> 等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-eq</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-ne</span> 不等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-ne</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-gt</span> 大于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-gt</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-ge</span> 大于等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-ge</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-lt</span> 小于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-lt</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-le</span> 小于等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-le</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line">&lt;   小于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &lt; <span class="string">"<span class="variable">$b</span>"</span>)) </div><div class="line">&lt;=  小于等于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &lt;= <span class="string">"<span class="variable">$b</span>"</span>)) </div><div class="line">&gt;   大于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &gt; <span class="string">"<span class="variable">$b</span>"</span>)) </div><div class="line">&gt;=  大于等于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &gt;= <span class="string">"<span class="variable">$b</span>"</span>))</div></pre></td></tr></table></figure>
+<p><strong>字符串比较</strong><br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">= 等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> = <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line">== 等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> == <span class="string">"<span class="variable">$b</span>"</span> ],与=等价 </div><div class="line"><span class="comment"># ==的功能在[[]]和[]中的行为是不同的</span></div><div class="line"> [[ <span class="variable">$a</span> == z* ]]   <span class="comment"># 如果$a以"z"开头(模式匹配)那么将为true </span></div><div class="line"> [[ <span class="variable">$a</span> == <span class="string">"z*"</span> ]] <span class="comment"># 如果$a等于z*(字符匹配),那么结果为true </span></div><div class="line"> [ <span class="variable">$a</span> == z* ]     <span class="comment"># File globbing 和word splitting将会发生 </span></div><div class="line"> [ <span class="string">"<span class="variable">$a</span>"</span> == <span class="string">"z*"</span> ] <span class="comment"># 如果$a等于z*(字符匹配),那么结果为true</span></div></pre></td></tr></table></figure></p>
+<p>注意：</p>
+<blockquote>
+<p>比较两个字符串是否相等的办法是：<br>if [ “$test”x = “test”x ]; then<br>这里的关键有几点：<br>1 使用单个等号<br>2 注意到等号两边各有一个空格：这是unix shell的要求<br>3 注意到”\$test”x最后的x，这是特意安排的，因为当\$test为空的时候，上面的表达式就变成了x = testx，显然是不相等的。而如果没有这个x，表达式就会报错：[: =: unary operator expected</p>
+</blockquote>
+
+      
+      
+
+
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/31/shell脚本if比较（数字、字符串）/" data-id="cira9gy1h000gerjxlt86qxmj" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/31/shell脚本if比较（数字、字符串）/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java中synchronized深入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/31/java中synchronized深入/" class="article-date">
+  <time datetime="2016-07-31T07:02:11.212Z" itemprop="datePublished">2016-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="java中synchronized深入"><a href="#java中synchronized深入" class="headerlink" title="java中synchronized深入"></a>java中synchronized深入</h1><p>@(编程语言)[Java,synchronized,多线程]</p>
+<p><strong>规则总结</strong></p>
+<p>Java语言的关键字，当它用来修饰一个方法或者一个代码块的时候，能够保证在同一时刻最多只有一个线程执行该段代码。</p>
+<ol>
+<li>当两个并发线程访问同一个对象object中的这个synchronized(this)同步代码块时，一个时间内只能有一个线程得到执行。另一个线程必须等待当前线程执行完这个代码块以后才能执行该代码块。</li>
+<li>然而，当一个线程访问object的一个synchronized(this)同步代码块时，另一个线程仍然可以访问该object中的非synchronized(this)同步代码块。</li>
+<li>尤其关键的是，当一个线程访问object的一个synchronized(this)同步代码块时，其他线程对object中所有其它synchronized(this)同步代码块的访问将被阻塞.</li>
+<li>第三个例子同样适用其它同步代码块。也就是说，当一个线程访问object的一个synchronized(this)同步代码块时，它就获得了这个object的对象锁。结果，其它线程对该object对象所有同步代码部分的访问都被暂时阻塞。</li>
+<li>以上规则对其它对象锁同样适用.</li>
+</ol>
+<p><strong>synchronized方法和synchronized块</strong><br>synchronized 关键字，它包括两种用法：synchronized 方法和 synchronized 块。  </p>
+<ol>
+<li>synchronized 方法：通过在方法声明中加入 synchronized关键字来声明 synchronized 方法。如：<br>public synchronized void accessVal(int newVal);<br>synchronized 方法控制对类成员变量的访问：每个类实例对应一把锁，每个 synchronized 方法都必须获得调用该方法的类实例的锁方能</li>
+</ol>
+<p>执行，否则所属线程阻塞，方法一旦执行，就独占该锁，直到从该方法返回时才将锁释放，此后被阻塞的线程方能获得该锁，重新进入可执行</p>
+<p>状态。这种机制确保了同一时刻对于每一个类实例，其所有声明为 synchronized 的成员函数中至多只有一个处于可执行状态（因为至多只有</p>
+<p>一个能够获得该类实例对应的锁），从而有效避免了类成员变量的访问冲突（只要所有可能访问类成员变量的方法均被声明为 synchronized）</p>
+<p>。<br>在 Java 中，不光是类实例，每一个类也对应一把锁，这样我们也可将类的静态成员函数声明为 synchronized ，以控制其对类的静态成</p>
+<p>员变量的访问。<br>synchronized 方法的缺陷：若将一个大的方法声明为synchronized 将会大大影响效率，典型地，若将线程类的方法 run() 声明为</p>
+<p>synchronized ，由于在线程的整个生命期内它一直在运行，因此将导致它对本类任何 synchronized 方法的调用都永远不会成功。当然我们可</p>
+<p>以通过将访问类成员变量的代码放到专门的方法中，将其声明为 synchronized ，并在主方法中调用来解决这一问题，但是 Java 为我们提供</p>
+<p>了更好的解决办法，那就是 synchronized 块。  </p>
+<ol>
+<li>synchronized 块：通过 synchronized关键字来声明synchronized 块。语法如下：<br>synchronized(syncObject) {<br>//允许访问控制的代码<br>}<br>synchronized 块是这样一个代码块，其中的代码必须获得对象 syncObject （如前所述，可以是类实例或类）的锁方能执行，具体机</li>
+</ol>
+<p>制同前所述。由于可以针对任意代码块，且可任意指定上锁的对象，故灵活性较高。<br>对synchronized(this)的一些理解<br>一、当两个并发线程访问同一个对象object中的这个synchronized(this)同步代码块时，一个时间内只能有一个线程得到执行。另一个线</p>
+<p>程必须等待当前线程执行完这个代码块以后才能执行该代码块。<br>二、然而，当一个线程访问object的一个synchronized(this)同步代码块时，另一个线程仍然可以访问该object中的非synchronized</p>
+<p>(this)同步代码块。<br>三、尤其关键的是，当一个线程访问object的一个synchronized(this)同步代码块时，其他线程对object中所有其它synchronized(this)</p>
+<p>同步代码块的访问将被阻塞。<br>四、第三个例子同样适用其它同步代码块。也就是说，当一个线程访问object的一个synchronized(this)同步代码块时，它就获得了这个<br>object的对象锁。结果，其它线程对该object对象所有同步代码部分的访问都被暂时阻塞。<br>五、以上规则对其它对象锁同样适用</p>
+<p>打个比方：一个object就像一个大房子，大门永远打开。房子里有 很多房间（也就是方法）。</p>
+<p>这些房间有上锁的（synchronized方法）， 和不上锁之分（普通方法）。房门口放着一把钥匙（key），这把钥匙可以打开所有上锁的房间。</p>
+<p>另外我把所有想调用该对象方法的线程比喻成想进入这房子某个 房间的人。所有的东西就这么多了，下面我们看看这些东西之间如何作用的。</p>
+<p>在此我们先来明确一下我们的前提条件。该对象至少有一个synchronized方法，否则这个key还有啥意义。当然也就不会有我们的这个主题了。</p>
+<p>一个人想进入某间上了锁的房间，他来到房子门口，看见钥匙在那儿（说明暂时还没有其他人要使用上锁的 房间）。于是他走上去拿到了钥匙</p>
+<p>，并且按照自己 的计划使用那些房间。注意一点，他每次使用完一次上锁的房间后会马上把钥匙还回去。即使他要连续使用两间上锁的房间，</p>
+<p>中间他也要把钥匙还回去，再取回来。</p>
+<p>因此，普通情况下钥匙的使用原则是：“随用随借，用完即还。”</p>
+<p>这时其他人可以不受限制的使用那些不上锁的房间，一个人用一间可以，两个人用一间也可以，没限制。但是如果当某个人想要进入上锁的房</p>
+<p>间，他就要跑到大门口去看看了。有钥匙当然拿了就走，没有的话，就只能等了。</p>
+<p>要是很多人在等这把钥匙，等钥匙还回来以后，谁会优先得到钥匙？Not guaranteed。象前面例子里那个想连续使用两个上锁房间的家伙，他</p>
+<p>中间还钥匙的时候如果还有其他人在等钥匙，那么没有任何保证这家伙能再次拿到。 （JAVA规范在很多地方都明确说明不保证，象</p>
+<p>Thread.sleep()休息后多久会返回运行，相同优先权的线程那个首先被执行，当要访问对象的锁被 释放后处于等待池的多个线程哪个会优先得</p>
+<p>到，等等。我想最终的决定权是在JVM，之所以不保证，就是因为JVM在做出上述决定的时候，绝不是简简单单根据 一个条件来做出判断，而是</p>
+<p>根据很多条。而由于判断条件太多，如果说出来可能会影响JAVA的推广，也可能是因为知识产权保护的原因吧。SUN给了个不保证 就混过去了</p>
+<p>。无可厚非。但我相信这些不确定，并非完全不确定。因为计算机这东西本身就是按指令运行的。即使看起来很随机的现象，其实都是有规律</p>
+<p>可寻。学过 计算机的都知道，计算机里随机数的学名是伪随机数，是人运用一定的方法写出来的，看上去随机罢了。另外，或许是因为要想弄</p>
+<p>的确定太费事，也没多大意义，所 以不确定就不确定了吧。）</p>
+<p>再来看看同步代码块。和同步方法有小小的不同。</p>
+<p>1.从尺寸上讲，同步代码块比同步方法小。你可以把同步代码块看成是没上锁房间里的一块用带锁的屏风隔开的空间。</p>
+<p>2.同步代码块还可以人为的指定获得某个其它对象的key。就像是指定用哪一把钥匙才能开这个屏风的锁，你可以用本房的钥匙；你也可以指定</p>
+<p>用另一个房子的钥匙才能开，这样的话，你要跑到另一栋房子那儿把那个钥匙拿来，并用那个房子的钥匙来打开这个房子的带锁的屏风。<br>记住你获得的那另一栋房子的钥匙，并不影响其他人进入那栋房子没有锁的房间。<br>为什么要使用同步代码块呢？我想应该是这样的：首先对程序来讲同步的部分很影响运行效率，而一个方法通常是先创建一些局部变</p>
+<p>量，再对这些变量做一些 操作，如运算，显示等等；而同步所覆盖的代码越多，对效率的影响就越严重。因此我们通常尽量缩小其影响范围。</p>
+<p>如何做？同步代码块。我们只把一个方法中该同 步的地方同步，比如运算。<br> 另外，同步代码块可以指定钥匙这一特点有个额外的好处，是可以在一定时期内霸占某个对象的key。还记得前面说过普通情况下钥</p>
+<p>匙的使用原则吗。现在不是普通情况了。你所取得的那把钥匙不是永远不还，而是在退出同步代码块时才还。<br>还用前面那个想连续用两个上锁房间的家伙打比方。怎样才能在用完一间以后，继续使用另一间呢。用同步代码块吧。先创建另外</p>
+<p>一个线程，做一个同步代码 块，把那个代码块的锁指向这个房子的钥匙。然后启动那个线程。只要你能在进入那个代码块时抓到这房子的钥匙</p>
+<p>，你就可以一直保留到退出那个代码块。也就是说 你甚至可以对本房内所有上锁的房间遍历，甚至再sleep(10<em>60</em>1000)，而房门口却还有</p>
+<p>1000个线程在等这把钥匙呢。很过瘾吧。<br>在此对sleep()方法和钥匙的关联性讲一下。一个线程在拿到key后，且没有完成同步的内容时，如果被强制sleep()了，那key还一</p>
+<p>直在 它那儿。直到它再次运行，做完所有同步内容，才会归还key。记住，那家伙只是干活干累了，去休息一下，他并没干完他要干的事。为</p>
+<p>了避免别人进入那个房间 把里面搞的一团糟，即使在睡觉的时候他也要把那唯一的钥匙戴在身上。</p>
+<p> 最后，也许有人会问，为什么要一把钥匙通开，而不是一个钥匙一个门呢？我想这纯粹是因为复杂性问题。一个钥匙一个门当然更</p>
+<p>安全，但是会牵扯好多问题。钥匙 的产生，保管，获得，归还等等。其复杂性有可能随同步方法的增加呈几何级数增加，严重影响效率。这也</p>
+<p>算是一个权衡的问题吧。为了增加一点点安全性，导致效 率大大降低，是多么不可取啊。</p>
+<p>synchronized的一个简单例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextThread</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </div><div class="line">   TxtThread tt = <span class="keyword">new</span> TxtThread(); </div><div class="line">   <span class="keyword">new</span> Thread(tt).start(); </div><div class="line">   <span class="keyword">new</span> Thread(tt).start(); </div><div class="line">   <span class="keyword">new</span> Thread(tt).start(); </div><div class="line">   <span class="keyword">new</span> Thread(tt).start(); </div><div class="line">&#125; </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TxtThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123; </div><div class="line"><span class="keyword">int</span> num = <span class="number">100</span>; </div><div class="line">String str = <span class="keyword">new</span> String();</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; </div><div class="line">   <span class="keyword">synchronized</span> (str) &#123; </div><div class="line">    <span class="keyword">while</span> (num &gt; <span class="number">0</span>) &#123;</div><div class="line"></div><div class="line">     <span class="keyword">try</span> &#123; </div><div class="line">      Thread.sleep(<span class="number">1</span>); </div><div class="line">     &#125; <span class="keyword">catch</span> (Exception e) &#123; </div><div class="line">      e.getMessage(); </div><div class="line">     &#125; </div><div class="line">     System.out.println(Thread.currentThread().getName() </div><div class="line">       + <span class="string">"this is "</span> + num--); </div><div class="line">    &#125; </div><div class="line">   &#125; </div><div class="line">&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的例子中为了制造一个时间差,也就是出错的机会,使用了Thread.sleep(10)</p>
+<p>Java对多线程的支持与同步机制深受大家的喜爱，似乎看起来使用了synchronized关键字就可以轻松地解决多线程共享数据同步问题。到底如</p>
+<p>何？――还得对synchronized关键字的作用进行深入了解才可定论。</p>
+<p>总的说来，synchronized关键字可以作为函数的修饰符，也可作为函数内的语句，也就是平时说的同步方法和同步语句块。如果再细的分类，</p>
+<p>synchronized可作用于instance变量、object reference（对象引用）、static函数和class literals(类名称字面常量)身上。</p>
+<p>在进一步阐述之前，我们需要明确几点：</p>
+<p>A．无论synchronized关键字加在方法上还是对象上，它取得的锁都是对象，而不是把一段代码或函数当作锁――而且同步方法很可能还会被其</p>
+<p>他线程的对象访问。</p>
+<p>B．每个对象只有一个锁（lock）与之相关联。</p>
+<p>C．实现同步是要很大的系统开销作为代价的，甚至可能造成死锁，所以尽量避免无谓的同步控制。</p>
+<p>接着来讨论synchronized用到不同地方对代码产生的影响：</p>
+<p>假设P1、P2是同一个类的不同对象，这个类中定义了以下几种情况的同步块或同步方法，P1、P2就都可以调用它们。</p>
+<p>1． 把synchronized当作函数修饰符时，示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function">Public <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">methodAAA</span><span class="params">()</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="comment">//….</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这也就是同步方法，那这时synchronized锁定的是哪个对象呢？它锁定的是调用这个同步方法对象。也就是说，当一个对象P1在不同的线程中</p>
+<p>执行这个同步方法时，它们之间会形成互斥，达到同步的效果。但是这个对象所属的Class所产生的另一对象P2却可以任意调用这个被加了</p>
+<p>synchronized关键字的方法。</p>
+<p>上边的示例代码等同于如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodAAA</span><span class="params">()</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="keyword">synchronized</span> (<span class="keyword">this</span>)      <span class="comment">// (1)</span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">       <span class="comment">//…..</span></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(1)处的this指的是什么呢？它指的就是调用这个方法的对象，如P1。可见同步方法实质是将synchronized作用于object reference。――那个</p>
+<p>拿到了P1对象锁的线程，才可以调用P1的同步方法，而对P2而言，P1这个锁与它毫不相干，程序也可能在这种情形下摆脱同步机制的控制，造</p>
+<p>成数据混乱：（</p>
+<p>2．同步块，示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method3</span><span class="params">(SomeObject so)</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="keyword">synchronized</span>(so)</div><div class="line"></div><div class="line">    &#123; </div><div class="line">       <span class="comment">//….. </span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这时，锁就是so这个对象，谁拿到这个锁谁就可以运行它所控制的那段代码。当有一个明确的对象作为锁时，就可以这样写程序，但当没有明</p>
+<p>确的对象作为锁，只是想让一段代码同步时，可以创建一个特殊的instance变量（它得是一个对象）来充当锁：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="keyword">byte</span>[] lock = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>]; <span class="comment">// 特殊的instance变量</span></div><div class="line"></div><div class="line">        <span class="function">Public <span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span> </span></div><div class="line">        &#123;</div><div class="line"></div><div class="line">           <span class="keyword">synchronized</span>(lock) &#123; <span class="comment">//… &#125;</span></div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//…..</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注：零长度的byte数组对象创建起来将比任何对象都经济――查看编译后的字节码：生成零长度的byte[]对象只需3条操作码，而Object lock</p>
+<p>= new Object()则需要7行操作码。</p>
+<p>3．将synchronized作用于static 函数，示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Class Foo </div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">methodAAA</span><span class="params">()</span>   <span class="comment">// 同步的static 函数 </span></span></div><div class="line">    &#123; </div><div class="line">        <span class="comment">//…. </span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodBBB</span><span class="params">()</span> </span></div><div class="line">    &#123;</div><div class="line"></div><div class="line">       <span class="keyword">synchronized</span>(Foo.class)   <span class="comment">// class literal(类名称字面常量)</span></div><div class="line"></div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   代码中的methodBBB()方法是把class literal作为锁的情况，它和同步的static函数产生的效果是一样的，取得的锁很特别，是当前调用这</p>
+<p>个方法的对象所属的类（Class，而不再是由这个Class产生的某个具体对象了）。</p>
+<p>记得在《Effective Java》一书中看到过将 Foo.class和 P1.getClass()用于作同步锁还不一样，不能用P1.getClass()来达到锁这个Class的</p>
+<p>目的。P1指的是由Foo类产生的对象。</p>
+<p>可以推断：如果一个类中定义了一个synchronized的static函数A，也定义了一个synchronized 的instance函数B，那么这个类的同一对象Obj</p>
+<p>在多线程中分别访问A和B两个方法时，不会构成同步，因为它们的锁都不一样。A方法的锁是Obj这个对象，而B的锁是Obj所属的那个Class。</p>
+<p>小结如下：</p>
+<p>搞清楚synchronized锁定的是哪个对象，就能帮助我们设计更安全的多线程程序。</p>
+<p>还有一些技巧可以让我们对共享资源的同步访问更加安全：</p>
+<p>1． 定义private 的instance变量+它的 get方法，而不要定义public/protected的instance变量。如果将变量定义为public，对象在外界可以</p>
+<p>绕过同步方法的控制而直接取得它，并改动它。这也是JavaBean的标准实现方式之一。</p>
+<p>2． 如果instance变量是一个对象，如数组或ArrayList什么的，那上述方法仍然不安全，因为当外界对象通过get方法拿到这个instance对象</p>
+<p>的引用后，又将其指向另一个对象，那么这个private变量也就变了，岂不是很危险。 这个时候就需要将get方法也加上synchronized同步，并</p>
+<p>且，只返回这个private对象的clone()――这样，调用端得到的就是对象副本的引用了</p>
+
+      
+      
+
+
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/31/java中synchronized深入/" data-id="cira9gxvr000eerjxzvr4gwo1" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/31/java中synchronized深入/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-String数组深入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/31/String数组深入/" class="article-date">
+  <time datetime="2016-07-31T07:02:11.212Z" itemprop="datePublished">2016-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="String数组深入"><a href="#String数组深入" class="headerlink" title="String数组深入"></a>String数组深入</h1><p>@(编程语言)[Java,String]</p>
+<p><strong>基础实例</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//一维数组</span></div><div class="line">String[] str = <span class="keyword">new</span> String[<span class="number">5</span>]; <span class="comment">//创建一个长度为5的String(字符串)型的一维数组</span></div><div class="line">String[] str = <span class="keyword">new</span> String[]&#123;<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>&#125;;</div><div class="line">String[] str = &#123;<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//二维数组</span></div><div class="line">String[][] str = <span class="keyword">new</span> String[<span class="number">2</span>][<span class="number">2</span>]; <span class="comment">//创建一个2行2列的二维数组</span></div></pre></td></tr></table></figure>
+<p><strong>String数组初始化区别</strong><br>　　String[] str = {“1”,”2”,”3”}与String[] str = new String[]{“1”,”2”,”3”}在内存里有什么区别？<br>　　编译执行结果没有任何区别。更不可能像有些人想当然说的在栈上分配空间，<strong>Java的对象都是在堆上分配空间的。</strong></p>
+<p>　　这里的区别仅仅是代码书写上的：　<br>String[] str = {“1”,”2”,”3”}; 这种形式叫数组初始化式（Array Initializer），只能用在声明同时赋值的情况下。<br>　　而 String[] str = new String[]{“1”,”2”,”3”} 是一般形式的赋值，=号的右边叫数组字面量（Array Literal），数组字面量可以用在任何需要一个数组的地方（类型兼容的情况下）。如：<br>　　<strong>String[] str = {“1”,”2”,”3”}; // 正确的<br>　　String[] str = new String[]{“1”,”2”,”3”} // 也是正确的</strong><br>而<br>　　String[] str;<br>　　str = {“1”,”2”,”3”}; // 编译错误<br>因为数组初始化式只能用于声明同时赋值的情况下。</p>
+<p>改为：<br>　　<strong>String[] str;<br>　　str = new String[] {“1”,”2”,”3”}; // 正确了</strong><br>又如：<br>　　void f(String[] str) {<br>　　}<br>　　f({“1”,”2”,”3”}); // 编译错误<br>正确的应该是：<br>　　f(new String[] {“1”,”2”,”3”});</p>
+
+      
+      
+
+
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/31/String数组深入/" data-id="cira9gxur0009erjxu7yrbj23" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/31/String数组深入/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -257,11 +578,124 @@
     
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/30/Java的序列化机制serialVersionUID深入/" data-id="cir9ze24e000660jxklgvnfyp" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/30/Java的序列化机制serialVersionUID深入/" data-id="cira9gxuj0008erjxmr8k4qvr" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
         <a href="http://universefeeler.github.io/2016/07/30/Java的序列化机制serialVersionUID深入/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java中遍历Map的几种方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/30/Java中遍历Map的几种方法/" class="article-date">
+  <time datetime="2016-07-30T15:07:15.435Z" itemprop="datePublished">2016-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="Java中遍历Map的几种方法"><a href="#Java中遍历Map的几种方法" class="headerlink" title="Java中遍历Map的几种方法"></a>Java中遍历Map的几种方法</h1><ol>
+<li><strong>for 循环</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(Map.Entry&lt;String, String&gt; entry:map.entrySet())&#123;    </div><div class="line">     System.out.println(entry.getKey()+<span class="string">"---&gt;"</span>+entry.getValue());    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><strong>Iterator 迭代</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Set set = map.entrySet();         </div><div class="line">Iterator i = set.iterator();         </div><div class="line"><span class="keyword">while</span>(i.hasNext())&#123;      </div><div class="line">     Map.Entry&lt;String, String&gt; entry1=(Map.Entry&lt;String, String&gt;)i.next();    </div><div class="line">     System.out.println(entry1.getKey()+<span class="string">"=="</span>+entry1.getValue());    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><strong>keySet()迭代</strong> </li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Iterator it=map.keySet().iterator();    </div><div class="line"><span class="keyword">while</span>(it.hasNext())&#123;    </div><div class="line">     String key;    </div><div class="line">     String value;    </div><div class="line">     key=it.next().toString();    </div><div class="line">     value=map.get(key);    </div><div class="line">     System.out.println(key+<span class="string">"--"</span>+value);    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><strong>entrySet()迭代</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Iterator it=map.entrySet().iterator();     </div><div class="line">String key;           </div><div class="line">String value;    </div><div class="line"><span class="keyword">while</span>(it.hasNext())&#123;    </div><div class="line">        Map.Entry entry = (Map.Entry)it.next();           </div><div class="line">        key=entry.getKey().toString();           </div><div class="line">        value=entry.getValue().toString();           </div><div class="line">        System.out.println(key+<span class="string">"===="</span>+value);                     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+      
+
+
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/30/Java中遍历Map的几种方法/" data-id="cira9gxtv0007erjxq25ajjtg" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/30/Java中遍历Map的几种方法/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-MySQL联合查询语法内联、左联、右联、全联" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/" class="article-date">
+  <time datetime="2016-07-30T15:07:15.435Z" itemprop="datePublished">2016-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h1 id="MySQL联合查询语法内联、左联、右联、全联"><a href="#MySQL联合查询语法内联、左联、右联、全联" class="headerlink" title="MySQL联合查询语法内联、左联、右联、全联"></a>MySQL联合查询语法内联、左联、右联、全联</h1><ol>
+<li><strong>内联 inner join</strong></li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1, T3 <span class="keyword">where</span> T1.userid = T3.userid</div></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">inner</span> <span class="keyword">join</span> T3 <span class="keyword">on</span> T1.userid=T3.userid</div></pre></td></tr></table></figure>
+<p>两者等同，后者效率略高<br>显示表T1、T2同时满足条件的行</p>
+<ol>
+<li><strong>左联 left outer join</strong></li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> T2 <span class="keyword">on</span> T1.userid = T2.userid</div></pre></td></tr></table></figure>
+<p>显示左表T1中的所有行，并把右表T2中符合条件加到左表T1中</p>
+<ol>
+<li><strong>右联right outer join</strong></li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">right</span> <span class="keyword">outer</span> <span class="keyword">join</span> T2 <span class="keyword">on</span> T1.userid = T2.userid</div></pre></td></tr></table></figure>
+<p>显示右表T2中的所有行，并把左表T1中符合条件加到右表T2中</p>
+<ol>
+<li><strong>全联full outer join</strong></li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> T1 <span class="keyword">full</span> <span class="keyword">outer</span> <span class="keyword">join</span> T2 <span class="keyword">on</span> T1.userid = T2.userid</div></pre></td></tr></table></figure>
+<p>显示左表T1、右表T2两边中的所有行，即把左联结果表 + 右联结果表组合在一起，然后过滤掉重复的</p>
+
+      
+      
+
+
+    </div>
+    
+    <footer class="article-footer">
+      
+        <a data-url="http://universefeeler.github.io/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/" data-id="cira9gxuw000aerjxx2qxynsn" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://universefeeler.github.io/2016/07/30/MySQL联合查询语法内联、左联、右联、全联/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -309,7 +743,7 @@
     
     <footer class="article-footer">
       
-        <a data-url="http://universefeeler.github.io/2016/07/30/MySQL聚集索引和非聚集索引/" data-id="cir9ze25b000960jxqg3zy134" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://universefeeler.github.io/2016/07/30/MySQL聚集索引和非聚集索引/" data-id="cira9gxvb000cerjxzmyspdi4" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -324,333 +758,9 @@
 
 
   
-    <article id="post-利用phoenix操作hbase之shell使用万能入口" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/25/利用phoenix操作hbase之shell使用万能入口/" class="article-date">
-  <time datetime="2016-07-25T16:23:05.980Z" itemprop="datePublished">2016-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="利用phoenix操作hbase之shell使用万能入口"><a href="#利用phoenix操作hbase之shell使用万能入口" class="headerlink" title="利用phoenix操作hbase之shell使用万能入口"></a>利用phoenix操作hbase之shell使用万能入口</h1><blockquote>
-<p>通过phoenix来执行hbase实际上不是那么的爽，至少不像操作MySQL shell的那般流畅感，还是因为我们更多的是在用MySQL</p>
-</blockquote>
-<p>那么该怎么办呢？</p>
-<p>这里有两个神器（当然一切前提是你已经正确安装了phoenix client）</p>
-<ol>
-<li>撬开大门命令<strong>hbased</strong></li>
-</ol>
-<pre><code>经过第一步就应该进入 phoenix shell环境了
-</code></pre><ol>
-<li>在环境中输入帮助命令<strong>help</strong></li>
-</ol>
-<p>好多命令，为啥前面要加”!”,很多又不加！</p>
-
-      
-      
-
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://universefeeler.github.io/2016/07/25/利用phoenix操作hbase之shell使用万能入口/" data-id="cir9ze268000e60jxbtad2p96" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://universefeeler.github.io/2016/07/25/利用phoenix操作hbase之shell使用万能入口/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-HTTP状态码之301 VS 302" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/25/HTTP状态码之301 VS 302/" class="article-date">
-  <time datetime="2016-07-25T16:23:05.980Z" itemprop="datePublished">2016-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="HTTP状态码之301-VS-302"><a href="#HTTP状态码之301-VS-302" class="headerlink" title="HTTP状态码之301 VS 302"></a>HTTP状态码之301 VS 302</h1><p><strong>标准说法</strong></p>
-<p>301，302 都是HTTP状态的编码，都代表着某个URL发生了转移，不同之处在于：<br>301 redirect: 301 代表永久性转移(Permanently Moved)。<br>302 redirect: 302 代表暂时性转移(Temporarily Moved )。</p>
-<p><strong>现实差异</strong></p>
-<p>301，302对用户来说没有区别，他们看到效果只是一个跳转，浏览器中旧的URL变成了新的URL。页面跳到了这个新的url指向的地方</p>
-<p>302转向可能会有URL规范化及网址劫持的问题。可能被搜索引擎判为可疑转向，甚至认为是作弊。<br>301重定向转到网页B时，搜索引擎可以肯定网页A永久的改变位置，或者说实际上不存在了，搜索引擎就会把网页B当作唯一有效目标。<br>301的好处是:<br>第一，   没有网址规范化问题。<br>第二，   也很重要的，网页A的PR网页级别会传到网页B。</p>
-<p><strong>网址劫持</strong><br>302重定向和网址劫持（URL hijacking）有什么关系呢？这要从搜索引擎如何处理302转向说起。从定义来说，从网址A做一个302重定向到网址B时，主机服务器的隐含意思是网址A随时有可能改主意，重新显示本身的内容或转向其他的地方。大部分的搜索引擎在大部分情况下，当收到302重定向时，一般只要去抓取目标网址就可以了，也就是说网址B。<br>实际上如果搜索引擎在遇到302转向时，百分之百的都抓取目标网址B的话，就不用担心网址URL劫持了。<br>问题就在于，有的时候搜索引擎，尤其是Google，并不能总是抓取目标网址。为什么呢？比如说，有的时候A网址很短，但是它做了一个302重定向到B网址，而B网址是一个很长的乱七八糟的URL网址，甚至还有可能包含一些问号之类的参数。很自然的，A网址更加用户友好，而B网址既难看，又不用户友好。这时Google很有可能会仍然显示网址A。<br>由于搜索引擎排名算法只是程序而不是人，在遇到302重定向的时候，并不能像人一样的去准确判定哪一个网址更适当，这就造成了网址URL劫持的可能性。也就是说，一个不道德的人在他自己的网址A做一个302重定向到你的网址B，出于某种原因， Google搜索结果所显示的仍然是网址A，但是所用的网页内容却是你的网址B上的内容，这种情况就叫做网址URL劫持。你辛辛苦苦所写的内容就这样被别人偷走了。</p>
-
-      
-      
-
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://universefeeler.github.io/2016/07/25/HTTP状态码之301 VS 302/" data-id="cir9ze23k000360jxrexpzasz" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://universefeeler.github.io/2016/07/25/HTTP状态码之301 VS 302/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Cookie中maxAge深入理解" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/25/Cookie中maxAge深入理解/" class="article-date">
-  <time datetime="2016-07-25T16:23:05.980Z" itemprop="datePublished">2016-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="Cookie中maxAge深入理解"><a href="#Cookie中maxAge深入理解" class="headerlink" title="Cookie中maxAge深入理解"></a>Cookie中maxAge深入理解</h1><p><strong>标准函数:</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMaxAge</span><span class="params">(<span class="keyword">int</span> expiry)</span></span></div></pre></td></tr></table></figure>
-<p><strong>官方文档:</strong><br>Sets the maximum age of the cookie in <strong>seconds</strong>.</p>
-<p>A <strong>positive</strong> valueindicates that the cookie will expire after that many seconds have passed. Note that the value is the maximum age when the cookie will expire, not the cookie’s current age.</p>
-<p>A <strong>negative</strong> value means that the cookie is not stored persistently and will be deleted when the Web browser exits. A zero value causes the cookie to be deleted.<br>Parameters: expiry – an integer specifying the maximum age of the cookie in seconds; if negative, means the cookie is not stored; if zero, deletes the cookie</p>
-<p><strong>实用解释</strong></p>
-<ol>
-<li>不设置时，默认值是-1，表示关闭浏览器，cookie就会消失。</li>
-<li><p>正数，表示从现在开始，即将过期的seconds。表示此cookie从创建到过期所能存在的时间，以秒为单位，此cookie会存储到客户端电脑，以cookie文件形式保存，不论关闭浏览器或关闭电脑，直到时间到才会过期。</p>
-<blockquote>
-<p>例如：5年，cookie.setMaxAge(5<em>365</em>24<em>60</em>60)，这个和永不过期差不多，为什么？因为没有一个值可以直接表示永不过期，所以只能设置一个很大的值来表示永不过期。</p>
-</blockquote>
-</li>
-<li><p>如果maxAge为负数，则表示该Cookie仅在本浏览器窗口以及本窗口打开的子窗口内有效，关闭窗口后该Cookie即失效。maxAge为负数的Cookie，为临时性Cookie，不会被持久化，不会被写到Cookie文件中。Cookie信息保存在浏览器内存中，因此关闭浏览器该Cookie就消失了。</p>
-</li>
-<li>maxAge为0，则表示删除该Cookie。Cookie机制没有提供删除Cookie的方法，因此通过设置该Cookie即时失效实现删除Cookie的效果。失效的Cookie会被浏览器从Cookie文件或者内存中删除。</li>
-</ol>
-<p><strong>重点Tips</strong></p>
-<ol>
-<li>response对象提供的Cookie操作方法只有一个添加操作add(Cookie cookie)。要想修改Cookie只能使用一个同名的Cookie来覆盖原来的Cookie，达到修改的目的。删除时只需要把maxAge修改为0即可。</li>
-<li>修改、删除Cookie时，新建的Cookie除value、maxAge之外的所有属性，例如name、path、domain等，都要与原Cookie完全一样。否则，浏览器将视为两个不同的Cookie不予覆盖，导致修改、删除失败。</li>
-<li>从客户端读取Cookie时，包括maxAge在内的其他属性都是不可读的，也不会被提交。浏览器提交Cookie时只会提交name与value属性。maxAge属性只被浏览器用来判断Cookie是否过期。</li>
-<li>服务端从request请求里获得cookie文件内容，只能获得name和value。</li>
-<li>如果maxAge为0，则表示删除该Cookie。Cookie机制没有提供删除Cookie的方法，因此通过设置该Cookie即时失效实现删除Cookie的效果。失效的Cookie会被浏览器从Cookie文件或者内存中删除。</li>
-</ol>
-
-      
-      
-
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://universefeeler.github.io/2016/07/25/Cookie中maxAge深入理解/" data-id="cir9ze232000160jxg572gxmt" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://universefeeler.github.io/2016/07/25/Cookie中maxAge深入理解/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-git merger中“both deleted”错误解决方案" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/25/git merger中“both deleted”错误解决方案/" class="article-date">
-  <time datetime="2016-07-25T16:23:05.980Z" itemprop="datePublished">2016-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="git-merger中“both-deleted”错误解决方案"><a href="#git-merger中“both-deleted”错误解决方案" class="headerlink" title="git merger中“both deleted”错误解决方案"></a>git merger中“both deleted”错误解决方案</h1><p><strong>错误原因</strong></p>
-<p>在使用git过程中，将两个分支合并时，恰巧这两个分支都删除了都一个文件或文件夹，并且是直接删除的，而不是通过git rm -r dir/删除的。将两个分支git merger 是很可能就报出“git deleted”的error，尽而导致merge失败。</p>
-<p><strong>解决方案</strong></p>
-<p>其实解决起来也并不困难，也就是选择一个被合并的分支执行 “git  rm -r dir/”,这个问题其实在将本地分支推到远程时也会发生，只是报的错误不一样。那么该怎么解决，自然，就是手动解决冲突喽。但是重点来了：我们无论是执行合并，还是将本地分支推到远程分支，一般都是利用git客户端来进行执行的，自然我们在进行层级找到相应的目录或文件时也都是通过那个伟大的“tab”键来自动补全找到的，但此时执行tab却并不能找到那个被删除的文件夹（都删除了，当然找不到），于是，我们像遇到坎似得不知所措了。那我们该怎么办呢？很简单，就是对那些提示“both deleted”的文件或文件夹执行“git rm -r dir/”,只不过这个路径需要我们一点点的用手打出来，而不是靠“tab”自动补全找到。</p>
-
-      
-      
-
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://universefeeler.github.io/2016/07/25/git merger中“both deleted”错误解决方案/" data-id="cir9ze25e000a60jxbo66rpc8" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://universefeeler.github.io/2016/07/25/git merger中“both deleted”错误解决方案/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MySQL select count()查询较慢的一些事实和结论" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/20/MySQL select count()查询较慢的一些事实和结论/" class="article-date">
-  <time datetime="2016-07-20T16:31:12.069Z" itemprop="datePublished">2016-07-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="MySQL-select-count-查询较慢的一些事实和结论"><a href="#MySQL-select-count-查询较慢的一些事实和结论" class="headerlink" title="MySQL select count()查询较慢的一些事实和结论"></a>MySQL select count()查询较慢的一些事实和结论</h1><p>title: MySQL select count()查询较慢的一些事实和结论<br>date: 2016-07-21 20:33:26<br>categories: mysql<br>tags: [mysql,优化,快捷方式] </p>
-<p><strong>一些实践事实（mysql innodb）</strong></p>
-<ol>
-<li>在没有额外查询的条件的情况下， select count（*）、select count（id）、select count（1）的查询效率是几乎没有区别的。</li>
-</ol>
-<blockquote>
-<p>个人亲测：分别5.6s, 5.8s, 6.2s，虽然查询时间不同，但是无质的区别，没有达到达到优化一个量级或至少性能翻倍的地步，基本是没用的。</p>
-</blockquote>
-<ol>
-<li>以select count（*）为例，其与select * 的查询速度相比是差不多的，只是略快。</li>
-</ol>
-<blockquote>
-<p>个人亲测：分别5.6s, 6.4s。也就是说，莫不如利用select <em> 查询出list，再进行list.size()来的有价值，因为查询出list我们可是拿到数据了；而select count（\</em>）在逻辑上更多的仅仅用于分页，一般还需另外，再去查询limit条数据。ps:不要说 limit不会加快查询速度，快是必然的，有时快很多，相对不加limit时可以快到一个量级。</p>
-</blockquote>
-<ol>
-<li>即使添加了索引，并且该索引作为where = 条件时，若该条件的不同值很少，一样不会明显起到加快查询速度的作用。</li>
-</ol>
-<blockquote>
-<p>例如：有表中共有200万条记录，该where = 查询条件仅有4个不同的值，那么加速作用也不明显。此时不论是 select count（*）,select count(索引)、select count（主键）。</p>
-</blockquote>
-<p><strong>一些外部结论</strong></p>
-<ol>
-<li>没有任何条件的查询不一定走的是主键索引，mysql优化器会使用认为是最小代价的索引</li>
-<li>在count(*)的时候，采用主键索引比二级索引要慢，而且慢的原因不是因为两者的索引的长度不同</li>
-<li>count(*)在没有查询条件的情况下，对innodb引擎的mysql会进行全表扫描，而myasm引擎的mysql无需进行全表扫描，因为myasm的引擎记录了每个表的多少记录。但是当有查询条件的时候，两者的查询效率一致。</li>
-<li>经过后来查询大量的资料，主键索引count(*)的时候之所以慢</li>
-</ol>
-<ul>
-<li>InnoDB引擎<br>[1]     数据文件和索引文件存储在一个文件中，主键索引默认直接指向数据存储位置。<br>[2]     二级索引存储指定字段的索引，实际的指向位置是主键索引。当我们通过二级索引统计数据的时候，无需扫描数据文件；而通过主键索引统计数据时，由于主键索引与数据文件存放在一起，所以每次都会扫描数据文件，所以主键索引统计没有二级索引效率高。<br>[3]     由于主键索引直接指向实际数据，所以当我们通过主键id查询数据时要比通过二级索引查询数据要快。</li>
-<li>MyAsm引擎<br>[1]     该引擎把每个表都分为几部分存储，比如用户表，包含user.frm，user.MYD和user.MYI。<br>[2]     User.frm负责存储表结构<br>[3]     User.MYD负责存储实际的数据记录，所有的用户记录都存储在这个文件中<br>[4]     User.MYI负责存储用户表的所有索引，这里也包括主键索引。</li>
-</ul>
-<ol>
-<li>MyAsm引擎不支持事务处理，没有仔细深入研究。两种引擎各有自己的使用场景，每个引擎的特点也不尽相同，感兴趣的你可以再仔细深入研究。</li>
-</ol>
-
-      
-      
-
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://universefeeler.github.io/2016/07/20/MySQL select count()查询较慢的一些事实和结论/" data-id="cir9ze24j000760jxebqfhqco" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://universefeeler.github.io/2016/07/20/MySQL select count()查询较慢的一些事实和结论/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Java添加、删除、获取Cookie" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/20/Java添加、删除、获取Cookie/" class="article-date">
-  <time datetime="2016-07-20T14:18:12.695Z" itemprop="datePublished">2016-07-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="Java添加、删除、获取Cookie"><a href="#Java添加、删除、获取Cookie" class="headerlink" title="Java添加、删除、获取Cookie"></a>Java添加、删除、获取Cookie</h1><ol>
-<li><strong>添加Cookie</strong></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"name"</span>, <span class="string">"aotori"</span>);       <span class="comment">//(key,value)</span></div><div class="line">    cookie.setPath(<span class="string">"/"</span>);<span class="comment">// 这个要设置</span></div><div class="line">    <span class="comment">// cookie.setDomain(".aotori.com");//这样设置，能实现两个网站共用</span></div><div class="line">	 cookie.setMaxAge(<span class="number">365</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span>);<span class="comment">// 不设置的话，则cookies不写入硬盘,而是写在内存,只在当前页面有用,以秒为单位</span></div><div class="line">    response.addCookie(cookie);         <span class="comment">//添加第一个Cookie</span></div><div class="line">    cookie = <span class="keyword">new</span> Cookie(<span class="string">"nick"</span>, URLEncoder.encode(<span class="string">"陈强"</span>, <span class="string">"UTF-8"</span>));</div><div class="line">    cookie.setPath(<span class="string">"/"</span>);</div><div class="line">    <span class="comment">// cookie.setDomain(".aotori.com");</span></div><div class="line">    cookie.setMaxAge(<span class="number">365</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span>);</div><div class="line">   response.addCookie(cookie);          <span class="comment">//添加第二个Cookie</span></div></pre></td></tr></table></figure>
-<ol>
-<li><strong>读取Cookie</strong></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Cookie cookies[] = request.getCookies();</div><div class="line">   System.out.println(<span class="string">"Cookie长度:"</span> + cookies.length);        <span class="comment">//读取本机共存在多少COOKIE</span></div><div class="line">   <span class="keyword">if</span> (cookies != <span class="keyword">null</span>) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cookies.length; i++) &#123;</div><div class="line">     <span class="keyword">if</span> (cookies[i].getName().equals(<span class="string">"nick"</span>)) &#123;</div><div class="line">         System.out.println(<span class="string">"For 内部Cookie"</span> + URLDecoder.decode(cookies[i].getValue(), <span class="string">"UTF-8"</span>));</div><div class="line">     &#125;</div><div class="line">    &#125;</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">    System.out.println(<span class="string">"没有Cookie"</span>);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<ol>
-<li><strong>删除Cookie</strong></li>
-</ol>
-<blockquote>
-<pre><code>对COOKIE进行删除操作, 只需将该COOKIE对象使用setMaxAge(0)法
-</code></pre></blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Cookie cookies[] = request.getCookies();</div><div class="line">     <span class="keyword">if</span> (cookies != <span class="keyword">null</span>)</div><div class="line">     &#123;</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cookies.length; i++)</div><div class="line">         &#123;</div><div class="line">             <span class="keyword">if</span> (cookies[i].getName().equals(<span class="string">"nick"</span>))</div><div class="line">             &#123;</div><div class="line">                 Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"nick"</span>,<span class="string">"ww"</span>);<span class="comment">//这边得用"",不能用null</span></div><div class="line">                 cookie.setPath(<span class="string">"/"</span>);<span class="comment">//设置成跟写入cookies一样的</span></div><div class="line">                <span class="comment">// cookie.setDomain(".wangwz.com");//设置成跟写入cookies一样的</span></div><div class="line">                 cookie.setMaxAge(<span class="number">0</span>);</div><div class="line">                 response.addCookie(cookie);</div><div class="line">             &#125;</div><div class="line">         &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-      
-      
-
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://universefeeler.github.io/2016/07/20/Java添加、删除、获取Cookie/" data-id="cir9ze249000560jxudu30wrk" class="article-share-link" data-share="baidu">分享到</a>
-      
-
-      
-        <a href="http://universefeeler.github.io/2016/07/20/Java添加、删除、获取Cookie/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -727,7 +837,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年 07月</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年 07月</a><span class="archive-list-count">22</span></li></ul>
     </div>
   </div>
 
