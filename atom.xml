@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://universefeeler.github.io/"/>
-  <updated>2016-07-31T06:57:21.424Z</updated>
+  <updated>2016-07-31T06:06:29.725Z</updated>
   <id>http://universefeeler.github.io/</id>
   
   <author>
@@ -14,174 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="http://universefeeler.github.io/2016/07/31/hashMap%E4%B8%8EconcurrentMap%E5%AF%B9%E6%AF%94/"/>
-    <id>http://universefeeler.github.io/2016/07/31/hashMap与concurrentMap对比/</id>
-    <published>2016-07-31T07:02:11.212Z</published>
-    <updated>2016-07-31T06:57:21.424Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="hashMap与concurrentMap对比"><a href="#hashMap与concurrentMap对比" class="headerlink" title="hashMap与concurrentMap对比"></a>hashMap与concurrentMap对比</h1><p>@(编程语言)[Java,concurrentMap]</p>
-<ol>
-<li>hashMap可以有null的键，concurrentMap不可以有 </li>
-<li>hashMap是线程不安全的，在多线程的时候需要Collections.synchronizedMap(hashMap),ConcurrentMap使用了重入锁保证线程安全。 </li>
-<li>在删除元素时候，两者的算法不一样。</li>
-</ol>
-<p><strong>concurrentMap用法举例</strong> </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> ConcurrentMap&lt;String, Long&gt; wordCounts = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">increase</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">    Long oldValue, newValue;</div><div class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">        oldValue = wordCounts.get(word);</div><div class="line">        <span class="keyword">if</span> (oldValue == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">// Add the word firstly, initial the value as 1</span></div><div class="line">            newValue = <span class="number">1L</span>;</div><div class="line">            <span class="keyword">if</span> (wordCounts.putIfAbsent(word, newValue) == <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            newValue = oldValue + <span class="number">1</span>;</div><div class="line">            <span class="keyword">if</span> (wordCounts.replace(word, oldValue, newValue)) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> newValue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>代码有点复杂，主要因为ConcurrentMap中不能保存value为null的值，所以得同时处理word不存在和已存在两种情况。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;hashMap与concurrentMap对比&quot;&gt;&lt;a href=&quot;#hashMap与concurrentMap对比&quot; class=&quot;headerlink&quot; title=&quot;hashMap与concurrentMap对比&quot;&gt;&lt;/a&gt;hashMap与concurren
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://universefeeler.github.io/2016/07/31/Awk%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/"/>
-    <id>http://universefeeler.github.io/2016/07/31/Awk深入理解/</id>
-    <published>2016-07-31T07:02:11.212Z</published>
-    <updated>2016-07-31T06:51:25.122Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Awk深入理解"><a href="#Awk深入理解" class="headerlink" title="Awk深入理解"></a>Awk深入理解</h1><p>@(脚本语言)[awk]</p>
-<p><strong>简介</strong><br>awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</p>
-<p>awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。<br>awk其名称得自于它的创始人 Alfred Aho 、Peter Weinberger 和 Brian Kernighan 姓氏的首个字母。实际上 AWK 的确拥有自己的语言： AWK 程序设计语言 ， 三位创建者已将它正式定义为“样式扫描和处理语言”。它允许您创建简短的程序，这些程序读取输入文件、为数据排序、处理数据、对输入执行计算以及生成报表，还有无数其他的功能。</p>
-<p><strong>使用方法</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'&#123;pattern + action&#125;'</span> &#123;filenames&#125;</div></pre></td></tr></table></figure>
-<p><strong>调用awk</strong></p>
-<p>1.<strong>命令行方式</strong><br>awk [-F  field-separator]  ‘commands’  input-file(s)<br>其中，commands 是真正awk命令，[-F域分隔符]是可选的。 input-file(s) 是待处理的文件。<br>在awk中，文件的每一行中，由域分隔符分开的每一项称为一个域。通常，在不指名-F域分隔符的情况下，默认的域分隔符是空格。</p>
-<p>2.<strong>shell脚本方式</strong><br>将所有的awk命令插入一个文件，并使awk程序可执行，然后awk命令解释器作为脚本的首行，一遍通过键入脚本名称来调用。<br>相当于shell脚本首行的：#!/bin/sh<br>可以换成：#!/bin/awk</p>
-<p>3.<strong>将所有的awk命令插入一个单独文件，然后调用</strong>：<br>awk -f awk-script-file input-file(s)<br>其中，-f选项加载awk-script-file中的awk脚本，input-file(s)跟上面的是一样的。</p>
-<p><strong>实例展示</strong><br>假设last -n 5的输出如下</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@www ~]<span class="comment"># last -n 5 &lt;==仅取出前五行</span></div><div class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Tue Feb <span class="number">10</span> <span class="number">11</span>:<span class="number">21</span>   still logged <span class="keyword">in</span></div><div class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Tue Feb <span class="number">10</span> <span class="number">00</span>:<span class="number">46</span> - <span class="number">02</span>:<span class="number">28</span>  (<span class="number">01</span>:<span class="number">41</span>)</div><div class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Mon Feb  <span class="number">9</span> <span class="number">11</span>:<span class="number">41</span> - <span class="number">18</span>:<span class="number">30</span>  (<span class="number">06</span>:<span class="number">48</span>)</div><div class="line">dmtsai   pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Mon Feb  <span class="number">9</span> <span class="number">11</span>:<span class="number">41</span> - <span class="number">11</span>:<span class="number">41</span>  (<span class="number">00</span>:<span class="number">00</span>)</div><div class="line">root     tty1                   Fri Sep  <span class="number">5</span> <span class="number">14</span>:<span class="number">09</span> - <span class="number">14</span>:<span class="number">10</span>  (<span class="number">00</span>:<span class="number">01</span>)</div></pre></td></tr></table></figure>
-<p>如果只是显示最近登录的5个帐号</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#last -n 5 | awk  '&#123;print $1&#125;'</span></div><div class="line">root</div><div class="line">root</div><div class="line">root</div><div class="line">dmtsai</div><div class="line">root</div></pre></td></tr></table></figure>
-<blockquote>
-<p>awk工作流程是这样的：读入有’\n’换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，\$0则表示所有域,\$1表示第一个域,\$n表示第n个域。默认域分隔符是”空白键” 或 “[tab]键”,所以\$1表示登录用户，$3表示登录用户ip,以此类推。</p>
-</blockquote>
-<p>如果只是显示/etc/passwd的账户</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cat /etc/passwd |awk  -F ':'  '&#123;print $1&#125;' </span></div><div class="line">root</div><div class="line">daemon</div><div class="line">bin</div><div class="line">sys</div></pre></td></tr></table></figure>
-<p>这种是awk+action的示例，每行都会执行action{print $1}。</p>
-<p>-F指定域分隔符为’:’。</p>
-<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以tab键分割</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cat /etc/passwd |awk  -F ':'  '&#123;print $1"\t"$7&#125;'</span></div><div class="line">root    /bin/bash</div><div class="line">daemon  /bin/sh</div><div class="line">bin     /bin/sh</div><div class="line">sys     /bin/sh</div></pre></td></tr></table></figure>
-<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以逗号分割,而且在所有行添加列名name,shell,在最后一行添加”blue,/bin/nosh”。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cat /etc/passwd |awk  -F <span class="string">':'</span>  <span class="string">'BEGIN &#123;print "name,shell"&#125;  &#123;print $1","$7&#125; END &#123;print "blue,/bin/nosh"&#125;'</span></div><div class="line">name,shell</div><div class="line">root,/bin/bash</div><div class="line">daemon,/bin/sh</div><div class="line">bin,/bin/sh</div><div class="line">sys,/bin/sh</div><div class="line">....</div><div class="line">blue,/bin/nosh</div></pre></td></tr></table></figure>
-<blockquote>
-<p>awk工作流程是这样的：先执行BEGING，然后读取文件，读入有/n换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，\$0则表示所有域,\$1表示第一个域,$n表示第n个域,随后开始执行模式所对应的动作action。接着开始读入第二条记录······直到所有的记录都读完，最后执行END操作。</p>
-</blockquote>
-<p>搜索/etc/passwd有root关键字的所有行</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#awk -F: '/root/' /etc/passwd</span></div><div class="line">root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/bin/bash</div></pre></td></tr></table></figure>
-<p>这种是pattern的使用示例，匹配了pattern(这里是root)的行才会执行action(没有指定action，默认输出每行的内容)。</p>
-<p>搜索支持正则，例如找root开头的: awk -F: ‘/^root/‘ /etc/passwd</p>
-<p>搜索/etc/passwd有root关键字的所有行，并显示对应的shell</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># awk -F: '/root/&#123;print $7&#125;' /etc/passwd             </span></div><div class="line">/bin/bash</div></pre></td></tr></table></figure>
-<p> 这里指定了action{print $7}</p>
-<p><strong>awk内置变量</strong></p>
-<p>awk有许多内置变量用来设置环境信息，这些变量可以被改变，下面给出了最常用的一些变量。</p>
-<blockquote>
-<p>ARGC               命令行参数个数<br>ARGV               命令行参数排列<br>ENVIRON            支持队列中系统环境变量的使用<br>FILENAME           awk浏览的文件名<br>FNR                浏览文件的记录数<br>FS                 设置输入域分隔符，等价于命令行 -F选项<br>NF                 浏览记录的域的个数<br>NR                 已读的记录数<br>OFS                输出域分隔符<br>ORS                输出记录分隔符<br>RS                 控制记录分隔符</p>
-</blockquote>
-<p> 此外,\$0变量是指整条记录。\$1表示当前行的第一个域,$2表示当前行的第二个域,……以此类推。</p>
-<p>统计/etc/passwd:文件名，每行的行号，每行的列数，对应的完整行内容:</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#awk  -F ':'  '&#123;print "filename:" FILENAME ",linenumber:" NR ",columns:" NF ",linecontent:"$0&#125;' /etc/passwd</span></div><div class="line">filename:/etc/passwd,linenumber:<span class="number">1</span>,columns:<span class="number">7</span>,linecontent:root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/bin/bash</div><div class="line">filename:/etc/passwd,linenumber:<span class="number">2</span>,columns:<span class="number">7</span>,linecontent:daemon:x:<span class="number">1</span>:<span class="number">1</span>:daemon:/usr/sbin:/bin/sh</div><div class="line">filename:/etc/passwd,linenumber:<span class="number">3</span>,columns:<span class="number">7</span>,linecontent:bin:x:<span class="number">2</span>:<span class="number">2</span>:bin:/bin:/bin/sh</div><div class="line">filename:/etc/passwd,linenumber:<span class="number">4</span>,columns:<span class="number">7</span>,linecontent:sys:x:<span class="number">3</span>:<span class="number">3</span>:sys:/dev:/bin/sh</div></pre></td></tr></table></figure>
-<p>使用printf替代print,可以让代码更加简洁，易读</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk  -F <span class="string">':'</span>  <span class="string">'&#123;printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,$0)&#125;'</span> /etc/passwd</div></pre></td></tr></table></figure>
-<p>print和printf<br>awk中同时提供了print和printf两种打印输出的函数。</p>
-<p>其中print函数的参数可以是变量、数值或者字符串。字符串必须用双引号引用，参数用逗号分隔。如果没有逗号，参数就串联在一起而无法区分。这里，逗号的作用与输出文件的分隔符的作用是一样的，只是后者是空格而已。</p>
-<p>printf函数，其用法和c语言中printf基本相似,可以格式化字符串,输出复杂时，printf更加好用，代码更易懂。</p>
-<p><strong>awk编程</strong></p>
-<p>除了awk的内置变量，awk还可以自定义变量。</p>
-<p>下面统计/etc/passwd的账户人数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123;count++;print $0;&#125; END&#123;print &quot;user count is &quot;, count&#125;&apos; /etc/passwd</div><div class="line">root:x:0:0:root:/root:/bin/bash</div><div class="line">......</div><div class="line">user count is  40</div></pre></td></tr></table></figure>
-<p>count是自定义变量。之前的action{}里都是只有一个print,其实print只是一个语句，而action{}可以有多个语句，以;号隔开。</p>
-<p>这里没有初始化count，虽然默认是0，但是妥当的做法还是初始化为0:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">awk &apos;BEGIN &#123;count=0;print &quot;[start]user count is &quot;, count&#125; &#123;count=count+1;print $0;&#125; END&#123;print &quot;[end]user count is &quot;, count&#125;&apos; /etc/passwd</div><div class="line">[start]user count is  0</div><div class="line">root:x:0:0:root:/root:/bin/bash</div><div class="line">...</div><div class="line">[end]user count is  40</div></pre></td></tr></table></figure>
-<p>统计某个文件夹下的文件占用的字节数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk &apos;BEGIN &#123;size=0;&#125; &#123;size=size+$5;&#125; END&#123;print &quot;[end]size is &quot;, size&#125;&apos;</div><div class="line">[end]size is  8657198</div></pre></td></tr></table></figure>
-<p>如果以M为单位显示:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk &apos;BEGIN &#123;size=0;&#125; &#123;size=size+$5;&#125; END&#123;print &quot;[end]size is &quot;, size/1024/1024,&quot;M&quot;&#125;&apos; </div><div class="line">[end]size is  8.25889 M</div></pre></td></tr></table></figure>
-<p>注意，统计不包括文件夹的子目录。</p>
-<p>条件语句</p>
-<p> awk中的条件语句是从C语言中借鉴来的，见如下声明方式：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement;</div><div class="line">    statement;</div><div class="line">    ... ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    statement2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement1;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (expression1) &#123;</div><div class="line">    statement2;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    statement3;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>统计某个文件夹下的文件占用的字节数,过滤4096大小的文件(一般都是文件夹):</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk <span class="string">'BEGIN &#123;size=0;print "[start]size is ", size&#125; &#123;if($5!=4096)&#123;size=size+$5;&#125;&#125; END&#123;print "[end]size is ", size/1024/1024,"M"&#125;'</span> </div><div class="line">[end]size is  <span class="number">8.22339</span> M</div></pre></td></tr></table></figure>
-<p>循环语句</p>
-<p>awk中的循环语句同样借鉴于C语言，支持while、do/while、for、break、continue，这些关键字的语义和C语言中的语义完全相同。</p>
-<p>数组</p>
-<p>  因为awk中数组的下标可以是数字和字母，数组的下标通常被称为关键字(key)。值和关键字都存储在内部的一张针对key/value应用hash的表格里。由于hash不是顺序存储，因此在显示数组内容时会发现，它们并不是按照你预料的顺序显示出来的。数组和变量一样，都是在使用时自动创建的，awk也同样会自动判断其存储的是数字还是字符串。一般而言，awk中的数组用来从记录中收集信息，可以用于计算总和、统计单词以及跟踪模板被匹配的次数等等。</p>
-<p>显示/etc/passwd的账户</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">awk -F <span class="string">':'</span> <span class="string">'BEGIN &#123;count=0;&#125; &#123;name[count] = $1;count++;&#125;; END&#123;for (i = 0; i &lt; NR; i++) print i, name[i]&#125;'</span> /etc/passwd</div><div class="line"><span class="number">0</span> root</div><div class="line"><span class="number">1</span> daemon</div><div class="line"><span class="number">2</span> bin</div><div class="line"><span class="number">3</span> sys</div><div class="line"><span class="number">4</span> sync</div><div class="line"><span class="number">5</span> games</div><div class="line">......</div></pre></td></tr></table></figure>
-<p>这里使用for循环遍历数组</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Awk深入理解&quot;&gt;&lt;a href=&quot;#Awk深入理解&quot; class=&quot;headerlink&quot; title=&quot;Awk深入理解&quot;&gt;&lt;/a&gt;Awk深入理解&lt;/h1&gt;&lt;p&gt;@(脚本语言)[awk]&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;简介&lt;/strong&gt;&lt;br&gt;awk是一个强
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://universefeeler.github.io/2016/07/31/Java%E4%B8%ADTimer%E4%BB%BB%E5%8A%A1/"/>
-    <id>http://universefeeler.github.io/2016/07/31/Java中Timer任务/</id>
-    <published>2016-07-31T07:02:11.212Z</published>
-    <updated>2016-07-31T05:27:44.776Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Java中Timer任务"><a href="#Java中Timer任务" class="headerlink" title="Java中Timer任务"></a>Java中Timer任务</h1><p>@(编程语言)[Java,timer]</p>
-<p><strong>实例展示</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> comz.autoupdatefile;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Timer;</div><div class="line"><span class="keyword">import</span> java.util.TimerTask;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">M</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO todo.generated by zoer</span></div><div class="line">		Timer timer = <span class="keyword">new</span> Timer();</div><div class="line">		timer.schedule(<span class="keyword">new</span> MyTask(), <span class="number">1000</span>, <span class="number">2000</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTask</span> <span class="keyword">extends</span> <span class="title">TimerTask</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"dddd"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样，就可以在1秒钟之后开始执行mytask，每两秒钟执行一次。</p>
-<p>当然，timer的功能也可以通过自己构造线程，然后在线程中用sleep来模拟停止一段时间，然后再执行某个动作。</p>
-<p>timer来间隔一段时间执行一个操作，也是通过一个线程来做到的。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Java中Timer任务&quot;&gt;&lt;a href=&quot;#Java中Timer任务&quot; class=&quot;headerlink&quot; title=&quot;Java中Timer任务&quot;&gt;&lt;/a&gt;Java中Timer任务&lt;/h1&gt;&lt;p&gt;@(编程语言)[Java,timer]&lt;/p&gt;
-&lt;p&gt;&lt;st
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://universefeeler.github.io/2016/07/31/shell%E8%84%9A%E6%9C%ACif%E6%AF%94%E8%BE%83%EF%BC%88%E6%95%B0%E5%AD%97%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89/"/>
-    <id>http://universefeeler.github.io/2016/07/31/shell脚本if比较（数字、字符串）/</id>
-    <published>2016-07-31T07:02:11.212Z</published>
-    <updated>2016-07-31T06:27:54.363Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="shell脚本if比较（数字、字符串）"><a href="#shell脚本if比较（数字、字符串）" class="headerlink" title="shell脚本if比较（数字、字符串）"></a>shell脚本if比较（数字、字符串）</h2><p>@(脚本)[shell,if]</p>
-<p><strong>数字比较</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="nomarkup">-eq</span> 等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-eq</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-ne</span> 不等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-ne</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-gt</span> 大于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-gt</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-ge</span> 大于等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-ge</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-lt</span> 小于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-lt</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-le</span> 小于等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-le</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line">&lt;   小于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &lt; <span class="string">"<span class="variable">$b</span>"</span>)) </div><div class="line">&lt;=  小于等于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &lt;= <span class="string">"<span class="variable">$b</span>"</span>)) </div><div class="line">&gt;   大于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &gt; <span class="string">"<span class="variable">$b</span>"</span>)) </div><div class="line">&gt;=  大于等于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &gt;= <span class="string">"<span class="variable">$b</span>"</span>))</div></pre></td></tr></table></figure>
-<p><strong>字符串比较</strong><br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">= 等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> = <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line">== 等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> == <span class="string">"<span class="variable">$b</span>"</span> ],与=等价 </div><div class="line"><span class="comment"># ==的功能在[[]]和[]中的行为是不同的</span></div><div class="line"> [[ <span class="variable">$a</span> == z* ]]   <span class="comment"># 如果$a以"z"开头(模式匹配)那么将为true </span></div><div class="line"> [[ <span class="variable">$a</span> == <span class="string">"z*"</span> ]] <span class="comment"># 如果$a等于z*(字符匹配),那么结果为true </span></div><div class="line"> [ <span class="variable">$a</span> == z* ]     <span class="comment"># File globbing 和word splitting将会发生 </span></div><div class="line"> [ <span class="string">"<span class="variable">$a</span>"</span> == <span class="string">"z*"</span> ] <span class="comment"># 如果$a等于z*(字符匹配),那么结果为true</span></div></pre></td></tr></table></figure></p>
-<p>注意：</p>
-<blockquote>
-<p>比较两个字符串是否相等的办法是：<br>if [ “$test”x = “test”x ]; then<br>这里的关键有几点：<br>1 使用单个等号<br>2 注意到等号两边各有一个空格：这是unix shell的要求<br>3 注意到”\$test”x最后的x，这是特意安排的，因为当\$test为空的时候，上面的表达式就变成了x = testx，显然是不相等的。而如果没有这个x，表达式就会报错：[: =: unary operator expected</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;shell脚本if比较（数字、字符串）&quot;&gt;&lt;a href=&quot;#shell脚本if比较（数字、字符串）&quot; class=&quot;headerlink&quot; title=&quot;shell脚本if比较（数字、字符串）&quot;&gt;&lt;/a&gt;shell脚本if比较（数字、字符串）&lt;/h2&gt;&lt;p&gt;@(
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title></title>
@@ -312,6 +144,84 @@
   
   <entry>
     <title></title>
+    <link href="http://universefeeler.github.io/2016/07/31/shell%E8%84%9A%E6%9C%ACif%E6%AF%94%E8%BE%83%EF%BC%88%E6%95%B0%E5%AD%97%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89/"/>
+    <id>http://universefeeler.github.io/2016/07/31/shell脚本if比较（数字、字符串）/</id>
+    <published>2016-07-31T07:02:11.212Z</published>
+    <updated>2016-07-31T06:27:54.363Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="shell脚本if比较（数字、字符串）"><a href="#shell脚本if比较（数字、字符串）" class="headerlink" title="shell脚本if比较（数字、字符串）"></a>shell脚本if比较（数字、字符串）</h2><p>@(脚本)[shell,if]</p>
+<p><strong>数字比较</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="nomarkup">-eq</span> 等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-eq</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-ne</span> 不等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-ne</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-gt</span> 大于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-gt</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-ge</span> 大于等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-ge</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-lt</span> 小于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-lt</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line"><span class="nomarkup">-le</span> 小于等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> <span class="nomarkup">-le</span> <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line">&lt;   小于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &lt; <span class="string">"<span class="variable">$b</span>"</span>)) </div><div class="line">&lt;=  小于等于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &lt;= <span class="string">"<span class="variable">$b</span>"</span>)) </div><div class="line">&gt;   大于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &gt; <span class="string">"<span class="variable">$b</span>"</span>)) </div><div class="line">&gt;=  大于等于(需要双括号),如:((<span class="string">"<span class="variable">$a</span>"</span> &gt;= <span class="string">"<span class="variable">$b</span>"</span>))</div></pre></td></tr></table></figure>
+<p><strong>字符串比较</strong><br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">= 等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> = <span class="string">"<span class="variable">$b</span>"</span> ] </div><div class="line">== 等于,如:<span class="keyword">if</span> [ <span class="string">"<span class="variable">$a</span>"</span> == <span class="string">"<span class="variable">$b</span>"</span> ],与=等价 </div><div class="line"><span class="comment"># ==的功能在[[]]和[]中的行为是不同的</span></div><div class="line"> [[ <span class="variable">$a</span> == z* ]]   <span class="comment"># 如果$a以"z"开头(模式匹配)那么将为true </span></div><div class="line"> [[ <span class="variable">$a</span> == <span class="string">"z*"</span> ]] <span class="comment"># 如果$a等于z*(字符匹配),那么结果为true </span></div><div class="line"> [ <span class="variable">$a</span> == z* ]     <span class="comment"># File globbing 和word splitting将会发生 </span></div><div class="line"> [ <span class="string">"<span class="variable">$a</span>"</span> == <span class="string">"z*"</span> ] <span class="comment"># 如果$a等于z*(字符匹配),那么结果为true</span></div></pre></td></tr></table></figure></p>
+<p>注意：</p>
+<blockquote>
+<p>比较两个字符串是否相等的办法是：<br>if [ “$test”x = “test”x ]; then<br>这里的关键有几点：<br>1 使用单个等号<br>2 注意到等号两边各有一个空格：这是unix shell的要求<br>3 注意到”\$test”x最后的x，这是特意安排的，因为当\$test为空的时候，上面的表达式就变成了x = testx，显然是不相等的。而如果没有这个x，表达式就会报错：[: =: unary operator expected</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;shell脚本if比较（数字、字符串）&quot;&gt;&lt;a href=&quot;#shell脚本if比较（数字、字符串）&quot; class=&quot;headerlink&quot; title=&quot;shell脚本if比较（数字、字符串）&quot;&gt;&lt;/a&gt;shell脚本if比较（数字、字符串）&lt;/h2&gt;&lt;p&gt;@(
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/31/hashMap%E4%B8%8EconcurrentMap%E5%AF%B9%E6%AF%94/"/>
+    <id>http://universefeeler.github.io/2016/07/31/hashMap与concurrentMap对比/</id>
+    <published>2016-07-31T07:02:11.212Z</published>
+    <updated>2016-07-31T06:57:21.424Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="hashMap与concurrentMap对比"><a href="#hashMap与concurrentMap对比" class="headerlink" title="hashMap与concurrentMap对比"></a>hashMap与concurrentMap对比</h1><p>@(编程语言)[Java,concurrentMap]</p>
+<ol>
+<li>hashMap可以有null的键，concurrentMap不可以有 </li>
+<li>hashMap是线程不安全的，在多线程的时候需要Collections.synchronizedMap(hashMap),ConcurrentMap使用了重入锁保证线程安全。 </li>
+<li>在删除元素时候，两者的算法不一样。</li>
+</ol>
+<p><strong>concurrentMap用法举例</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> ConcurrentMap&lt;String, Long&gt; wordCounts = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">increase</span><span class="params">(String word)</span> </span>&#123;</div><div class="line">    Long oldValue, newValue;</div><div class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">        oldValue = wordCounts.get(word);</div><div class="line">        <span class="keyword">if</span> (oldValue == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">// Add the word firstly, initial the value as 1</span></div><div class="line">            newValue = <span class="number">1L</span>;</div><div class="line">            <span class="keyword">if</span> (wordCounts.putIfAbsent(word, newValue) == <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            newValue = oldValue + <span class="number">1</span>;</div><div class="line">            <span class="keyword">if</span> (wordCounts.replace(word, oldValue, newValue)) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> newValue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码有点复杂，主要因为ConcurrentMap中不能保存value为null的值，所以得同时处理word不存在和已存在两种情况。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;hashMap与concurrentMap对比&quot;&gt;&lt;a href=&quot;#hashMap与concurrentMap对比&quot; class=&quot;headerlink&quot; title=&quot;hashMap与concurrentMap对比&quot;&gt;&lt;/a&gt;hashMap与concurren
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/31/Java%E4%B8%ADTimer%E4%BB%BB%E5%8A%A1/"/>
+    <id>http://universefeeler.github.io/2016/07/31/Java中Timer任务/</id>
+    <published>2016-07-31T07:02:11.212Z</published>
+    <updated>2016-07-31T05:27:44.776Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Java中Timer任务"><a href="#Java中Timer任务" class="headerlink" title="Java中Timer任务"></a>Java中Timer任务</h1><p>@(编程语言)[Java,timer]</p>
+<p><strong>实例展示</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> comz.autoupdatefile;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Timer;</div><div class="line"><span class="keyword">import</span> java.util.TimerTask;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">M</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO todo.generated by zoer</span></div><div class="line">		Timer timer = <span class="keyword">new</span> Timer();</div><div class="line">		timer.schedule(<span class="keyword">new</span> MyTask(), <span class="number">1000</span>, <span class="number">2000</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTask</span> <span class="keyword">extends</span> <span class="title">TimerTask</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"dddd"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样，就可以在1秒钟之后开始执行mytask，每两秒钟执行一次。</p>
+<p>当然，timer的功能也可以通过自己构造线程，然后在线程中用sleep来模拟停止一段时间，然后再执行某个动作。</p>
+<p>timer来间隔一段时间执行一个操作，也是通过一个线程来做到的。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Java中Timer任务&quot;&gt;&lt;a href=&quot;#Java中Timer任务&quot; class=&quot;headerlink&quot; title=&quot;Java中Timer任务&quot;&gt;&lt;/a&gt;Java中Timer任务&lt;/h1&gt;&lt;p&gt;@(编程语言)[Java,timer]&lt;/p&gt;
+&lt;p&gt;&lt;st
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
     <link href="http://universefeeler.github.io/2016/07/31/String%E6%95%B0%E7%BB%84%E6%B7%B1%E5%85%A5/"/>
     <id>http://universefeeler.github.io/2016/07/31/String数组深入/</id>
     <published>2016-07-31T07:02:11.212Z</published>
@@ -330,6 +240,129 @@
     
       &lt;h1 id=&quot;String数组深入&quot;&gt;&lt;a href=&quot;#String数组深入&quot; class=&quot;headerlink&quot; title=&quot;String数组深入&quot;&gt;&lt;/a&gt;String数组深入&lt;/h1&gt;&lt;p&gt;@(编程语言)[Java,String]&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;基础
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/31/Awk%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/"/>
+    <id>http://universefeeler.github.io/2016/07/31/Awk深入理解/</id>
+    <published>2016-07-31T07:02:11.212Z</published>
+    <updated>2016-07-31T06:51:25.122Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Awk深入理解"><a href="#Awk深入理解" class="headerlink" title="Awk深入理解"></a>Awk深入理解</h1><p>@(脚本语言)[awk]</p>
+<p><strong>简介</strong><br>awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</p>
+<p>awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。<br>awk其名称得自于它的创始人 Alfred Aho 、Peter Weinberger 和 Brian Kernighan 姓氏的首个字母。实际上 AWK 的确拥有自己的语言： AWK 程序设计语言 ， 三位创建者已将它正式定义为“样式扫描和处理语言”。它允许您创建简短的程序，这些程序读取输入文件、为数据排序、处理数据、对输入执行计算以及生成报表，还有无数其他的功能。</p>
+<p><strong>使用方法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'&#123;pattern + action&#125;'</span> &#123;filenames&#125;</div></pre></td></tr></table></figure>
+<p><strong>调用awk</strong></p>
+<p>1.<strong>命令行方式</strong><br>awk [-F  field-separator]  ‘commands’  input-file(s)<br>其中，commands 是真正awk命令，[-F域分隔符]是可选的。 input-file(s) 是待处理的文件。<br>在awk中，文件的每一行中，由域分隔符分开的每一项称为一个域。通常，在不指名-F域分隔符的情况下，默认的域分隔符是空格。</p>
+<p>2.<strong>shell脚本方式</strong><br>将所有的awk命令插入一个文件，并使awk程序可执行，然后awk命令解释器作为脚本的首行，一遍通过键入脚本名称来调用。<br>相当于shell脚本首行的：#!/bin/sh<br>可以换成：#!/bin/awk</p>
+<p>3.<strong>将所有的awk命令插入一个单独文件，然后调用</strong>：<br>awk -f awk-script-file input-file(s)<br>其中，-f选项加载awk-script-file中的awk脚本，input-file(s)跟上面的是一样的。</p>
+<p><strong>实例展示</strong><br>假设last -n 5的输出如下</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@www ~]<span class="comment"># last -n 5 &lt;==仅取出前五行</span></div><div class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Tue Feb <span class="number">10</span> <span class="number">11</span>:<span class="number">21</span>   still logged <span class="keyword">in</span></div><div class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Tue Feb <span class="number">10</span> <span class="number">00</span>:<span class="number">46</span> - <span class="number">02</span>:<span class="number">28</span>  (<span class="number">01</span>:<span class="number">41</span>)</div><div class="line">root     pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Mon Feb  <span class="number">9</span> <span class="number">11</span>:<span class="number">41</span> - <span class="number">18</span>:<span class="number">30</span>  (<span class="number">06</span>:<span class="number">48</span>)</div><div class="line">dmtsai   pts/<span class="number">1</span>   <span class="number">192.168</span>.<span class="number">1.100</span>  Mon Feb  <span class="number">9</span> <span class="number">11</span>:<span class="number">41</span> - <span class="number">11</span>:<span class="number">41</span>  (<span class="number">00</span>:<span class="number">00</span>)</div><div class="line">root     tty1                   Fri Sep  <span class="number">5</span> <span class="number">14</span>:<span class="number">09</span> - <span class="number">14</span>:<span class="number">10</span>  (<span class="number">00</span>:<span class="number">01</span>)</div></pre></td></tr></table></figure>
+<p>如果只是显示最近登录的5个帐号</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#last -n 5 | awk  '&#123;print $1&#125;'</span></div><div class="line">root</div><div class="line">root</div><div class="line">root</div><div class="line">dmtsai</div><div class="line">root</div></pre></td></tr></table></figure>
+<blockquote>
+<p>awk工作流程是这样的：读入有’\n’换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，\$0则表示所有域,\$1表示第一个域,\$n表示第n个域。默认域分隔符是”空白键” 或 “[tab]键”,所以\$1表示登录用户，$3表示登录用户ip,以此类推。</p>
+</blockquote>
+<p>如果只是显示/etc/passwd的账户</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cat /etc/passwd |awk  -F ':'  '&#123;print $1&#125;' </span></div><div class="line">root</div><div class="line">daemon</div><div class="line">bin</div><div class="line">sys</div></pre></td></tr></table></figure>
+<p>这种是awk+action的示例，每行都会执行action{print $1}。</p>
+<p>-F指定域分隔符为’:’。</p>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以tab键分割</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cat /etc/passwd |awk  -F ':'  '&#123;print $1"\t"$7&#125;'</span></div><div class="line">root    /bin/bash</div><div class="line">daemon  /bin/sh</div><div class="line">bin     /bin/sh</div><div class="line">sys     /bin/sh</div></pre></td></tr></table></figure>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以逗号分割,而且在所有行添加列名name,shell,在最后一行添加”blue,/bin/nosh”。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cat /etc/passwd |awk  -F <span class="string">':'</span>  <span class="string">'BEGIN &#123;print "name,shell"&#125;  &#123;print $1","$7&#125; END &#123;print "blue,/bin/nosh"&#125;'</span></div><div class="line">name,shell</div><div class="line">root,/bin/bash</div><div class="line">daemon,/bin/sh</div><div class="line">bin,/bin/sh</div><div class="line">sys,/bin/sh</div><div class="line">....</div><div class="line">blue,/bin/nosh</div></pre></td></tr></table></figure>
+<blockquote>
+<p>awk工作流程是这样的：先执行BEGING，然后读取文件，读入有/n换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，\$0则表示所有域,\$1表示第一个域,$n表示第n个域,随后开始执行模式所对应的动作action。接着开始读入第二条记录······直到所有的记录都读完，最后执行END操作。</p>
+</blockquote>
+<p>搜索/etc/passwd有root关键字的所有行</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#awk -F: '/root/' /etc/passwd</span></div><div class="line">root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/bin/bash</div></pre></td></tr></table></figure>
+<p>这种是pattern的使用示例，匹配了pattern(这里是root)的行才会执行action(没有指定action，默认输出每行的内容)。</p>
+<p>搜索支持正则，例如找root开头的: awk -F: ‘/^root/‘ /etc/passwd</p>
+<p>搜索/etc/passwd有root关键字的所有行，并显示对应的shell</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># awk -F: '/root/&#123;print $7&#125;' /etc/passwd             </span></div><div class="line">/bin/bash</div></pre></td></tr></table></figure>
+<p> 这里指定了action{print $7}</p>
+<p><strong>awk内置变量</strong></p>
+<p>awk有许多内置变量用来设置环境信息，这些变量可以被改变，下面给出了最常用的一些变量。</p>
+<blockquote>
+<p>ARGC               命令行参数个数<br>ARGV               命令行参数排列<br>ENVIRON            支持队列中系统环境变量的使用<br>FILENAME           awk浏览的文件名<br>FNR                浏览文件的记录数<br>FS                 设置输入域分隔符，等价于命令行 -F选项<br>NF                 浏览记录的域的个数<br>NR                 已读的记录数<br>OFS                输出域分隔符<br>ORS                输出记录分隔符<br>RS                 控制记录分隔符</p>
+</blockquote>
+<p> 此外,\$0变量是指整条记录。\$1表示当前行的第一个域,$2表示当前行的第二个域,……以此类推。</p>
+<p>统计/etc/passwd:文件名，每行的行号，每行的列数，对应的完整行内容:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#awk  -F ':'  '&#123;print "filename:" FILENAME ",linenumber:" NR ",columns:" NF ",linecontent:"$0&#125;' /etc/passwd</span></div><div class="line">filename:/etc/passwd,linenumber:<span class="number">1</span>,columns:<span class="number">7</span>,linecontent:root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/bin/bash</div><div class="line">filename:/etc/passwd,linenumber:<span class="number">2</span>,columns:<span class="number">7</span>,linecontent:daemon:x:<span class="number">1</span>:<span class="number">1</span>:daemon:/usr/sbin:/bin/sh</div><div class="line">filename:/etc/passwd,linenumber:<span class="number">3</span>,columns:<span class="number">7</span>,linecontent:bin:x:<span class="number">2</span>:<span class="number">2</span>:bin:/bin:/bin/sh</div><div class="line">filename:/etc/passwd,linenumber:<span class="number">4</span>,columns:<span class="number">7</span>,linecontent:sys:x:<span class="number">3</span>:<span class="number">3</span>:sys:/dev:/bin/sh</div></pre></td></tr></table></figure>
+<p>使用printf替代print,可以让代码更加简洁，易读</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk  -F <span class="string">':'</span>  <span class="string">'&#123;printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,$0)&#125;'</span> /etc/passwd</div></pre></td></tr></table></figure>
+<p>print和printf<br>awk中同时提供了print和printf两种打印输出的函数。</p>
+<p>其中print函数的参数可以是变量、数值或者字符串。字符串必须用双引号引用，参数用逗号分隔。如果没有逗号，参数就串联在一起而无法区分。这里，逗号的作用与输出文件的分隔符的作用是一样的，只是后者是空格而已。</p>
+<p>printf函数，其用法和c语言中printf基本相似,可以格式化字符串,输出复杂时，printf更加好用，代码更易懂。</p>
+<p><strong>awk编程</strong></p>
+<p>除了awk的内置变量，awk还可以自定义变量。</p>
+<p>下面统计/etc/passwd的账户人数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123;count++;print $0;&#125; END&#123;print &quot;user count is &quot;, count&#125;&apos; /etc/passwd</div><div class="line">root:x:0:0:root:/root:/bin/bash</div><div class="line">......</div><div class="line">user count is  40</div></pre></td></tr></table></figure>
+<p>count是自定义变量。之前的action{}里都是只有一个print,其实print只是一个语句，而action{}可以有多个语句，以;号隔开。</p>
+<p>这里没有初始化count，虽然默认是0，但是妥当的做法还是初始化为0:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">awk &apos;BEGIN &#123;count=0;print &quot;[start]user count is &quot;, count&#125; &#123;count=count+1;print $0;&#125; END&#123;print &quot;[end]user count is &quot;, count&#125;&apos; /etc/passwd</div><div class="line">[start]user count is  0</div><div class="line">root:x:0:0:root:/root:/bin/bash</div><div class="line">...</div><div class="line">[end]user count is  40</div></pre></td></tr></table></figure>
+<p>统计某个文件夹下的文件占用的字节数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk &apos;BEGIN &#123;size=0;&#125; &#123;size=size+$5;&#125; END&#123;print &quot;[end]size is &quot;, size&#125;&apos;</div><div class="line">[end]size is  8657198</div></pre></td></tr></table></figure>
+<p>如果以M为单位显示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk &apos;BEGIN &#123;size=0;&#125; &#123;size=size+$5;&#125; END&#123;print &quot;[end]size is &quot;, size/1024/1024,&quot;M&quot;&#125;&apos; </div><div class="line">[end]size is  8.25889 M</div></pre></td></tr></table></figure>
+<p>注意，统计不包括文件夹的子目录。</p>
+<p>条件语句</p>
+<p> awk中的条件语句是从C语言中借鉴来的，见如下声明方式：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement;</div><div class="line">    statement;</div><div class="line">    ... ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    statement2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement1;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (expression1) &#123;</div><div class="line">    statement2;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    statement3;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>统计某个文件夹下的文件占用的字节数,过滤4096大小的文件(一般都是文件夹):</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk <span class="string">'BEGIN &#123;size=0;print "[start]size is ", size&#125; &#123;if($5!=4096)&#123;size=size+$5;&#125;&#125; END&#123;print "[end]size is ", size/1024/1024,"M"&#125;'</span> </div><div class="line">[end]size is  <span class="number">8.22339</span> M</div></pre></td></tr></table></figure>
+<p>循环语句</p>
+<p>awk中的循环语句同样借鉴于C语言，支持while、do/while、for、break、continue，这些关键字的语义和C语言中的语义完全相同。</p>
+<p>数组</p>
+<p>  因为awk中数组的下标可以是数字和字母，数组的下标通常被称为关键字(key)。值和关键字都存储在内部的一张针对key/value应用hash的表格里。由于hash不是顺序存储，因此在显示数组内容时会发现，它们并不是按照你预料的顺序显示出来的。数组和变量一样，都是在使用时自动创建的，awk也同样会自动判断其存储的是数字还是字符串。一般而言，awk中的数组用来从记录中收集信息，可以用于计算总和、统计单词以及跟踪模板被匹配的次数等等。</p>
+<p>显示/etc/passwd的账户</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">awk -F <span class="string">':'</span> <span class="string">'BEGIN &#123;count=0;&#125; &#123;name[count] = $1;count++;&#125;; END&#123;for (i = 0; i &lt; NR; i++) print i, name[i]&#125;'</span> /etc/passwd</div><div class="line"><span class="number">0</span> root</div><div class="line"><span class="number">1</span> daemon</div><div class="line"><span class="number">2</span> bin</div><div class="line"><span class="number">3</span> sys</div><div class="line"><span class="number">4</span> sync</div><div class="line"><span class="number">5</span> games</div><div class="line">......</div></pre></td></tr></table></figure>
+<p>这里使用for循环遍历数组</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Awk深入理解&quot;&gt;&lt;a href=&quot;#Awk深入理解&quot; class=&quot;headerlink&quot; title=&quot;Awk深入理解&quot;&gt;&lt;/a&gt;Awk深入理解&lt;/h1&gt;&lt;p&gt;@(脚本语言)[awk]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;简介&lt;/strong&gt;&lt;br&gt;awk是一个强
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/30/MySQL%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95/"/>
+    <id>http://universefeeler.github.io/2016/07/30/MySQL聚集索引和非聚集索引/</id>
+    <published>2016-07-30T15:07:15.435Z</published>
+    <updated>2016-07-28T15:59:15.404Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="MySQL聚集索引和非聚集索引"><a href="#MySQL聚集索引和非聚集索引" class="headerlink" title="MySQL聚集索引和非聚集索引"></a>MySQL聚集索引和非聚集索引</h1><ol>
+<li><strong>聚集索引</strong></li>
+</ol>
+<p>一种索引，该索引中键值的逻辑顺序决定了表中相应行的物理顺序。<br> 　　聚集索引确定表中数据的物理顺序。聚集索引类似于电话簿，后者按姓氏排列数据。由于聚集索引规定数据在表中的物理存储顺序，因此一个表只能包含一个聚集索引。但该索引可以包含多个列（组合索引），就像电话簿按姓氏和名字进行组织一样。<br> 　　聚集索引对于那些经常要搜索范围值的列特别有效。使用聚集索引找到包含第一个值的行后，便可以确保包含后续索引值的行在物理相邻。例如，如果应用程序执行 的一个查询经常检索某一日期范围内的记录，则使用聚集索引可以迅速找到包含开始日期的行，然后检索表中所有相邻的行，直到到达结束日期。这样有助于提高此 类查询的性能。同样，如果对从表中检索的数据进行排序时经常要用到某一列，则可以将该表在该列上聚集（物理排序），避免每次查询该列时都进行排序，从而节 省成本。
+ 　　</p>
+<ol>
+<li><strong>非聚集索引</strong><br>一种索引，该索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同。</li>
+</ol>
+<p><strong>通俗解释</strong><br>实际上，您可以把索引理解为一种特殊的目录。微软的SQL SERVER提供了两种索引：聚集索引（clustered index，也称聚类索引、簇集索引）和非聚集索引（nonclustered index，也称非聚类索引、非簇集索引）。下面，我们举例来说明一下聚集索引和非聚集索引的区别：<br>    　　其实，我们的汉语字典的正文本身就是一个聚集索引。比如，我们要查“安”字，就会很自然地翻开字典的前几页，因为“安”的拼音是“an”，而按照拼音排序汉字的字典是以英文字母“a”开头并以“z”结尾的，那么“安”字就自然地排在字典的前部。如果您翻完了所有以“a”开头的部分仍然找不到这个字，那么就说明您的字典中没有这个字；同样的，如果查“张”字，那您也会将您的字典翻到最后部分，因为“张”的拼音是“zhang”。也就是说，字典的正文部分本身就是一个目录，您不需要再去查其他目录来找到您需要找的内容。我们把这种正文内容本身就是一种按照一定规则排列的目录称为“聚集索引”。<br>    　　如果您认识某个字，您可以快速地从自动中查到这个字。但您也可能会遇到您不认识的字，不知道它的发音，这时候，您就不能按照刚才的方法找到您要查的字，而需要去根据“偏旁部首”查到您要找的字，然后根据这个字后的页码直接翻到某页来找到您要找的字。但您结合“部首目录”和“检字表”而查到的字的排序并不是真正的正文的排序方法，比如您查“张”字，我们可以看到在查部首之后的检字表中“张”的页码是672页，检字表中“张”的上面是“驰”字，但页码却是63页，“张”的下面是“弩”字，页面是390页。很显然，这些字并不是真正的分别位于“张”字的上下方，现在您看到的连续的“驰、张、弩”三字实际上就是他们在非聚集索引中的排序，是字典正文中的字在非聚集索引中的映射。我们可以通过这种方式来找到您所需要的字，但它需要两个过程，先找到目录中的结果，然后再翻到您所需要的页码。我们把这种目录纯粹是目录，正文纯粹是正文的排序方式称为“非聚集索引”。<br>    　　通过以上例子，我们可以理解到什么是“聚集索引”和“非聚集索引”。进一步引申一下，我们可以很容易的理解：<strong>每个表只能有一个聚集索引，因为目录只能按照一种方法进行排序</strong>。</p>
+<p><strong>注意事项</strong></p>
+<ol>
+<li>索引有助于提高检索性能，但过多或不当的索引也会导致系统低效。因为用户在表中每加进一个索引，数据库就要做更多的工作。过多的索引甚至会导致<strong>索引碎片</strong>。</li>
+<li>建立聚集索引，并且在where中作为查询条件时才会有效，默认的主键索然是索引，但是很少作为查询条件，所以并不能明显提高查询速度。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;MySQL聚集索引和非聚集索引&quot;&gt;&lt;a href=&quot;#MySQL聚集索引和非聚集索引&quot; class=&quot;headerlink&quot; title=&quot;MySQL聚集索引和非聚集索引&quot;&gt;&lt;/a&gt;MySQL聚集索引和非聚集索引&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;聚集索引
     
     </summary>
     
@@ -465,85 +498,6 @@
   
   <entry>
     <title></title>
-    <link href="http://universefeeler.github.io/2016/07/30/MySQL%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95/"/>
-    <id>http://universefeeler.github.io/2016/07/30/MySQL聚集索引和非聚集索引/</id>
-    <published>2016-07-30T15:07:15.435Z</published>
-    <updated>2016-07-28T15:59:15.404Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="MySQL聚集索引和非聚集索引"><a href="#MySQL聚集索引和非聚集索引" class="headerlink" title="MySQL聚集索引和非聚集索引"></a>MySQL聚集索引和非聚集索引</h1><ol>
-<li><strong>聚集索引</strong></li>
-</ol>
-<p>一种索引，该索引中键值的逻辑顺序决定了表中相应行的物理顺序。<br> 　　聚集索引确定表中数据的物理顺序。聚集索引类似于电话簿，后者按姓氏排列数据。由于聚集索引规定数据在表中的物理存储顺序，因此一个表只能包含一个聚集索引。但该索引可以包含多个列（组合索引），就像电话簿按姓氏和名字进行组织一样。<br> 　　聚集索引对于那些经常要搜索范围值的列特别有效。使用聚集索引找到包含第一个值的行后，便可以确保包含后续索引值的行在物理相邻。例如，如果应用程序执行 的一个查询经常检索某一日期范围内的记录，则使用聚集索引可以迅速找到包含开始日期的行，然后检索表中所有相邻的行，直到到达结束日期。这样有助于提高此 类查询的性能。同样，如果对从表中检索的数据进行排序时经常要用到某一列，则可以将该表在该列上聚集（物理排序），避免每次查询该列时都进行排序，从而节 省成本。
- 　　</p>
-<ol>
-<li><strong>非聚集索引</strong><br>一种索引，该索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同。</li>
-</ol>
-<p><strong>通俗解释</strong><br>实际上，您可以把索引理解为一种特殊的目录。微软的SQL SERVER提供了两种索引：聚集索引（clustered index，也称聚类索引、簇集索引）和非聚集索引（nonclustered index，也称非聚类索引、非簇集索引）。下面，我们举例来说明一下聚集索引和非聚集索引的区别：<br>    　　其实，我们的汉语字典的正文本身就是一个聚集索引。比如，我们要查“安”字，就会很自然地翻开字典的前几页，因为“安”的拼音是“an”，而按照拼音排序汉字的字典是以英文字母“a”开头并以“z”结尾的，那么“安”字就自然地排在字典的前部。如果您翻完了所有以“a”开头的部分仍然找不到这个字，那么就说明您的字典中没有这个字；同样的，如果查“张”字，那您也会将您的字典翻到最后部分，因为“张”的拼音是“zhang”。也就是说，字典的正文部分本身就是一个目录，您不需要再去查其他目录来找到您需要找的内容。我们把这种正文内容本身就是一种按照一定规则排列的目录称为“聚集索引”。<br>    　　如果您认识某个字，您可以快速地从自动中查到这个字。但您也可能会遇到您不认识的字，不知道它的发音，这时候，您就不能按照刚才的方法找到您要查的字，而需要去根据“偏旁部首”查到您要找的字，然后根据这个字后的页码直接翻到某页来找到您要找的字。但您结合“部首目录”和“检字表”而查到的字的排序并不是真正的正文的排序方法，比如您查“张”字，我们可以看到在查部首之后的检字表中“张”的页码是672页，检字表中“张”的上面是“驰”字，但页码却是63页，“张”的下面是“弩”字，页面是390页。很显然，这些字并不是真正的分别位于“张”字的上下方，现在您看到的连续的“驰、张、弩”三字实际上就是他们在非聚集索引中的排序，是字典正文中的字在非聚集索引中的映射。我们可以通过这种方式来找到您所需要的字，但它需要两个过程，先找到目录中的结果，然后再翻到您所需要的页码。我们把这种目录纯粹是目录，正文纯粹是正文的排序方式称为“非聚集索引”。<br>    　　通过以上例子，我们可以理解到什么是“聚集索引”和“非聚集索引”。进一步引申一下，我们可以很容易的理解：<strong>每个表只能有一个聚集索引，因为目录只能按照一种方法进行排序</strong>。</p>
-<p><strong>注意事项</strong></p>
-<ol>
-<li>索引有助于提高检索性能，但过多或不当的索引也会导致系统低效。因为用户在表中每加进一个索引，数据库就要做更多的工作。过多的索引甚至会导致<strong>索引碎片</strong>。</li>
-<li>建立聚集索引，并且在where中作为查询条件时才会有效，默认的主键索然是索引，但是很少作为查询条件，所以并不能明显提高查询速度。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;MySQL聚集索引和非聚集索引&quot;&gt;&lt;a href=&quot;#MySQL聚集索引和非聚集索引&quot; class=&quot;headerlink&quot; title=&quot;MySQL聚集索引和非聚集索引&quot;&gt;&lt;/a&gt;MySQL聚集索引和非聚集索引&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;聚集索引
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://universefeeler.github.io/2016/07/25/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E4%B9%8B301%20VS%20302/"/>
-    <id>http://universefeeler.github.io/2016/07/25/HTTP状态码之301 VS 302/</id>
-    <published>2016-07-25T16:23:05.980Z</published>
-    <updated>2016-07-25T16:06:04.509Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="HTTP状态码之301-VS-302"><a href="#HTTP状态码之301-VS-302" class="headerlink" title="HTTP状态码之301 VS 302"></a>HTTP状态码之301 VS 302</h1><p><strong>标准说法</strong></p>
-<p>301，302 都是HTTP状态的编码，都代表着某个URL发生了转移，不同之处在于：<br>301 redirect: 301 代表永久性转移(Permanently Moved)。<br>302 redirect: 302 代表暂时性转移(Temporarily Moved )。</p>
-<p><strong>现实差异</strong></p>
-<p>301，302对用户来说没有区别，他们看到效果只是一个跳转，浏览器中旧的URL变成了新的URL。页面跳到了这个新的url指向的地方</p>
-<p>302转向可能会有URL规范化及网址劫持的问题。可能被搜索引擎判为可疑转向，甚至认为是作弊。<br>301重定向转到网页B时，搜索引擎可以肯定网页A永久的改变位置，或者说实际上不存在了，搜索引擎就会把网页B当作唯一有效目标。<br>301的好处是:<br>第一，   没有网址规范化问题。<br>第二，   也很重要的，网页A的PR网页级别会传到网页B。</p>
-<p><strong>网址劫持</strong><br>302重定向和网址劫持（URL hijacking）有什么关系呢？这要从搜索引擎如何处理302转向说起。从定义来说，从网址A做一个302重定向到网址B时，主机服务器的隐含意思是网址A随时有可能改主意，重新显示本身的内容或转向其他的地方。大部分的搜索引擎在大部分情况下，当收到302重定向时，一般只要去抓取目标网址就可以了，也就是说网址B。<br>实际上如果搜索引擎在遇到302转向时，百分之百的都抓取目标网址B的话，就不用担心网址URL劫持了。<br>问题就在于，有的时候搜索引擎，尤其是Google，并不能总是抓取目标网址。为什么呢？比如说，有的时候A网址很短，但是它做了一个302重定向到B网址，而B网址是一个很长的乱七八糟的URL网址，甚至还有可能包含一些问号之类的参数。很自然的，A网址更加用户友好，而B网址既难看，又不用户友好。这时Google很有可能会仍然显示网址A。<br>由于搜索引擎排名算法只是程序而不是人，在遇到302重定向的时候，并不能像人一样的去准确判定哪一个网址更适当，这就造成了网址URL劫持的可能性。也就是说，一个不道德的人在他自己的网址A做一个302重定向到你的网址B，出于某种原因， Google搜索结果所显示的仍然是网址A，但是所用的网页内容却是你的网址B上的内容，这种情况就叫做网址URL劫持。你辛辛苦苦所写的内容就这样被别人偷走了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;HTTP状态码之301-VS-302&quot;&gt;&lt;a href=&quot;#HTTP状态码之301-VS-302&quot; class=&quot;headerlink&quot; title=&quot;HTTP状态码之301 VS 302&quot;&gt;&lt;/a&gt;HTTP状态码之301 VS 302&lt;/h1&gt;&lt;p&gt;&lt;stron
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://universefeeler.github.io/2016/07/25/git%20merger%E4%B8%AD%E2%80%9Cboth%20deleted%E2%80%9D%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    <id>http://universefeeler.github.io/2016/07/25/git merger中“both deleted”错误解决方案/</id>
-    <published>2016-07-25T16:23:05.980Z</published>
-    <updated>2016-07-25T14:16:09.848Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="git-merger中“both-deleted”错误解决方案"><a href="#git-merger中“both-deleted”错误解决方案" class="headerlink" title="git merger中“both deleted”错误解决方案"></a>git merger中“both deleted”错误解决方案</h1><p><strong>错误原因</strong></p>
-<p>在使用git过程中，将两个分支合并时，恰巧这两个分支都删除了都一个文件或文件夹，并且是直接删除的，而不是通过git rm -r dir/删除的。将两个分支git merger 是很可能就报出“git deleted”的error，尽而导致merge失败。</p>
-<p><strong>解决方案</strong></p>
-<p>其实解决起来也并不困难，也就是选择一个被合并的分支执行 “git  rm -r dir/”,这个问题其实在将本地分支推到远程时也会发生，只是报的错误不一样。那么该怎么解决，自然，就是手动解决冲突喽。但是重点来了：我们无论是执行合并，还是将本地分支推到远程分支，一般都是利用git客户端来进行执行的，自然我们在进行层级找到相应的目录或文件时也都是通过那个伟大的“tab”键来自动补全找到的，但此时执行tab却并不能找到那个被删除的文件夹（都删除了，当然找不到），于是，我们像遇到坎似得不知所措了。那我们该怎么办呢？很简单，就是对那些提示“both deleted”的文件或文件夹执行“git rm -r dir/”,只不过这个路径需要我们一点点的用手打出来，而不是靠“tab”自动补全找到。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;git-merger中“both-deleted”错误解决方案&quot;&gt;&lt;a href=&quot;#git-merger中“both-deleted”错误解决方案&quot; class=&quot;headerlink&quot; title=&quot;git merger中“both deleted”错误解决方
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
     <link href="http://universefeeler.github.io/2016/07/25/Cookie%E4%B8%ADmaxAge%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/"/>
     <id>http://universefeeler.github.io/2016/07/25/Cookie中maxAge深入理解/</id>
     <published>2016-07-25T16:23:05.980Z</published>
@@ -579,6 +533,52 @@
     <summary type="html">
     
       &lt;h1 id=&quot;Cookie中maxAge深入理解&quot;&gt;&lt;a href=&quot;#Cookie中maxAge深入理解&quot; class=&quot;headerlink&quot; title=&quot;Cookie中maxAge深入理解&quot;&gt;&lt;/a&gt;Cookie中maxAge深入理解&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;标准
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/25/git%20merger%E4%B8%AD%E2%80%9Cboth%20deleted%E2%80%9D%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://universefeeler.github.io/2016/07/25/git merger中“both deleted”错误解决方案/</id>
+    <published>2016-07-25T16:23:05.980Z</published>
+    <updated>2016-07-25T14:16:09.848Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="git-merger中“both-deleted”错误解决方案"><a href="#git-merger中“both-deleted”错误解决方案" class="headerlink" title="git merger中“both deleted”错误解决方案"></a>git merger中“both deleted”错误解决方案</h1><p><strong>错误原因</strong></p>
+<p>在使用git过程中，将两个分支合并时，恰巧这两个分支都删除了都一个文件或文件夹，并且是直接删除的，而不是通过git rm -r dir/删除的。将两个分支git merger 是很可能就报出“git deleted”的error，尽而导致merge失败。</p>
+<p><strong>解决方案</strong></p>
+<p>其实解决起来也并不困难，也就是选择一个被合并的分支执行 “git  rm -r dir/”,这个问题其实在将本地分支推到远程时也会发生，只是报的错误不一样。那么该怎么解决，自然，就是手动解决冲突喽。但是重点来了：我们无论是执行合并，还是将本地分支推到远程分支，一般都是利用git客户端来进行执行的，自然我们在进行层级找到相应的目录或文件时也都是通过那个伟大的“tab”键来自动补全找到的，但此时执行tab却并不能找到那个被删除的文件夹（都删除了，当然找不到），于是，我们像遇到坎似得不知所措了。那我们该怎么办呢？很简单，就是对那些提示“both deleted”的文件或文件夹执行“git rm -r dir/”,只不过这个路径需要我们一点点的用手打出来，而不是靠“tab”自动补全找到。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;git-merger中“both-deleted”错误解决方案&quot;&gt;&lt;a href=&quot;#git-merger中“both-deleted”错误解决方案&quot; class=&quot;headerlink&quot; title=&quot;git merger中“both deleted”错误解决方
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/25/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E4%B9%8B301%20VS%20302/"/>
+    <id>http://universefeeler.github.io/2016/07/25/HTTP状态码之301 VS 302/</id>
+    <published>2016-07-25T16:23:05.980Z</published>
+    <updated>2016-07-25T16:06:04.509Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="HTTP状态码之301-VS-302"><a href="#HTTP状态码之301-VS-302" class="headerlink" title="HTTP状态码之301 VS 302"></a>HTTP状态码之301 VS 302</h1><p><strong>标准说法</strong></p>
+<p>301，302 都是HTTP状态的编码，都代表着某个URL发生了转移，不同之处在于：<br>301 redirect: 301 代表永久性转移(Permanently Moved)。<br>302 redirect: 302 代表暂时性转移(Temporarily Moved )。</p>
+<p><strong>现实差异</strong></p>
+<p>301，302对用户来说没有区别，他们看到效果只是一个跳转，浏览器中旧的URL变成了新的URL。页面跳到了这个新的url指向的地方</p>
+<p>302转向可能会有URL规范化及网址劫持的问题。可能被搜索引擎判为可疑转向，甚至认为是作弊。<br>301重定向转到网页B时，搜索引擎可以肯定网页A永久的改变位置，或者说实际上不存在了，搜索引擎就会把网页B当作唯一有效目标。<br>301的好处是:<br>第一，   没有网址规范化问题。<br>第二，   也很重要的，网页A的PR网页级别会传到网页B。</p>
+<p><strong>网址劫持</strong><br>302重定向和网址劫持（URL hijacking）有什么关系呢？这要从搜索引擎如何处理302转向说起。从定义来说，从网址A做一个302重定向到网址B时，主机服务器的隐含意思是网址A随时有可能改主意，重新显示本身的内容或转向其他的地方。大部分的搜索引擎在大部分情况下，当收到302重定向时，一般只要去抓取目标网址就可以了，也就是说网址B。<br>实际上如果搜索引擎在遇到302转向时，百分之百的都抓取目标网址B的话，就不用担心网址URL劫持了。<br>问题就在于，有的时候搜索引擎，尤其是Google，并不能总是抓取目标网址。为什么呢？比如说，有的时候A网址很短，但是它做了一个302重定向到B网址，而B网址是一个很长的乱七八糟的URL网址，甚至还有可能包含一些问号之类的参数。很自然的，A网址更加用户友好，而B网址既难看，又不用户友好。这时Google很有可能会仍然显示网址A。<br>由于搜索引擎排名算法只是程序而不是人，在遇到302重定向的时候，并不能像人一样的去准确判定哪一个网址更适当，这就造成了网址URL劫持的可能性。也就是说，一个不道德的人在他自己的网址A做一个302重定向到你的网址B，出于某种原因， Google搜索结果所显示的仍然是网址A，但是所用的网页内容却是你的网址B上的内容，这种情况就叫做网址URL劫持。你辛辛苦苦所写的内容就这样被别人偷走了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;HTTP状态码之301-VS-302&quot;&gt;&lt;a href=&quot;#HTTP状态码之301-VS-302&quot; class=&quot;headerlink&quot; title=&quot;HTTP状态码之301 VS 302&quot;&gt;&lt;/a&gt;HTTP状态码之301 VS 302&lt;/h1&gt;&lt;p&gt;&lt;stron
     
     </summary>
     
@@ -731,41 +731,6 @@
   
   <entry>
     <title></title>
-    <link href="http://universefeeler.github.io/2016/07/13/jQuery.find()%20%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/</id>
-    <published>2016-07-13T15:56:13.392Z</published>
-    <updated>2016-07-11T15:28:20.326Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="jQuery-find-函数详解"><a href="#jQuery-find-函数详解" class="headerlink" title="jQuery.find() 函数详解"></a>jQuery.find() 函数详解</h1><blockquote>
-<p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以jQuery对象的形式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于jQuery对象(实例)。</p>
-</blockquote>
-<ul>
-<li>语法<br>jQueryObject.find( expr )</li>
-<li>参数<br>expr    String/Element/jQuery类型指定的表达式。<br>find()函数将在当前jQuery对象每个匹配元素的所有后代元素中筛选符合指定表达式的元素。<br>如果expr参数为字符串，则将其视作jQuery选择器，用以表示该选择器所匹配的元素。<br>jQuery 1.6 新增支持：参数expr可以为DOM元素(Element)或jQuery对象。</li>
-<li>返回值<br>find()函数的返回值为jQuery类型，返回一个新的jQuery对象，该对象封装了当前jQuery对象匹配元素的所有符合指定选择器的后代元素。<br>如果没有匹配的元素，则返回空的jQuery对象。</li>
-<li>示例&amp;说明<br>find()函数具有以下等价代码：<br>// 这里的是selector、selector1均表示任意的选择器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;selector&quot;).find(&quot;selector1&quot;);</div></pre></td></tr></table></figure>
-<p>// 等价于</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;selector selector1&quot;);</div></pre></td></tr></table></figure>
-<p>以下面这段HTML代码为例：</p>
-<figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;p id="e1"&gt;</div><div class="line">	&lt;span id="e2" class="site"&gt;</div><div class="line">		&lt;span id="e3" class="item site-name"&gt;CodePlayer&lt;/span&gt;</div><div class="line">		&lt;span id="e4" class="item site-desc"&gt;专注于编程开发技术分享&lt;/span&gt;</div><div class="line">	&lt;/span&gt;</div><div class="line">	&lt;span id="e5" class="site-url"&gt;http://www.365mini.com&lt;/span&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;p id="e6"&gt;</div><div class="line">	JavaScript&lt;span id="e7" class="highlight"&gt;jQuery&lt;/span&gt;</div><div class="line">	&lt;a id="e8" href="http://www.365mini.com"&gt;CodePlayer&lt;/a&gt;</div><div class="line">&lt;/p&gt;</div></pre></td></tr></table></figure>
-<p>以下jQuery示例代码用于演示find()函数的具体用法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 返回jQuery对象所有匹配元素的标识信息数组</div><div class="line">// 每个元素形如：tagName或tagName#id(如果有id的话)</div><div class="line">function getTagsInfo($doms)&#123;</div><div class="line">	return $doms.map(function()&#123;</div><div class="line">		return this.tagName + (this.id ? &quot;#&quot; + this.id : &quot;&quot;);</div><div class="line">	&#125;).get();</div><div class="line">&#125;</div><div class="line">// 匹配id为e1的元素</div><div class="line">var $e1 = $(&quot;#e1&quot;);</div><div class="line">var $e1_span = $e1.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $e1_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5</div><div class="line"></div><div class="line">var $p = $(&quot;p&quot;);</div><div class="line">var $p_span = $p.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $p_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5,SPAN#e7</div><div class="line"></div><div class="line">var $highlight = $p.find( $(&quot;.highlight&quot;) );</div><div class="line">document.writeln( getTagsInfo( $highlight ) ); // SPAN#e7</div><div class="line"></div><div class="line">var a = document.getElementsByTagName(&quot;a&quot;);</div><div class="line">var $a = $p.find( a );</div><div class="line">document.writeln( getTagsInfo( $a ) ); // A#e8</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;jQuery-find-函数详解&quot;&gt;&lt;a href=&quot;#jQuery-find-函数详解&quot; class=&quot;headerlink&quot; title=&quot;jQuery.find() 函数详解&quot;&gt;&lt;/a&gt;jQuery.find() 函数详解&lt;/h1&gt;&lt;blockquote&gt;
-
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
     <link href="http://universefeeler.github.io/2016/07/13/jQuery%E7%9A%84$%E7%AC%A6%E5%8F%B7%E8%AF%A6%E8%A7%A3/"/>
     <id>http://universefeeler.github.io/2016/07/13/jQuery的$符号详解/</id>
     <published>2016-07-13T15:56:13.392Z</published>
@@ -809,6 +774,41 @@
     <summary type="html">
     
       &lt;h1 id=&quot;jquery的-“-id”-与document-getElementById-“id”-的区别&quot;&gt;&lt;a href=&quot;#jquery的-“-id”-与document-getElementById-“id”-的区别&quot; class=&quot;headerlink&quot; title
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://universefeeler.github.io/2016/07/13/jQuery.find()%20%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://universefeeler.github.io/2016/07/13/jQuery.find() 函数详解/</id>
+    <published>2016-07-13T15:56:13.392Z</published>
+    <updated>2016-07-11T15:28:20.326Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="jQuery-find-函数详解"><a href="#jQuery-find-函数详解" class="headerlink" title="jQuery.find() 函数详解"></a>jQuery.find() 函数详解</h1><blockquote>
+<p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以jQuery对象的形式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于jQuery对象(实例)。</p>
+</blockquote>
+<ul>
+<li>语法<br>jQueryObject.find( expr )</li>
+<li>参数<br>expr    String/Element/jQuery类型指定的表达式。<br>find()函数将在当前jQuery对象每个匹配元素的所有后代元素中筛选符合指定表达式的元素。<br>如果expr参数为字符串，则将其视作jQuery选择器，用以表示该选择器所匹配的元素。<br>jQuery 1.6 新增支持：参数expr可以为DOM元素(Element)或jQuery对象。</li>
+<li>返回值<br>find()函数的返回值为jQuery类型，返回一个新的jQuery对象，该对象封装了当前jQuery对象匹配元素的所有符合指定选择器的后代元素。<br>如果没有匹配的元素，则返回空的jQuery对象。</li>
+<li>示例&amp;说明<br>find()函数具有以下等价代码：<br>// 这里的是selector、selector1均表示任意的选择器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;selector&quot;).find(&quot;selector1&quot;);</div></pre></td></tr></table></figure>
+<p>// 等价于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;selector selector1&quot;);</div></pre></td></tr></table></figure>
+<p>以下面这段HTML代码为例：</p>
+<figure class="highlight vbscript-html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;p id="e1"&gt;</div><div class="line">	&lt;span id="e2" class="site"&gt;</div><div class="line">		&lt;span id="e3" class="item site-name"&gt;CodePlayer&lt;/span&gt;</div><div class="line">		&lt;span id="e4" class="item site-desc"&gt;专注于编程开发技术分享&lt;/span&gt;</div><div class="line">	&lt;/span&gt;</div><div class="line">	&lt;span id="e5" class="site-url"&gt;http://www.365mini.com&lt;/span&gt;</div><div class="line">&lt;/p&gt;</div><div class="line">&lt;p id="e6"&gt;</div><div class="line">	JavaScript&lt;span id="e7" class="highlight"&gt;jQuery&lt;/span&gt;</div><div class="line">	&lt;a id="e8" href="http://www.365mini.com"&gt;CodePlayer&lt;/a&gt;</div><div class="line">&lt;/p&gt;</div></pre></td></tr></table></figure>
+<p>以下jQuery示例代码用于演示find()函数的具体用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 返回jQuery对象所有匹配元素的标识信息数组</div><div class="line">// 每个元素形如：tagName或tagName#id(如果有id的话)</div><div class="line">function getTagsInfo($doms)&#123;</div><div class="line">	return $doms.map(function()&#123;</div><div class="line">		return this.tagName + (this.id ? &quot;#&quot; + this.id : &quot;&quot;);</div><div class="line">	&#125;).get();</div><div class="line">&#125;</div><div class="line">// 匹配id为e1的元素</div><div class="line">var $e1 = $(&quot;#e1&quot;);</div><div class="line">var $e1_span = $e1.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $e1_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5</div><div class="line"></div><div class="line">var $p = $(&quot;p&quot;);</div><div class="line">var $p_span = $p.find(&quot;span&quot;);</div><div class="line">document.writeln( getTagsInfo( $p_span ) ); // SPAN#e2,SPAN#e3,SPAN#e4,SPAN#e5,SPAN#e7</div><div class="line"></div><div class="line">var $highlight = $p.find( $(&quot;.highlight&quot;) );</div><div class="line">document.writeln( getTagsInfo( $highlight ) ); // SPAN#e7</div><div class="line"></div><div class="line">var a = document.getElementsByTagName(&quot;a&quot;);</div><div class="line">var $a = $p.find( a );</div><div class="line">document.writeln( getTagsInfo( $a ) ); // A#e8</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;jQuery-find-函数详解&quot;&gt;&lt;a href=&quot;#jQuery-find-函数详解&quot; class=&quot;headerlink&quot; title=&quot;jQuery.find() 函数详解&quot;&gt;&lt;/a&gt;jQuery.find() 函数详解&lt;/h1&gt;&lt;blockquote&gt;
+
     
     </summary>
     
